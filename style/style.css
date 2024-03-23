@@ -1,49 +1,69 @@
-.wordle-game {
-    text-align: center;
-    margin: 20px auto;
-    width: 50%;
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-radius: 10px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-    font-size: 40px;
+html,
+body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Added to stack elements vertically */
 }
 
-p {
-    font-size: 25px;
+.buttonContainer {
+    margin-top: 20px;
+    display: flex; /* Added */
+    justify-content: center; /* Added */
 }
 
-input[type="text"] {
-    padding: 10px;
-    font-size: 20px;
-    border: none;
-    border-bottom: 2px solid #ccc;
+.buttonContainer button {
+    margin: 0 5px; /* Adjust spacing between buttons */
+}
+
+.scoreCount {
+    display: flex;
     margin-bottom: 20px;
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
+.rounded-box {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 10px;
+    margin-right: 10px; /* Adjust spacing between boxes */
 }
 
-button:hover {
-    background-color: #3e8e41;
+.imageContainer {
+    margin: 15px;
+    height: 0px; /* Set the width of the container */
+    /* Optionally, you can also set a max-width or max-height to prevent the image from becoming too large */
 }
 
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
+.imageContainer img {
+    height: 100%; /* Set the width of the image to fill its container */
+    width: auto; /* Allow the height to adjust automatically based on the aspect ratio */
+    display: block; /* Ensure the image is displayed as a block element */
 }
 
-li {
-    margin-bottom: 10px;
+#startButton {
+    display: block;
+}
+
+#imageDisplay {
+    display: none;
+}
+
+#giraffeButton {
+    display: none;
+}
+
+#duckButton {
+    display: none;
+}
+
+.blurred {
+    filter: blur(13px);
 }
