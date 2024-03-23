@@ -5,7 +5,7 @@ function startButton() {
   var imageDisplay = document.getElementById("imageDisplay");
   var imageContainer = document.getElementById("imageContainer");
 
-  imageDisplay.src = "images/image1.jpg";
+  imageDisplay.src = "images/image0.jpg";
   imageContainer.style.height = "200px";
 
   startButton.style.display = "none";
@@ -15,11 +15,11 @@ function startButton() {
 }
 
 function giraffeButton() {
-  checkAnswer("giraffe");
+  checkAnswer("g");
 }
 
 function duckButton() {
-  checkAnswer("duck");
+  checkAnswer("d");
 }
 
 function checkAnswer(answer) {

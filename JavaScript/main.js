@@ -14,7 +14,7 @@ var images = [
   "image5.jpg",
 ];
 
-var answers = ["giraffe", "giraffe", "giraffe", "duck", "duck"]; // replace with your answers
+var answers = ["d", "g", "g", "g", "d"]; // replace with your answers
 
 var day = 30;
 
