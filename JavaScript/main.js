@@ -28,7 +28,6 @@ var resultArray = ["-", "-", "-", "-", "-"];
 function share() {
   navigator.share({
     text: shareMsg,
-    url: "https://localhost:4443",
   });
 }
 let encoder = new TextEncoder(); // This defaults to UTF-8

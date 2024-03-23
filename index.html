@@ -11,15 +11,6 @@
         <link rel="stylesheet" type="text/css" href="style/style.css" />
     </head>
     <body>
-        <button
-            type="button"
-            id="shareButton"
-            onclick="share()"
-            class="btn btn-primary"
-        >
-            share
-        </button>
-
         <div id="scoreboard">
             <h1>Giraffe or Duck?</h1>
             <div class="scoreCount">
@@ -43,6 +34,15 @@
                 class="btn btn-primary"
             >
                 Start
+            </button>
+            <button
+                type="button"
+                id="shareButton"
+                onclick="share()"
+                class="btn btn-primary"
+                style="display: none"
+            >
+                Share Results
             </button>
 
             <button
