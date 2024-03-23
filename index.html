@@ -9,7 +9,98 @@
         <link rel="stylesheet" type="text/css" href="style/style.css" />
         <link rel="stylesheet" type="text/css" href="style/style.css" />
     </head>
-    <body></body>
+    <body>
+        <table>
+            <tr>
+                <td>Title:</td>
+                <td>
+                    <input type="checkbox" id="title_checkbox" checked />
+                </td>
+                <td>
+                    <input id="title" value="The Title" size="40" />
+                </td>
+            </tr>
+            <tr>
+                <td>Text:</td>
+                <td>
+                    <input type="checkbox" id="text_checkbox" checked />
+                </td>
+                <td>
+                    <input id="text" value="The message" size="40" />
+                </td>
+            </tr>
+            <tr>
+                <td>URL:</td>
+                <td>
+                    <input type="checkbox" id="url_checkbox" checked />
+                </td>
+                <td>
+                    <input id="url" value="https://example.com" size="40" />
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input id="share" type="button" value="Share" />
+            <input
+                id="share-no-gesture"
+                type="button"
+                value="Share without user gesture"
+            />
+        </p>
+        <div id="output"></div>
+        <p>
+            This is a test page for the
+            <a href="https://w3c.github.io/web-share/">Web Share API</a>. It
+            will only work in browsers that have implemented the API.
+        </p>
+
+        <div id="scoreboard">
+            <h1>Giraffe or Duck?</h1>
+            <div class="scoreCount">
+                <div id="box0" class="rounded-box"></div>
+                <div id="box1" class="rounded-box"></div>
+                <div id="box2" class="rounded-box"></div>
+                <div id="box3" class="rounded-box"></div>
+                <div id="box4" class="rounded-box"></div>
+            </div>
+        </div>
+
+        <div id="imageContainer" class="imageContainer">
+            <img id="imageDisplay" class="blurred" src="" alt="Image" />
+        </div>
+
+        <div class="buttonContainer">
+            <button
+                type="button"
+                id="startButton"
+                onclick="startButton()"
+                class="btn btn-primary"
+            >
+                Start
+            </button>
+
+            <button
+                type="button"
+                id="giraffeButton"
+                onclick="giraffeButton()"
+                class="btn btn-primary"
+            >
+                Giraffe
+            </button>
+
+            <button
+                type="button"
+                id="duckButton"
+                onclick="duckButton()"
+                class="btn btn-primary"
+            >
+                Duck
+            </button>
+
+            <div id="result"></div>
+        </div>
+    </body>
     <script src="JavaScript/func.js"></script>
     <script src="JavaScript/main.js"></script>
+    <script src="node_modules/sharer.js/sharer.min.js"></script>
 </html>
