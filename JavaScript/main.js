@@ -15,12 +15,20 @@ var images = [
 ];
 
 var answers = ["giraffe", "giraffe", "giraffe", "duck", "duck"]; // replace with your answers
+
+var day = 30;
+
 var roundNum = 0;
 var score = 0;
 
+var shareMsg = "";
+
+var resultArray = ["-", "-", "-", "-", "-"];
+
 function share() {
   navigator.share({
-    text: "you fuck",
+    text: shareMsg,
     url: "https://localhost:4443",
   });
 }
+let encoder = new TextEncoder(); // This defaults to UTF-8
