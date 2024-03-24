@@ -7,14 +7,14 @@ var colorAliases = {
 };
 
 var images = [
-  "image1.jpg",
-  "image2.webp",
-  "image3.jpg",
-  "image4.jpg",
-  "image5.jpg",
+  "image_0.jpg",
+  "image_1.jpg",
+  "image_2.jpg",
+  "image_3.jpg",
+  "image_4.jpg",
 ];
 
-var answers = ["d", "g", "g", "g", "d"];
+var answers = ["g", "d", "g", "g", "d"];
 
 var day = 30;
 

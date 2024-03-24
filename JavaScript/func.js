@@ -9,7 +9,7 @@ function startButton() {
   var content = document.getElementById("content");
   var scoreCount = document.getElementById("scoreCount");
 
-  imageDisplay.src = "images/image0.jpg";
+  imageDisplay.src = "images/animals/image_0.jpg";
 
   startButton.style.display = "none";
   giraffeButton.style.display = "inline-flex";
@@ -30,21 +30,23 @@ function duckButton() {
 }
 
 function checkAnswer(answer) {
+  console.log(roundNum);
   if (answer === answers[roundNum]) {
     score++;
     resultArray[roundNum] = "✅";
     changeColor("box" + roundNum, "green");
+    console.log("box" + roundNum + " is now green");
   } else {
     resultArray[roundNum] = "❌";
     changeColor("box" + roundNum, "red");
   }
-
-  if (roundNum == 4) {
+  roundNum++;
+  if (roundNum == 5) {
     endGame();
   } else {
-    document.getElementById("imageDisplay").src = "images/" + images[roundNum];
+    document.getElementById("imageDisplay").src =
+      "images/animals/" + images[roundNum];
   }
-  roundNum++;
 }
 
 function endGame() {
@@ -56,7 +58,6 @@ function endGame() {
   var shareButton = document.getElementById("shareButton");
   var endmsg = document.getElementById("endmsg");
 
-  imageDisplay.src = "images/image1.jpg";
   imageContainer.style.height = "0px";
 
   startButton.style.display = "none";
