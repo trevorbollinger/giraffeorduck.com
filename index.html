@@ -5,6 +5,8 @@
         <meta http-equiv="cache-control" content="no-cache" />
         <meta http-equiv="expires" content="0" />
         <meta http-equiv="pragma" content="no-cache" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
         <title>Giraffe or Duck?</title>
         <link
@@ -16,7 +18,7 @@
     </head>
     <body>
         <div id="scoreboard">
-            <h1>Giraffe or Duck?</h1>
+            <h1 style="text-align: center">Giraffe or Duck?</h1>
             <div class="scoreCount">
                 <div id="box0" class="rounded-box"></div>
                 <div id="box1" class="rounded-box"></div>
@@ -27,7 +29,13 @@
         </div>
 
         <div id="imageContainer" class="imageContainer">
-            <img id="imageDisplay" class="blurred" src="" alt="Image" />
+            <img
+                id="imageDisplay"
+                class="blurred"
+                src=""
+                alt="Image"
+                style="display: none"
+            />
         </div>
 
         <div class="buttonContainer">
@@ -35,7 +43,8 @@
                 type="button"
                 id="startButton"
                 onclick="startButton()"
-                class="btn btn-primary"
+                class="dark-button"
+                style="display: block"
             >
                 Start
             </button>
@@ -43,7 +52,7 @@
                 type="button"
                 id="shareButton"
                 onclick="share()"
-                class="btn btn-primary"
+                class="dark-button"
                 style="display: none"
             >
                 Share Results
@@ -53,7 +62,8 @@
                 type="button"
                 id="giraffeButton"
                 onclick="giraffeButton()"
-                class="btn btn-primary"
+                class="dark-button"
+                style="display: none"
             >
                 Giraffe
             </button>
@@ -62,7 +72,8 @@
                 type="button"
                 id="duckButton"
                 onclick="duckButton()"
-                class="btn btn-primary"
+                class="dark-button"
+                style="display: none"
             >
                 Duck
             </button>

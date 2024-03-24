@@ -10,60 +10,92 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Added to stack elements vertically */
+    flex-direction: column;
+    /* Stack elements vertically */
+    background-color: #1a1a1a;
+    /* Dark background color */
+    color: #ffffff;
+    /* Light text color */
 }
 
 .buttonContainer {
-    margin-top: 20px;
-    display: flex; /* Added */
-    justify-content: center; /* Added */
+    margin-top: 0px;
+    /* Adjust margin if necessary */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Center items vertically */
+    padding: 10px;
 }
 
-.buttonContainer button {
-    margin: 0 5px; /* Adjust spacing between buttons */
+.scoreboard {
+    text-align: center;
 }
 
 .scoreCount {
+    width: 314px;
     display: flex;
-    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+    /* Center items vertically */
+    margin: 7px;
 }
 
 .rounded-box {
     width: 50px;
     height: 50px;
-    background-color: #ccc;
+    background-color: #404040;
     border-radius: 10px;
-    margin-right: 10px; /* Adjust spacing between boxes */
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .imageContainer {
     margin: 15px;
-    height: 0px; /* Set the width of the container */
-    /* Optionally, you can also set a max-width or max-height to prevent the image from becoming too large */
+    width: auto;
+    /* Adjust width as needed */
+    display: none;
+}
+
+.dark-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    /* Rounded corners */
+    background-color: #333;
+    /* Dark background color */
+    color: #fff;
+    /* Light text color */
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover Effect */
+.custom-button:hover {
+    background-color: #555;
+    /* Darker background color on hover */
 }
 
 .imageContainer img {
-    height: 100%; /* Set the width of the image to fill its container */
-    width: auto; /* Allow the height to adjust automatically based on the aspect ratio */
-    display: block; /* Ensure the image is displayed as a block element */
-}
-
-#startButton {
+    max-width: 100%;
+    /* Ensure image doesn't exceed container width */
+    height: auto;
+    /* Allow the height to adjust automatically based on the aspect ratio */
     display: block;
-}
-
-#imageDisplay {
-    display: none;
-}
-
-#giraffeButton {
-    display: none;
-}
-
-#duckButton {
-    display: none;
+    margin: 0 auto;
+    /* Center image horizontally */
 }
 
 .blurred {
     filter: blur(0px);
+}
+
+/* Media Query for Mobile Devices */
+@media only screen and (max-width: 600px) {
+    .scoreCount {
+        width: auto; /* Reset width to auto for smaller screens */
+    }
 }

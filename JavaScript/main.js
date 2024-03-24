@@ -3,7 +3,7 @@ var colorAliases = {
   red: "#9e221e",
   green: "#198754",
   yellow: "#ffc107",
-  // Add more aliases as needed
+  darkgrey: "#404040",
 };
 
 var images = [
@@ -14,7 +14,7 @@ var images = [
   "image5.jpg",
 ];
 
-var answers = ["d", "g", "g", "g", "d"]; // replace with your answers
+var answers = ["d", "g", "g", "g", "d"];
 
 var day = 30;
 
@@ -30,4 +30,3 @@ function share() {
     text: shareMsg,
   });
 }
-let encoder = new TextEncoder(); // This defaults to UTF-8

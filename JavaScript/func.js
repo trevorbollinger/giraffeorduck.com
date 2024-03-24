@@ -4,14 +4,17 @@ function startButton() {
   var duckButton = document.getElementById("duckButton");
   var imageDisplay = document.getElementById("imageDisplay");
   var imageContainer = document.getElementById("imageContainer");
+  var buttonContainer = document.getElementById("buttonContainer");
 
   imageDisplay.src = "images/image0.jpg";
   imageContainer.style.height = "200px";
 
   startButton.style.display = "none";
-  giraffeButton.style.display = "block";
-  duckButton.style.display = "block";
-  imageDisplay.style.display = "block";
+  giraffeButton.style.display = "flex";
+  duckButton.style.display = "flex";
+  imageDisplay.style.display = "flex";
+  imageContainer.style.display = "flex";
+  buttonContainer.style.display = "flex";
 }
 
 function giraffeButton() {
@@ -55,7 +58,8 @@ function endGame() {
   giraffeButton.style.display = "none";
   duckButton.style.display = "none";
   imageDisplay.style.display = "none";
-  shareButton.style.display = "block";
+  shareButton.style.display = "flex";
+  imageContainer.style.display = "none";
 
   shareMsg = "Giraffe or Duck? #" + day + "\n" + resultArray.join("");
 
