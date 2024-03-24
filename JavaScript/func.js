@@ -74,6 +74,7 @@ function endGame() {
   var imageContainer = document.getElementById("imageContainer");
   var shareButton = document.getElementById("shareButton");
   var endmsg = document.getElementById("endmsg");
+  increasePlayCount();
 
   imageContainer.style.height = "0px";
 
@@ -125,4 +126,20 @@ function openPopup() {
 function closePopup() {
   document.getElementById("popupOverlay").style.display = "none";
   document.getElementById("popup").style.display = "none";
+}
+
+function increasePlayCount(){
+    fetch("https://script.google.com/macros/s/AKfycbxP9dBKfcUoL_OF6LTRlcavLRW6nf0M7weVYcMG1CHlY4fvkGE2X_qnth1fdVuF42p2/exec")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json(); // Assuming the script returns JSON response
+    })
+    .then(data => {
+      console.log(data); // Log the response from the Google Apps Script
+    })
+    .catch(error => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
 }
