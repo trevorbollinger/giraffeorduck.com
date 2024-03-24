@@ -153,6 +153,9 @@ body {
         z-index: 999;
         max-width: 90%; /* Adjusted for mobile screens */
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Added shadow effect */
+        justify-content: space-between; /* Align items on opposite ends */
+    align-items: center; /* Vertically center items */
+}
     }
     .popup h2 {
         margin-top: 0;
@@ -164,12 +167,12 @@ body {
         margin-bottom: 15px;
     }
     .popup .close-btn {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        font-size: 24px; /* Increased font size for better visibility */
+
+        font-size: 40px; /* Increased font size for better visibility */
         color: #fff; /* Changed color for better contrast */
         cursor: pointer;
+        justify-content: right;
+        text-align: right;
     }
     .popup-overlay {
         display: none;
@@ -214,10 +217,11 @@ body {
             font-size: 16px; /* Adjusted font size for better readability */
         }
         .popup .close-btn {
-            font-size: 20px; /* Increased font size for better visibility */
+             /* Increased font size for better visibility */
             top: 0;
             right: 0;
-            padding: 10px; /* Increased padding for better touch target */
+            padding-top, padding-bottom: 10px; /* Increased padding for better touch target */
+            padding-right: 5px;        
         }
 }
 @font-face {
