@@ -14,9 +14,10 @@ var images = [
   "image_4.jpg",
 ];
 
-var answers = ["g", "d", "g", "g", "d"];
+var rawanswers = "gddgddgddddggdggggdg"
+var answers = rawanswers.split('');
 
-var day = 30;
+var imagepath = "images/princessibuprofen/Trolling"
 
 var roundNum = 0;
 var score = 0;
@@ -29,4 +30,23 @@ function share() {
   navigator.share({
     text: shareMsg,
   });
+}
+
+// Get the current date
+var currentDate = new Date();
+
+// Format the date as desired (e.g., "March 24, 2024")
+var formattedDate = currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+// Set the formatted date to the paragraph element
+document.getElementById('currentDate').innerText = formattedDate;
+document.getElementById('currentIteration').innerText = "#"+currentIteration();
+
+function currentIteration() {
+    const targetDate = new Date('2024-02-22T00:00:01');
+    const currentDate = new Date();
+    const easternCurrentDate = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const timeDifference = easternCurrentDate.getTime() - targetDate.getTime();
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    return daysDifference;
 }

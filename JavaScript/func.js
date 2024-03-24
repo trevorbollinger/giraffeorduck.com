@@ -1,4 +1,6 @@
 function startButton() {
+  console.log(currentIteration());
+
   var startButton = document.getElementById("startButton");
   var giraffeButton = document.getElementById("giraffeButton");
   var duckButton = document.getElementById("duckButton");
@@ -8,8 +10,15 @@ function startButton() {
   var scoreboard = document.getElementById("scoreboard");
   var content = document.getElementById("content");
   var scoreCount = document.getElementById("scoreCount");
+  var instrButton = document.getElementById("instrButton");
+  var info = document.getElementById("info");
+  var imgnum = currentIteration()*5;
+  var navbar = document.querySelector('.navbar');
+    var logoCon = document.getElementById("logoContainer");
+  logoCon.style.display = "none";
 
-  imageDisplay.src = "images/animals/image_0.jpg";
+
+  imageDisplay.src = "images/animals/image_" + imgnum + ".jpg";
 
   startButton.style.display = "none";
   giraffeButton.style.display = "inline-flex";
@@ -19,6 +28,10 @@ function startButton() {
   scoreboard.style.display = "flex";
   scoreCount.style.display = "flex";
   content.style.display = "flex";
+  info.style.display = "none";
+  instrButton.style.display = "none";
+      navbar.style.display = 'flex';
+
 }
 
 function giraffeButton() {
@@ -30,12 +43,12 @@ function duckButton() {
 }
 
 function checkAnswer(answer) {
+
   console.log(roundNum);
   if (answer === answers[roundNum]) {
     score++;
     resultArray[roundNum] = "✅";
     changeColor("box" + roundNum, "green");
-    console.log("box" + roundNum + " is now green");
   } else {
     resultArray[roundNum] = "❌";
     changeColor("box" + roundNum, "red");
@@ -44,8 +57,9 @@ function checkAnswer(answer) {
   if (roundNum == 5) {
     endGame();
   } else {
+    var imgnum = currentIteration()*5+roundNum;
     document.getElementById("imageDisplay").src =
-      "images/animals/" + images[roundNum];
+      "images/animals/image_" + imgnum + ".jpg";
   }
 }
 
@@ -58,6 +72,7 @@ function endGame() {
   var shareButton = document.getElementById("shareButton");
   var endmsg = document.getElementById("endmsg");
 
+
   imageContainer.style.height = "0px";
 
   startButton.style.display = "none";
@@ -68,13 +83,11 @@ function endGame() {
   imageContainer.style.display = "none";
   endmsg.style.display = "flex";
 
-  if (score <= 0) {
-    endmsg.innerHTML = "You got " + score + " correct!\nDumbass!";
-  } else {
-    endmsg.innerHTML = "You got " + score + " correct!";
-  }
 
-  shareMsg = "Giraffe or Duck? #" + day + "\n" + resultArray.join("");
+  endmsg.innerHTML = "Your score is " + score + "/5. Thank you for playing!";
+  
+
+  shareMsg = "Giraffe or Duck? #" + currentIteration() + "\n" + resultArray.join("");
 
   console.log(shareMsg);
 }
@@ -92,3 +105,25 @@ function changeColor(boxId, colorAlias) {
     console.error("Box not found with ID: " + boxId);
   }
 }
+
+function currentIteration() {
+    const targetDate = new Date('2024-02-22T00:00:01');
+    const currentDate = new Date();
+    const easternCurrentDate = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const timeDifference = easternCurrentDate.getTime() - targetDate.getTime();
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    return daysDifference;
+}
+
+
+    // Function to open the popup
+    function openPopup() {
+        document.getElementById("popupOverlay").style.display = "block";
+        document.getElementById("popup").style.display = "block";
+    }
+
+    // Function to close the popup
+    function closePopup() {
+        document.getElementById("popupOverlay").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+    }

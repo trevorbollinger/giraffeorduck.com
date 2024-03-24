@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Remove all files in the folder /images/animals
+rm -rf /images/animals/
+rm -rf /images/princessibuprofen/
+
+# Run the download script
+python3 download.py https://www.pinterest.com/princessibuprofen/trolling
+
+# Move files from /images/princessibuprofen/Trolling to /images/animals
+#mv /images/princessibuprofen/Trolling/* /images/animals/
+
+# Run the rename script
+python3 rename.py
+
+rm -rf images/princessibuprofen
