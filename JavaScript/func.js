@@ -109,8 +109,7 @@ function changeColor(boxId, colorAlias) {
 function currentIteration() {
     const targetDate = new Date('2024-02-22T00:00:01');
     const currentDate = new Date();
-    const easternCurrentDate = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/New_York' }));
-    const timeDifference = easternCurrentDate.getTime() - targetDate.getTime();
+    const timeDifference = currentDate.getTime() - targetDate.getTime();
     const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
     return daysDifference;
 }
