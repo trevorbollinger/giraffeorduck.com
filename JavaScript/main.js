@@ -14,10 +14,10 @@ var images = [
   "image_4.jpg",
 ];
 
-var rawanswers = "gddgddgddddggdggggdg"
-var answers = rawanswers.split('');
-
-var imagepath = "images/princessibuprofen/Trolling"
+var rawanswers = "gddgddgddddggdggggdg";
+var answers = rawanswers.split("");
+var isChecked = false;
+var imagepath = "images/princessibuprofen/Trolling";
 
 var roundNum = 0;
 var score = 0;
@@ -36,16 +36,21 @@ function share() {
 var currentDate = new Date();
 
 // Format the date as desired (e.g., "March 24, 2024")
-var formattedDate = currentDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+var formattedDate = currentDate.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
 
 // Set the formatted date to the paragraph element
-document.getElementById('currentDate').innerText = formattedDate;
-document.getElementById('currentIteration').innerText = "#"+currentIteration();
+document.getElementById("currentDate").innerText = formattedDate;
+document.getElementById("currentIteration").innerText =
+  "#" + currentIteration();
 
 function currentIteration() {
-    const targetDate = new Date('2024-02-22T00:00:01');
-    const currentDate = new Date();
-    const timeDifference = currentDate.getTime() - targetDate.getTime();
-    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    return daysDifference;
+  const targetDate = new Date("2024-02-22T00:00:01");
+  const currentDate = new Date();
+  const timeDifference = currentDate.getTime() - targetDate.getTime();
+  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  return daysDifference;
 }
