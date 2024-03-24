@@ -1,43 +1,120 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Base styles */
 html,
 body {
     height: 100%;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    /* Remove default body margin */
+    display: flex;
+    /* Use flexbox for vertical centering */
+    flex-direction: column;
+    /* Stack children vertically */
+}
+
+.navbar {
+    background-color: #111111;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-color: #adadad;
+}
+
+#logo {
+    height: 50px;
+    margin-left: 8px;
+}
+
+#favicon {
+    margin-right: 8px;
+    height: 60px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background-color: #555;
+}
+
+#content {
+    flex: 1;
+    /* Take remaining vertical space */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* Stack elements vertically */
-    background-color: #1a1a1a;
-    /* Dark background color */
-    color: #ffffff;
-    /* Light text color */
+    position: relative;
+    /* Ensure position is relative */
+}
+
+/* Centering */
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .buttonContainer {
-    margin-top: 0px;
-    /* Adjust margin if necessary */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Center items vertically */
-    padding: 10px;
+    flex-direction: row; /* Change flex direction to row */
 }
 
-.scoreboard {
-    text-align: center;
+/* Buttons */
+.dark-button {
+    font-family: "Retosta", sans-serif; /* Use the custom font as the fallback font */
+    margin: 5px; /* Adjust margin */
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #333;
+    font-size: 27px;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Display buttons inline */
+    line-height: 1; /* Ensure text is centered vertically */
 }
 
+.dark-button-lg {
+    font-family: "Retosta", sans-serif; /* Use the custom font as the fallback font */
+    margin: 5px; /* Adjust margin */
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Display buttons inline */
+    line-height: 1; /* Ensure text is centered vertically */
+    width: 250px;
+    height: 60px;
+    font-size: 40px;
+}
+
+.dark-button:hover,
+.dark-button-lg:hover {
+    background-color: #555;
+}
+
+/* Scoreboard */
 .scoreCount {
-    width: 314px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Center items vertically */
     margin: 7px;
 }
 
@@ -46,56 +123,37 @@ body {
     height: 50px;
     background-color: #404040;
     border-radius: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin: 5px;
 }
 
+/* Image Container */
 .imageContainer {
+    height: auto;
     margin: 15px;
     width: auto;
-    /* Adjust width as needed */
-    display: none;
-}
-
-.dark-button {
-    display: inline-block;
-    margin: 5px;
-    padding: 10px 20px;
-    border-radius: 20px;
-    /* Rounded corners */
-    background-color: #333;
-    /* Dark background color */
-    color: #fff;
-    /* Light text color */
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover Effect */
-.custom-button:hover {
-    background-color: #555;
-    /* Darker background color on hover */
 }
 
 .imageContainer img {
-    max-width: 100%;
-    /* Ensure image doesn't exceed container width */
-    height: auto;
-    /* Allow the height to adjust automatically based on the aspect ratio */
+    height: 400px;
     display: block;
     margin: 0 auto;
-    /* Center image horizontally */
-}
-
-.blurred {
-    filter: blur(0px);
 }
 
 /* Media Query for Mobile Devices */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 630px) {
     .scoreCount {
-        width: auto; /* Reset width to auto for smaller screens */
+        width: auto;
     }
+
+    #favicon {
+        display: none;
+    }
+
+    #logo {
+        height: 25px;
+    }
+}
+@font-face {
+    font-family: "Retosta"; /* Specify the font family name */
+    src: url("../fonts/Retosta.otf") format("opentype"); /* Provide the path to the font file */
 }

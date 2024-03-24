@@ -17,68 +17,82 @@
         <link rel="stylesheet" type="text/css" href="style/style.css" />
     </head>
     <body>
-        <div id="scoreboard">
-            <h1 style="text-align: center">Giraffe or Duck?</h1>
-            <div class="scoreCount">
-                <div id="box0" class="rounded-box"></div>
-                <div id="box1" class="rounded-box"></div>
-                <div id="box2" class="rounded-box"></div>
-                <div id="box3" class="rounded-box"></div>
-                <div id="box4" class="rounded-box"></div>
+        <div class="navbar">
+            <a href="your_link_here">
+                <img src="images/favicon.png" id="favicon" alt="Favicon" />
+                <img src="images/logo.png" id="logo" alt="Logo" />
+            </a>
+        </div>
+
+        <div id="content">
+            <h1 id="endmsg" style="display: none"></h1>
+
+            <div id="scoreboard">
+                <div id="scoreCount" class="scoreCount" style="display: none">
+                    <div id="box0" class="rounded-box"></div>
+                    <div id="box1" class="rounded-box"></div>
+                    <div id="box2" class="rounded-box"></div>
+                    <div id="box3" class="rounded-box"></div>
+                    <div id="box4" class="rounded-box"></div>
+                </div>
             </div>
-        </div>
 
-        <div id="imageContainer" class="imageContainer">
-            <img
-                id="imageDisplay"
-                class="blurred"
-                src=""
-                alt="Image"
-                style="display: none"
-            />
-        </div>
-
-        <div class="buttonContainer">
-            <button
-                type="button"
-                id="startButton"
-                onclick="startButton()"
-                class="dark-button"
-                style="display: block"
-            >
-                Start
-            </button>
-            <button
-                type="button"
-                id="shareButton"
-                onclick="share()"
-                class="dark-button"
+            <div
+                id="imageContainer"
+                class="imageContainer"
                 style="display: none"
             >
-                Share Results
-            </button>
+                <img
+                    id="imageDisplay"
+                    class="blurred"
+                    src=""
+                    alt="Image"
+                    style="display: none"
+                />
+            </div>
 
-            <button
-                type="button"
-                id="giraffeButton"
-                onclick="giraffeButton()"
-                class="dark-button"
-                style="display: none"
-            >
-                Giraffe
-            </button>
+            <div class="buttonContainer">
+                <button
+                    type="button"
+                    id="startButton"
+                    onclick="startButton()"
+                    class="dark-button-lg"
+                    style="display: block"
+                >
+                    Start
+                </button>
+                <button
+                    type="button"
+                    id="shareButton"
+                    onclick="share()"
+                    class="dark-button"
+                    style="display: none"
+                >
+                    Share Results
+                </button>
 
-            <button
-                type="button"
-                id="duckButton"
-                onclick="duckButton()"
-                class="dark-button"
-                style="display: none"
-            >
-                Duck
-            </button>
+                <button
+                    type="button"
+                    id="giraffeButton"
+                    onclick="giraffeButton()"
+                    class="dark-button"
+                    style="display: none"
+                >
+                    Giraffe
+                </button>
 
-            <div id="result"></div>
+                <button
+                    type="button"
+                    id="duckButton"
+                    onclick="duckButton()"
+                    class="dark-button"
+                    style="display: none"
+                >
+                    Duck
+                </button>
+
+                <div id="result"></div>
+            </div>
         </div>
     </body>
     <script src="JavaScript/func.js"></script>

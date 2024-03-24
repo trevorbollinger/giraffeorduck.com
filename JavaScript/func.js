@@ -5,16 +5,20 @@ function startButton() {
   var imageDisplay = document.getElementById("imageDisplay");
   var imageContainer = document.getElementById("imageContainer");
   var buttonContainer = document.getElementById("buttonContainer");
+  var scoreboard = document.getElementById("scoreboard");
+  var content = document.getElementById("content");
+  var scoreCount = document.getElementById("scoreCount");
 
   imageDisplay.src = "images/image0.jpg";
-  imageContainer.style.height = "200px";
 
   startButton.style.display = "none";
-  giraffeButton.style.display = "flex";
-  duckButton.style.display = "flex";
+  giraffeButton.style.display = "inline-flex";
+  duckButton.style.display = "inline-flex";
   imageDisplay.style.display = "flex";
   imageContainer.style.display = "flex";
-  buttonContainer.style.display = "flex";
+  scoreboard.style.display = "flex";
+  scoreCount.style.display = "flex";
+  content.style.display = "flex";
 }
 
 function giraffeButton() {
@@ -50,6 +54,7 @@ function endGame() {
   var imageDisplay = document.getElementById("imageDisplay");
   var imageContainer = document.getElementById("imageContainer");
   var shareButton = document.getElementById("shareButton");
+  var endmsg = document.getElementById("endmsg");
 
   imageDisplay.src = "images/image1.jpg";
   imageContainer.style.height = "0px";
@@ -60,6 +65,13 @@ function endGame() {
   imageDisplay.style.display = "none";
   shareButton.style.display = "flex";
   imageContainer.style.display = "none";
+  endmsg.style.display = "flex";
+
+  if (score <= 0) {
+    endmsg.innerHTML = "You got " + score + " correct!\nDumbass!";
+  } else {
+    endmsg.innerHTML = "You got " + score + " correct!";
+  }
 
   shareMsg = "Giraffe or Duck? #" + day + "\n" + resultArray.join("");
 
