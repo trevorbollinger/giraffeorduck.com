@@ -1,126 +1,93 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta http-equiv="expires" content="0" />
-        <meta http-equiv="pragma" content="no-cache" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-        <title>Giraffe or Duck?</title>
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        />
-        <link rel="stylesheet" type="text/css" href="style/style.css" />
-        <link rel="stylesheet" type="text/css" href="style/style.css" />
-    </head>
-    <body>
-        <div class="navbar" style="display: none;">
-            <a href="your_link_here">
-                <img src="images/favicon.png" id="favicon" alt="Favicon" />
-                <img src="images/logo.png" id="logo" alt="Logo" />
-            </a>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Giraffe or Duck?</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+    <div class="navbar" style="display: none;">
+        <a href="https://giraffeorduck.com">
+            <img src="images/favicon.png" id="favicon" alt="Favicon" />
+            <img src="images/logo.png" id="logo" alt="Logo" />
+        </a>
+    </div>
+
+    <div id="content">
+        <h1 id="endmsg" style="display: none; text-align: center; justify-content: center; padding: 10px"></h1>
+        <!-- Logo centered in the screen -->
+        <div id="logoContainer" style="display: flex; flex-direction: column; align-items: center;">
+            <img src="images/favicon.png" id="logo" alt="Logo" style="height:200px; width: auto; margin-bottom:15px;" />
+            <img src="images/logo.png" id="logo" alt="Logo" style="margin-bottom:30px" />
+        </div>
+        <div id="scoreboard">
+            <div id="scoreCount" class="scoreCount" style="display: none">
+                <div id="box0" class="rounded-box"></div>
+                <div id="box1" class="rounded-box"></div>
+                <div id="box2" class="rounded-box"></div>
+                <div id="box3" class="rounded-box"></div>
+                <div id="box4" class="rounded-box"></div>
+            </div>
         </div>
 
-        <div id="content">
-            <h1 id="endmsg" style="display: none; text-align: center; justify-content: center; padding: 10px"></h1>
-    <!-- Logo centered in the screen -->
-   <div id="logoContainer" style="display: flex; flex-direction: column; align-items: center;">
-    <img src="images/favicon.png" id="logo" alt="Logo" style="height:200px; width: auto; margin-bottom:15px;" />
-        <img src="images/logo.png" id="logo" alt="Logo" style="margin-bottom:30px" />
-    </div>
-            <div id="scoreboard">
-                <div id="scoreCount" class="scoreCount" style="display: none">
-                    <div id="box0" class="rounded-box"></div>
-                    <div id="box1" class="rounded-box"></div>
-                    <div id="box2" class="rounded-box"></div>
-                    <div id="box3" class="rounded-box"></div>
-                    <div id="box4" class="rounded-box"></div>
-                </div>
-            </div>
+        <div id="imageContainer" class="imageContainer" style="display: none">
+            <img id="imageDisplay" class="blurred" src="" alt="Image" style="display: none" />
+        </div>
 
-            <div
-                id="imageContainer"
-                class="imageContainer"
-                style="display: none"
-            >
-                <img
-                    id="imageDisplay"
-                    class="blurred"
-                    src=""
-                    alt="Image"
-                    style="display: none"
-                />
-            </div>
+        <div class="popup-overlay" id="popupOverlay"></div>
 
-<div class="popup-overlay" id="popupOverlay"></div>
+        <div class="popup" id="popup">
+            <h5 class="close-btn" onclick="closePopup()">&times;</h5>
+            <h2 style="text-align: center;">Giraffe or Duck? - How to Play</h2>
+            <p>In this game, you will be presented with an image of either a giraffe or a duck. Your challenge is to
+                guess which animal is in the picture.</p>
+            <p>Here's how it works:</p>
+            <ol>
+                <li>Look at the image carefully.</li>
+                <li>Decide whether the animal in the picture is a giraffe or a duck.</li>
+                <li>Click on the corresponding button below the image to make your choice.</li>
+                <li>After each round, the scoreboard will be updated with a green square if your guess was correct or a
+                    red square if it was incorrect.</li>
+                <li>After all five rounds, you can share your final score.</li>
+            </ol>
+            <p>Have fun playing!</p>
+        </div>
 
-<div class="popup" id="popup">
-    <h5 class="close-btn" onclick="closePopup()">&times;</h5>
-    <h2 style="text-align: center;">Giraffe or Duck? - How to Play</h2>
-    <p>In this game, you will be presented with an image of either a giraffe or a duck. Your challenge is to guess which animal is in the picture.</p>
-    <p>Here's how it works:</p>
-    <ol>
-        <li>Look at the image carefully.</li>
-        <li>Decide whether the animal in the picture is a giraffe or a duck.</li>
-        <li>Click on the corresponding button below the image to make your choice.</li>
-        <li>After each round, the scoreboard will be updated with a green square if your guess was correct or a red square if it was incorrect.</li>
-        <li>After all five rounds, you can share your final score.</li>
-    </ol>
-    <p>Have fun playing!</p>
-</div>
+        <div id="cbox" class="checkbox-container">
+            <input type="checkbox" id="checkBox">
+            <label for="checkBox">Hard Mode</label>
+        </div>
 
+        <div class="buttonContainer">
+            <button type="button" id="instrButton" onclick="openPopup()" class="dark-button-lg" style="display: block">
+                How to Play
+            </button>
 
             <div class="buttonContainer">
-                <button
-                    type="button"
-                    id="instrButton"
-                    onclick="openPopup()"
-                    class="dark-button-lg"
-                    style="display: block"
-                >
-                    How to Play
-                </button>
-
-            <div class="buttonContainer">
-                <button
-                    type="button"
-                    id="startButton"
-                    onclick="startButton()"
-                    class="dark-button-lg"
-                    style="display: block"
-                >
+                <button type="button" id="startButton" onclick="startButton()" class="dark-button-lg"
+                    style="display: block">
                     Start
                 </button>
-                <button
-                    type="button"
-                    id="shareButton"
-                    onclick="share()"
-                    class="dark-button"
-                    style="display: none"
-                >
+                <button type="button" id="shareButton" onclick="share()" class="dark-button" style="display: none">
                     Share Results
                 </button>
 
-                <button
-                    type="button"
-                    id="giraffeButton"
-                    onclick="giraffeButton()"
-                    class="dark-button"
-                    style="display: none"
-                >
+                <button type="button" id="giraffeButton" onclick="giraffeButton()" class="dark-button"
+                    style="display: none">
                     Giraffe
                 </button>
 
-                <button
-                    type="button"
-                    id="duckButton"
-                    onclick="duckButton()"
-                    class="dark-button"
-                    style="display: none"
-                >
+                <button type="button" id="duckButton" onclick="duckButton()" class="dark-button" style="display: none">
                     Duck
                 </button>
 
@@ -129,11 +96,12 @@
 
         </div>
         <div id="info" style="justify-content: center; text-align: center;">
-                    <p id="currentDate" style="margin-top: 10px; margin-bottom: 0px;"></p>
-                    <p id="currentIteration" style="margin-top: 0px;"></p>
-                </div>
-    </body>
-    <script src="JavaScript/func.js"></script>
-    <script src="JavaScript/main.js"></script>
-    <script src="node_modules/sharer.js/sharer.min.js"></script>
+            <p id="currentDate" style="margin-top: 10px; margin-bottom: 0px;"></p>
+            <p id="currentIteration" style="margin-top: 0px;"></p>
+        </div>
+</body>
+<script src="JavaScript/func.js"></script>
+<script src="JavaScript/main.js"></script>
+<script src="node_modules/sharer.js/sharer.min.js"></script>
+
 </html>
