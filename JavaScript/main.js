@@ -49,7 +49,7 @@ document.getElementById("currentIteration").innerText =
   "#" + currentIteration();
 
 function currentIteration() {
-  const targetDate = new Date("2024-02-22T00:00:00");
+  const targetDate = new Date("2024-02-22");
   const currentDate = new Date();
   const timeDifference = currentDate.getTime() - targetDate.getTime();
   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
