@@ -14,7 +14,7 @@ var images = [
   "image_4.jpg",
 ];
 
-var rawanswers = "dgddddggdggggdg";
+var rawanswers = "dggdggggdg";
 var answers = rawanswers.split("");
 
 var isChecked = false;
