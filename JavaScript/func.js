@@ -32,6 +32,10 @@ function startButton() {
   info.style.display = "none";
   instrButton.style.display = "none";
   navbar.style.display = "flex";
+  var corAns = answers[currentIteration() * 5 + roundNum];
+  //console.log(corAns);
+
+  // console.log(answers[currentIteration() * 5 - 1]);
 
   if (document.getElementById("checkBox").checked) {
     imageDisplay.style.filter = "blur(10px)";
@@ -47,8 +51,9 @@ function duckButton() {
 }
 
 function checkAnswer(answer) {
-  console.log(roundNum);
-  if (answer === answers[roundNum]) {
+  var corAns = answers[currentIteration() * 5 - 1 + roundNum];
+  //var corAns = answers[currentIteration() * 5 - 1];
+  if (answer === corAns) {
     score++;
     resultArray[roundNum] = "✅";
     changeColor("box" + roundNum, "green");
@@ -64,9 +69,12 @@ function checkAnswer(answer) {
     document.getElementById("imageDisplay").src =
       "images/animals/image_" + imgnum + ".jpg";
   }
+  //console.log(corAns);
 }
 
 function endGame() {
+  increasePlayCount();
+
   var startButton = document.getElementById("startButton");
   var giraffeButton = document.getElementById("giraffeButton");
   var duckButton = document.getElementById("duckButton");
@@ -74,7 +82,6 @@ function endGame() {
   var imageContainer = document.getElementById("imageContainer");
   var shareButton = document.getElementById("shareButton");
   var endmsg = document.getElementById("endmsg");
-  increasePlayCount();
 
   imageContainer.style.height = "0px";
 
@@ -128,18 +135,20 @@ function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
 
-function increasePlayCount(){
-    fetch("https://script.google.com/macros/s/AKfycbxP9dBKfcUoL_OF6LTRlcavLRW6nf0M7weVYcMG1CHlY4fvkGE2X_qnth1fdVuF42p2/exec")
-    .then(response => {
+function increasePlayCount() {
+  fetch(
+    "https://script.google.com/macros/s/AKfycbxP9dBKfcUoL_OF6LTRlcavLRW6nf0M7weVYcMG1CHlY4fvkGE2X_qnth1fdVuF42p2/exec",
+  )
+    .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       return response.json(); // Assuming the script returns JSON response
     })
-    .then(data => {
+    .then((data) => {
       console.log(data); // Log the response from the Google Apps Script
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
 }

@@ -14,7 +14,8 @@ var images = [
   "image_4.jpg",
 ];
 
-var rawanswers = "dggdggggdg";
+var rawanswers =
+  "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnndggdggggdg";
 var answers = rawanswers.split("");
 
 var isChecked = false;
@@ -28,6 +29,15 @@ var shareMsg = "";
 var resultArray = ["-", "-", "-", "-", "-"];
 
 function share() {
+  navigator.clipboard.writeText(shareMsg).then(
+    function () {
+      console.log("Async: Copying to clipboard was successful!");
+    },
+    function (err) {
+      console.error("Async: Could not copy text: ", err);
+    },
+  );
+
   navigator.share({
     text: shareMsg,
   });
@@ -55,4 +65,3 @@ function currentIteration() {
   const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   return daysDifference;
 }
-
