@@ -52,7 +52,7 @@ function duckButton() {
 
 function checkAnswer(answer) {
   var corAns = answers[currentIteration() * 5 - 1 + roundNum];
-  //var corAns = answers[currentIteration() * 5 - 1];
+  ///var corAns = answers[currentIteration() * 5 - 1];
   if (answer === corAns) {
     score++;
     resultArray[roundNum] = "✅";

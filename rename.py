@@ -32,7 +32,8 @@ def main(folder_path, start_number=0):
         os.rename(os.path.join(folder_path, file), os.path.join(folder_path, f"image_{start_number + len(webp_files) + idx}.jpg"))
 
 if __name__ == "__main__":
+    folder_path = "/Users/trali/Documents/GitHub/giraffeorduck.com/images/bollingertrevor/adf"
     # folder_path = "/Users/trali/Desktop/images/princessibuprofen/Trolling"
-    folder_path = "/mnt/c/Users/trali/Documents/GitHub/giraffeorduck.com/images/princessibuprofen/Trolling"
-    start_number = 31*5  # Change this to whatever start number you desire
+    # folder_path = "/mnt/c/Users/trali/Documents/GitHub/giraffeorduck.com/images/princessibuprofen/Trolling"
+    start_number = 35*5  # Change this to whatever start number you desire
     main(folder_path, start_number)
