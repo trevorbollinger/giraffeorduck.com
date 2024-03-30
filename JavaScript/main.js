@@ -59,9 +59,9 @@ document.getElementById("currentIteration").innerText =
   "#" + currentIteration();
 
 function currentIteration() {
-  const targetDate = new Date("2024-02-22");
+  const targetDate = new Date("2024-02-23");
   const currentDate = new Date();
   const timeDifference = currentDate.getTime() - targetDate.getTime();
-  const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
   return daysDifference;
 }
