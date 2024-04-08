@@ -17,8 +17,9 @@ function startButton() {
   var logoCon = document.getElementById("logoContainer");
   var cbox = document.getElementById("cbox");
   logoCon.style.display = "none";
+  
 
-  imageDisplay.src = "images/animals/image_" + imgnum + ".jpg";
+  imageDisplay.src = "images/animals/image_" + randomNumbers[0] + ".jpg";
 
   startButton.style.display = "none";
   cbox.style.display = "none";
@@ -32,8 +33,14 @@ function startButton() {
   info.style.display = "none";
   instrButton.style.display = "none";
   navbar.style.display = "flex";
-  var corAns = answers[currentIteration() * 5 + roundNum];
-  //console.log(corAns);
+  var corAns = answers[randomNumbers[0]-1];
+  // console.log(randomNumbers)
+  // console.log(answers[randomNumbers[0]-1])
+  // console.log(answers[randomNumbers[1]-1])
+  // console.log(answers[randomNumbers[2]-1])
+  // console.log(answers[randomNumbers[3]-1])
+  // console.log(answers[randomNumbers[4]-1])
+  // console.log(answers.length)
 
   // console.log(answers[currentIteration() * 5 - 1]);
 
@@ -51,7 +58,7 @@ function duckButton() {
 }
 
 function checkAnswer(answer) {
-  var corAns = answers[currentIteration() * 5 - 1 + roundNum];
+  var corAns = answers[randomNumbers[roundNum]-1];
   ///var corAns = answers[currentIteration() * 5 - 1];
   if (answer === corAns) {
     score++;
@@ -65,7 +72,7 @@ function checkAnswer(answer) {
   if (roundNum == 5) {
     endGame();
   } else {
-    var imgnum = currentIteration() * 5 + roundNum;
+    var imgnum = randomNumbers[roundNum];
     document.getElementById("imageDisplay").src =
       "images/animals/image_" + imgnum + ".jpg";
   }
@@ -145,4 +152,15 @@ function increasePlayCount() {
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
+}
+
+function generateRandomArray(seed, min, max) {
+    Math.seedrandom(seed);
+
+    var randomArray = [];
+    for (var i = 0; i < 5; i++) {
+        var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        randomArray.push(randomNumber);
+    }
+    return randomArray;
 }

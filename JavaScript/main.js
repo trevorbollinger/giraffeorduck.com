@@ -1,3 +1,4 @@
+
 var colorAliases = {
   blue: "#0d6efd",
   red: "#9e221e",
@@ -5,14 +6,6 @@ var colorAliases = {
   yellow: "#ffc107",
   darkgrey: "#404040",
 };
-
-var images = [
-  "image_0.jpg",
-  "image_1.jpg",
-  "image_2.jpg",
-  "image_3.jpg",
-  "image_4.jpg",
-];
 
 var rawanswers =
   "nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnndggdggggdggdgdgggggddgdgggddgdddggd";
@@ -27,7 +20,7 @@ var score = 0;
 var shareMsg = "";
 
 var resultArray = ["-", "-", "-", "-", "-"];
-
+var randomNumbers = generateRandomArray(currentIteration(), 165, answers.length);
 function share() {
   navigator.clipboard.writeText(shareMsg).then(
     function () {
@@ -65,3 +58,4 @@ function currentIteration() {
   const daysDifference = Math.round(timeDifference / (1000 * 60 * 60 * 24));
   return daysDifference;
 }
+
