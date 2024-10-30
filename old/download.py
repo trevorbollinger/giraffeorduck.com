@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-__author__ = 'Lim Kok Hole'
-__copyright__ = 'Copyright 2020'
-__credits__ = ['Inspired by https://github.com/SevenLines/pinterest-board-downloader', 'S/O']
-__license__ = 'MIT'
-# Version increase if the output file/dir naming incompatible with existing
-#, which might re-download for some files of previous version because of dir/filename not match
-# Or log files structure changed reference.
-__version__ = 1.9
-__maintainer__ = 'Lim Kok Hole'
-__email__ = 'limkokhole@gmail.com'
-__status__ = 'Production'
-
-# Note: Support python 3 but not python 2
-
 import sys, os, traceback
 from PIL import Image
 from pathlib import PurePath
