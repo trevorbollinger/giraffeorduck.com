@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import login_user, submit_score, get_scores
+from . import views
 
 urlpatterns = [
-    path('login/', login_user, name='login'),
-    path('submit_score/', submit_score, name='submit_score'),
-    path('get_scores/', get_scores, name='get_scores'),
+    path("notes/", views.NoteListCreate.as_view(), name="note-list"),
+    path("notes/delete/<int:pk>/", views.NoteDelete.as_view(), name="delete-note"),
 ]

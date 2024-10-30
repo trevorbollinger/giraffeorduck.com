@@ -2,3 +2,11 @@ django
 djangorestframework
 django-cors-headers
 djangorestframework-simplejwt
+asgiref
+pyJWT
+pytz
+sqlparse
+psycopg2-binary
+python-dotenv
+pyright
+django-stubs
