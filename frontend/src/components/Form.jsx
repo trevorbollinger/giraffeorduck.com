@@ -1,11 +1,14 @@
+// Form.jsx
 import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext"; // Import the useAuth hook
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
-import "../styles/Form.css"
+import "../styles/Form.css";
 import LoadingIndicator from "./LoadingIndicator";
 
 function Form({ route, method }) {
+    const { login } = useAuth(); // Get the login function from AuthContext
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -18,20 +21,23 @@ function Form({ route, method }) {
         e.preventDefault();
 
         try {
-            const res = await api.post(route, { username, password })
+            const res = await api.post(route, { username, password });
+
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                navigate("/")
+                login(username, password); // Update isAuthorized on successful login
+                navigate("/");
             } else {
-                navigate("/login")
+                navigate("/login");
             }
         } catch (error) {
-            alert(error)
+            alert(error.response?.data?.detail || "An error occurred.");
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
+
 
     return (
         <form onSubmit={handleSubmit} className="form-container">
@@ -42,6 +48,7 @@ function Form({ route, method }) {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
+                required
             />
             <input
                 className="form-input"
@@ -49,13 +56,14 @@ function Form({ route, method }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
+                required
             />
             {loading && <LoadingIndicator />}
-            <button className="form-button" type="submit">
+            <button className="form-button" type="submit" disabled={loading}>
                 {name}
             </button>
         </form>
     );
 }
 
-export default Form
+export default Form;

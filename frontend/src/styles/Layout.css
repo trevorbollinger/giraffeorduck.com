@@ -1,0 +1,61 @@
+/* Layout.css */
+
+/* General Layout Container */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 98vh; /* Ensures the layout takes at least full viewport height */
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #007bff; /* Navbar background color */
+    padding: 1rem;
+}
+
+.nav-container {
+    display: flex; /* Ensures items in both lists are on the same line */
+    justify-content: space-between; /* Space between nav and log items */
+    align-items: center; /* Aligns items vertically in the center */
+}
+
+.nav-list {
+    list-style-type: none; /* Removes bullet points from list */
+    padding: 0; /* Removes padding */
+    display: flex; /* Displays items in a row */
+    width: auto; /* Use auto width so it fits contents */
+}
+
+.nav-item {
+    margin: 0 15px; /* Adds margin to each item */
+}
+
+.nav-item a {
+    color: white; /* Link color */
+    text-decoration: none; /* Removes underline from links */
+}
+
+.log-list {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0; /* Removes padding */
+    display: flex; /* Displays items in a row */
+}
+
+.log-item a {
+    margin: 0 15px; /* Adds margin */
+    color: white; /* Link color */
+    text-decoration: none; /* Removes underline from links */
+}
+/* Main content styles */
+.main-content {
+    flex: 1; /* Allows the main content area to grow */
+    padding: 2rem; /* Adds padding around main content */
+    overflow-y: auto; /* Enables vertical scrolling only if necessary */
+}
+
+/* Footer styles */
+.footer {
+    text-align: center; /* Centers footer text */
+    padding: 1rem; /* Adds padding */
+    background-color: #f1f1f1; /* Footer background color */
+}
