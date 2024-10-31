@@ -1,5 +1,6 @@
 services:
   backend:
+    container_name: backend-django
     build: ./backend
     ports:
       - "8000:8000"
@@ -8,16 +9,8 @@ services:
     command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
 
   frontend:
+    container_name: frontend-react
     build: ./frontend
     ports:
-      - "3000:3000"
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - backend
-      - frontend
+      - "80:5173"
+    command: sh -c "npm install && npm run dev -- --host"
