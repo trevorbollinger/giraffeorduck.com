@@ -90,7 +90,7 @@
 }
 
 /* Responsive Adjustments */
-@media only screen and (max-width: 630px) {
+@media only screen and (max-width: 790px) {
     .faviconlogo {
         display: none;
     }
