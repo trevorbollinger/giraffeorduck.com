@@ -5,7 +5,8 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthorized, setIsAuthorized] = useState(Boolean(localStorage.getItem(ACCESS_TOKEN)));
-    const [username, setUsername] = useState(localStorage.getItem("username") || ""); // Load username from localStorage if available
+    const [username, setUsername] = useState(localStorage.getItem("username") || "");
+    const [firstName, setFirstName] = useState(localStorage.getItem("first_name") || ""); // New state for first_name
 
     const login = (user) => {
         setIsAuthorized(true);

@@ -22,7 +22,7 @@ function Form({ route, method }) {
             const res = await api.post(route, { username, password });
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            login(username, password); // Update isAuthorized on successful login
+            login(username); // Update isAuthorized on successful login
             navigate("/");
         } catch (error) {
             alert(error.response?.data?.detail || "An error occurred.");
