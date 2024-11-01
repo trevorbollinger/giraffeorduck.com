@@ -1,10 +1,10 @@
-import Form from "../components/Form";
+import LoginForm from "../components/LoginForm";
 import "../styles/Login.css";
 
 function Login() {
   return (
     <div>
-      <Form route="/game/token/" method="login" />
+      <LoginForm route="/game/token/" method="login" />
 
       {/* Register Button */}
 

@@ -1,8 +1,8 @@
-import Form from "../components/Form"
+import RegisterForm from "../components/RegisterForm"
 
 function Register(){
   return <div>
-    <Form route="/game/user/register/" method="register" />
+    <RegisterForm route="/game/user/register/" method="register" />
   </div>
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
-import "../styles/Layout.css"; // Import your CSS file
+import { Link } from "react-router-dom";
+import "../styles/Layout.css";
 import { useAuth } from "./AuthContext";
 import logo from "../assets/logo.png";
 import favicon from "../assets/favicon.png";
@@ -21,7 +21,23 @@ const Layout = ({ children }) => {
             <img src={logo} className="textlogo" alt="Logo" />{" "}
           </div>
           <div className="nav-right">
-            {isAuthorized ? <a href="logout/"><button className="logout-button">Logout</button></a> : <p></p>}
+            {isAuthorized ? (
+              <>
+                <a href="/logout">
+                  <button className="logout-button">Logout</button>
+                </a>
+              </>
+            ) : (
+              <>
+                <a href="/login">
+                  <button className="logout-button">Login</button>
+                </a>
+
+                <a href="/register">
+                  <button className="logout-button">Register</button>
+                </a>
+              </>
+            )}
 
           </div>
         </nav>
