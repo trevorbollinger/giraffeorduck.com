@@ -5,18 +5,22 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthorized, setIsAuthorized] = useState(Boolean(localStorage.getItem(ACCESS_TOKEN)));
+    const [username, setUsername] = useState(localStorage.getItem("username") || ""); // Load username from localStorage if available
 
-    const login = (username, password) => {
+    const login = (user) => {
         setIsAuthorized(true);
+        setUsername(user); // Set username in state
+        localStorage.setItem("username", user); // Persist username in localStorage
     };
 
     const logout = () => {
         localStorage.clear();
         setIsAuthorized(false);
+        setUsername("");
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthorized, login, logout }}>
+        <AuthContext.Provider value={{ isAuthorized, username, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

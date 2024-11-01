@@ -1,61 +1,99 @@
-/* Layout.css */
+/* Global Styles */
+* {
+    margin: 0;
+    color: #e0e0e0; /* Light color for readability in dark mode */
+}
 
 /* General Layout Container */
 .layout-container {
     display: flex;
     flex-direction: column;
-    min-height: 98vh; /* Ensures the layout takes at least full viewport height */
+    min-height: 100vh;
+    background-color: #1a1a1a; /* Dark background */
 }
 
-/* Navbar styles */
+/* Navbar Styles */
+.nav-wrap {
+    width: 100%;
+    margin: 0 auto; /* Center the navbar horizontally */
+}
+
 .navbar {
-    background-color: #007bff; /* Navbar background color */
-    padding: 1rem;
+    background-color: #111111; /* Darker navbar background */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #444444; /* Softer border color */
 }
 
-.nav-container {
-    display: flex; /* Ensures items in both lists are on the same line */
-    justify-content: space-between; /* Space between nav and log items */
-    align-items: center; /* Aligns items vertically in the center */
+.nav-left {
+    font-size: 1.2em;
+    width: 20%;
+    text-align: left;
+    color: #e0e0e0; /* Text color in navbar */
 }
 
-.nav-list {
-    list-style-type: none; /* Removes bullet points from list */
-    padding: 0; /* Removes padding */
-    display: flex; /* Displays items in a row */
-    width: auto; /* Use auto width so it fits contents */
+.nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.nav-item {
-    margin: 0 15px; /* Adds margin to each item */
+.textlogo {
+    height: 50px;
+    margin-left: 8px;
 }
 
-.nav-item a {
-    color: white; /* Link color */
-    text-decoration: none; /* Removes underline from links */
+.faviconlogo {
+    height: 60px;
+    margin-right: 8px;
 }
 
-.log-list {
-    list-style-type: none; /* Removes bullet points */
-    padding: 0; /* Removes padding */
-    display: flex; /* Displays items in a row */
+/* Right-aligned Logout Button */
+.nav-right {
+    width: 20%;
+    text-align: right;
 }
 
-.log-item a {
-    margin: 0 15px; /* Adds margin */
-    color: white; /* Link color */
-    text-decoration: none; /* Removes underline from links */
+.nav-right .logout-button {
+    background-color: #f44336; /* Bright logout button */
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
 }
-/* Main content styles */
+
+.nav-right .logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Main Content Styles */
 .main-content {
-    flex: 1; /* Allows the main content area to grow */
-    padding: 2rem; /* Adds padding around main content */
-    overflow-y: auto; /* Enables vertical scrolling only if necessary */
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    color: #e0e0e0; /* Text color for readability */
 }
 
-/* Footer styles */
+/* Footer Styles */
 .footer {
-    text-align: center; /* Centers footer text */
-    padding: 1rem; /* Adds padding */
-    background-color: #f1f1f1; /* Footer background color */
+    text-align: center;
+    padding: 1rem;
+    background-color: #111111; /* Dark footer background */
+    color: #888888; /* Muted text color in footer */
+}
+
+/* Responsive Adjustments */
+@media only screen and (max-width: 630px) {
+    .faviconlogo {
+        display: none;
+    }
+    .textlogo {
+        height: 25px;
+    }
 }
