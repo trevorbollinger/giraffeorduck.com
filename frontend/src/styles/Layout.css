@@ -1,7 +1,13 @@
 /* Global Styles */
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     color: #e0e0e0; /* Light color for readability in dark mode */
+}
+
+body, html {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* General Layout Container */
@@ -10,6 +16,7 @@
     flex-direction: column;
     min-height: 100vh;
     background-color: #1a1a1a; /* Dark background */
+    width: 100%;
 }
 
 /* Navbar Styles */
@@ -58,7 +65,7 @@
 }
 
 .logout-button {
-    background-color: #f44336; /* Bright logout button */
+    background-color: #c91609; /* Bright logout button */
     color: #ffffff;
     border: none;
     padding: 8px 16px;
@@ -70,7 +77,7 @@
 }
 
 .logout-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
+    background-color: #920404; /* Darker red on hover */
 }
 
 /* Main Content Styles */
@@ -90,11 +97,28 @@
 }
 
 /* Responsive Adjustments */
-@media only screen and (max-width: 790px) {
+@media only screen and (max-width: 750px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nav-left, .nav-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
     .faviconlogo {
         display: none;
     }
+
     .textlogo {
         height: 25px;
+        margin-bottom: 10px;
+    }
+
+    .main-content {
+        padding: 1rem;
     }
 }
