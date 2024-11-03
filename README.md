@@ -1,5 +1,5 @@
 
-# 'Giraffe or Duck?' Stack Overview
+#Giraffe or Duck? Overview
 
 ## 1. Frontend
 - **React.js**: Manage interactive UI, game logic, login forms, and score/streak display.
