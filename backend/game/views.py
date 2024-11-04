@@ -6,6 +6,9 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import GameScore  # Import GameScore
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.utils import timezone
+from django.core.cache import cache  # Import cache
+import random
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -46,3 +49,18 @@ class GameScoreListCreate(generics.ListCreateAPIView):  # Add this class
             serializer.save(user=self.request.user)
         else:
             print(serializer.errors)
+
+class RandomImageView(APIView):  # Add this class
+    def get(self, request):
+        last_update = cache.get('last_image_update')
+        current_time = timezone.now().timestamp()
+
+        if not last_update or current_time - last_update > 60:
+            random_num = random.randint(155, 199)
+            image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
+            cache.set('last_image_update', current_time, timeout=None)
+            cache.set('random_image_url', image_url, timeout=None)
+        else:
+            image_url = cache.get('random_image_url')
+
+        return Response({"image_url": image_url})

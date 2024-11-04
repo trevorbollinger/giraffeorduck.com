@@ -9,9 +9,11 @@ function Home() {
     const [score, setScore] = useState(""); // State for score
     const [streak, setStreak] = useState(""); // State for streak
     const { isAuthorized } = useAuth(); // Get the authorization state
+    const [randomImage, setRandomImage] = useState(""); // State for random image
 
     useEffect(() => {
         getGameScores(); // Fetch game scores
+        fetchRandomImage(); // Fetch random image
     }, []);
 
     const getGameScores = () => {
@@ -33,6 +35,16 @@ function Home() {
                 if (res.status === 201) alert("Game score submitted!");
                 else alert("Failed to submit game score.");
                 getGameScores();
+            })
+            .catch((err) => alert(err));
+    };
+
+    const fetchRandomImage = () => {
+        api
+            .get("/game/random-image/")
+            .then((res) => res.data)
+            .then((data) => {
+                setRandomImage(data.image_url);
             })
             .catch((err) => alert(err));
     };
@@ -77,7 +89,7 @@ function Home() {
 
                 {/* Placeholder for Image */}
                 <div className='imageContainer'>
-                    <p>Image Placeholder</p>
+                    <img src={randomImage} alt="Game Image" />
                 </div>
             </main>
         </div>
