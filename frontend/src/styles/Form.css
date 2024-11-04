@@ -30,19 +30,4 @@
   color: #888888; /* Lighter placeholder text for contrast */
 }
 
-/* Form Button */
-.form-button {
-  width: 95%;
-  padding: 10px;
-  margin: 20px 0;
-  background-color: #3333cc; /* Dark button background */
-  color: #e0e0e0; /* Light text color */
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.form-button:hover {
-  background-color: #1a1a80; /* Darker hover effect */
-}
+/* Removed custom button styles */

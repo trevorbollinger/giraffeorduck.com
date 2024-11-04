@@ -41,7 +41,6 @@ body, html {
     text-align: center; /* Center text horizontally */
     color: #e0e0e0; /* Text color in navbar */
     display: flex;
-
 }
 
 .greeting {

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note
+from .models import GameScore  # Import GameScore
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,9 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-
-class NoteSerializer(serializers.ModelSerializer):
+class GameScoreSerializer(serializers.ModelSerializer):  # Add this class
     class Meta:
-        model = Note
-        fields = ["id", "title", "content", "created_at", "author"]
-        extra_kwargs = {"author": {"read_only": True}}
+        model = GameScore
+        fields = ["id", "score", "streak", "date", "user"]
+        extra_kwargs = {"user": {"read_only": True}}

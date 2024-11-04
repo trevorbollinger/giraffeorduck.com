@@ -1,50 +1,38 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import Note from "../components/Note"
-import "../styles/Home.css"
+import GameScore from "../components/GameScore"; // Import GameScore component
+import "../styles/Home.css";
 import { useAuth } from "../components/AuthContext";
 
 function Home() {
-    const [notes, setNotes] = useState([]);
-    const [content, setContent] = useState("");
-    const [title, setTitle] = useState("");
+    const [gameScores, setGameScores] = useState([]); // State for game scores
+    const [score, setScore] = useState(""); // State for score
+    const [streak, setStreak] = useState(""); // State for streak
     const { isAuthorized } = useAuth(); // Get the authorization state
 
-
     useEffect(() => {
-        getNotes();
+        getGameScores(); // Fetch game scores
     }, []);
 
-    const getNotes = () => {
+    const getGameScores = () => {
         api
-            .get("/game/notes/")
+            .get("/game/scores/")
             .then((res) => res.data)
             .then((data) => {
-                setNotes(data);
+                setGameScores(data);
                 console.log(data);
             })
             .catch((err) => alert(err));
     };
 
-    const deleteNote = (id) => {
-        api
-            .delete(`/game/notes/delete/${id}/`)
-            .then((res) => {
-                if (res.status === 204) alert("Note deleted!");
-                else alert("Failed to delete note.");
-                getNotes();
-            })
-            .catch((error) => alert(error));
-    };
-
-    const createNote = (e) => {
+    const createGameScore = (e) => {
         e.preventDefault();
         api
-            .post("/game/notes/", { content, title })
+            .post("/game/scores/", { score, streak })
             .then((res) => {
-                if (res.status === 201) alert("Note created!");
-                else alert("Failed to make note.");
-                getNotes();
+                if (res.status === 201) alert("Game score submitted!");
+                else alert("Failed to submit game score.");
+                getGameScores();
             })
             .catch((err) => alert(err));
     };
@@ -54,38 +42,37 @@ function Home() {
             {/* Body Section */}
             <main>
                 <div>
-                    <h2>Notes</h2>
-                    {notes.map((note) => (
-                        <Note note={note} onDelete={deleteNote} key={note.id} />
+                    <h2>Game Scores</h2>
+                    {gameScores.map((gameScore) => (
+                        <GameScore gameScore={gameScore} key={gameScore.id} />
                     ))}
                 </div>
 
-                <h2>Create a Note</h2>
-                <form onSubmit={createNote}>
-                    <label htmlFor="title">Title:</label>
+                <h2>Submit Game Score</h2>
+                <form onSubmit={createGameScore}>
+                    <label htmlFor="score">Score:</label>
                     <br />
-
                     <input
-                        type="text"
-                        id="title"
-                        name="title"
+                        type="number"
+                        id="score"
+                        name="score"
                         required
-                        onChange={(e) => setTitle(e.target.value)}
-                        value={title}
+                        onChange={(e) => setScore(e.target.value)}
+                        value={score}
                     />
-                    <label htmlFor="content">Content:</label>
                     <br />
-
-                    <textarea
-                        id="content"
-                        name="content"
+                    <label htmlFor="streak">Streak:</label>
+                    <br />
+                    <input
+                        type="number"
+                        id="streak"
+                        name="streak"
                         required
-                        value={content}
-                        onChange={(e) => setContent(e.target.value)}
-                    ></textarea>
+                        onChange={(e) => setStreak(e.target.value)}
+                        value={streak}
+                    />
                     <br />
-
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" className="btn btn-primary" />
                 </form>
 
                 {/* Placeholder for Image */}
@@ -95,7 +82,6 @@ function Home() {
             </main>
         </div>
     );
-
 }
 
 export default Home;

@@ -13,7 +13,11 @@ const Layout = ({ children }) => {
       <div className="nav-wrap">
         <nav className="navbar">
           <div className="nav-left">
-            {isAuthorized ? <p className="greeting">Hello, {firstName} {lastName} ({username})!</p> : <p>User is logged out</p>}
+            {isAuthorized ? (
+              <p className="greeting">Hello, {firstName} {lastName} ({username})!</p>
+            ) : (
+              <p className="greeting">You are logged out.</p>
+            )}
           </div>
           <div className="nav-center">
             <Link to="/">
@@ -25,9 +29,8 @@ const Layout = ({ children }) => {
             {isAuthorized ? (
               <>
                 <a href="/account">
-                  <button id="manage-account-button" className="btn btn-primary">Manage Account</button>
+                  <button id="manage-account-button" className="btn btn-primary">Account</button>
                 </a>
-
                 <a href="/logout">
                   <button className="btn btn-danger">Logout</button>
                 </a>
@@ -37,21 +40,17 @@ const Layout = ({ children }) => {
                 <a href="/login">
                   <button className="btn btn-primary">Login</button>
                 </a>
-
                 <a href="/register">
                   <button className="btn btn-primary">Register</button>
                 </a>
               </>
             )}
-
           </div>
         </nav>
       </div>
       <main className="main-content">{children}</main>
       <footer className="footer">
-        <p>
-          © {new Date().getFullYear()} Trevor Bollinger. All rights reserved.
-        </p>
+        <p>© {new Date().getFullYear()} Trevor Bollinger. All rights reserved.</p>
       </footer>
     </div>
   );
