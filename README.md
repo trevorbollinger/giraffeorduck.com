@@ -35,7 +35,7 @@ class GameRecord(models.Model):
 
 
 ## 6. Summary
-- **Frontend**: React + Tailwind CSS
+- **Frontend**: React
 - **Backend**: Django + SQLite + DRF
 - **Authentication**: Token-based login to sync scores across devices.
 - **Optional**: Redis for caching sessions.
