@@ -22,7 +22,12 @@ function Form({ route, method }) {
             const res = await api.post(route, { username, password });
             localStorage.setItem(ACCESS_TOKEN, res.data.access);
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            login(username); // Update isAuthorized on successful login
+
+            // Fetch user details to get the first and last name
+            const userRes = await api.get("/game/user/me/");
+            const { first_name, last_name } = userRes.data;
+
+            login(username, first_name, last_name); // Update isAuthorized on successful login
             navigate("/");
         } catch (error) {
             alert(error.response?.data?.detail || "An error occurred.");
@@ -30,7 +35,6 @@ function Form({ route, method }) {
             setLoading(false);
         }
     };
-
 
     return (
         <form onSubmit={handleSubmit} className="form-container">
@@ -54,10 +58,8 @@ function Form({ route, method }) {
                 required
             />
 
-
-
             {loading && <LoadingIndicator />}
-            <button className="form-button" type="submit" disabled={loading}>
+            <button className="btn btn-primary" type="submit" disabled={loading}>
               Login
             </button>
         </form>

@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import { useAuth } from "./components/AuthContext";
+import Account from "./pages/Account"; // Import the Account component
 
 // function Logout() {
 //     localStorage.clear();
@@ -51,6 +52,11 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/register" element={<RegisterAndLogout />} />
+                        <Route path="/account" element={
+                            <ProtectedRoute>
+                                <Account />
+                            </ProtectedRoute>
+                        } />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Layout>

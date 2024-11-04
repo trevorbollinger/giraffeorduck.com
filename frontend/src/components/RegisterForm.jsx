@@ -12,6 +12,7 @@ function Form({ route, method }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [first_name, setFName] = useState("");
+    const [last_name, setLName] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ function Form({ route, method }) {
         e.preventDefault();
 
         try {
-            await api.post(route, { username, password, first_name });
+            await api.post(route, { username, password, first_name, last_name });
             navigate("/login");
         } catch (error) {
             alert(error.response?.data?.detail || "An error occurred.");
@@ -60,10 +61,16 @@ function Form({ route, method }) {
                 placeholder="First Name"
             />
 
-
+            <input
+                className="form-input"
+                type="text"
+                value={last_name}
+                onChange={(e) => setLName(e.target.value)}
+                placeholder="Last Name"
+            />
 
             {loading && <LoadingIndicator />}
-            <button className="form-button" type="submit" disabled={loading}>
+            <button className="btn btn-primary" type="submit" disabled={loading}>
               Register
             </button>
         </form>

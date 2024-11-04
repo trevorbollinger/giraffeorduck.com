@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from game.views import CreateUserView
+from game.views import CreateUserView, UserDetailView  # Import UserDetailView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path("game/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("game-auth/", include("rest_framework.urls")),
     path("game/", include("game.urls")),
+    path("game/user/me/", UserDetailView.as_view(), name="user-detail"),
 ]

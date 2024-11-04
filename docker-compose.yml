@@ -2,6 +2,7 @@ services:
   backend:
     container_name: GORD-backend
     build: ./backend
+    restart: unless-stopped
     ports:
       - "8060:8000"
     volumes:
@@ -15,6 +16,7 @@ services:
   frontend:
     container_name: GORD-frontend
     build: ./frontend
+    restart: unless-stopped
     ports:
       - "8070:5173"
     volumes:
