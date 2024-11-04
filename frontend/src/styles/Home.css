@@ -108,17 +108,18 @@ form input[type="submit"]:hover {
 
 /* Image Container Styles */
 .imageContainer {
+    display: flex; /* Change to flex to align images horizontally */
+    justify-content: space-around; /* Space out the images */
     margin: 2rem 0;
     border: 1px dashed #555555; /* Darker dashed border */
     height: 200px;
-    display: flex;
     align-items: center;
-    justify-content: center;
     color: #cccccc; /* Muted text color inside container */
 }
 
 .imageContainer img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 100px; /* Set a max width for each image */
+    max-height: 100px; /* Set a max height for each image */
     object-fit: contain;
+    margin: 0 10px; /* Add some margin between images */
 }

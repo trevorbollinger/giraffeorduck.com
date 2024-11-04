@@ -55,14 +55,16 @@ class RandomImageView(APIView):
         last_update = cache.get('last_image_update')
         current_time = timezone.now().timestamp()
         one_min = 60
-        one_day_in_seconds = 1 * 24 * 60 * 60  # 1 day * 24 hours * 60 mins * 60 seconds
 
-        if not last_update or current_time - last_update > one_min: 
-            random_num = random.randint(155, 199)
-            image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
+        if not last_update or current_time - last_update > one_min:
+            image_urls = []
+            for _ in range(5):
+                random_num = random.randint(155, 199)
+                image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
+                image_urls.append(image_url)
             cache.set('last_image_update', current_time, timeout=None)
-            cache.set('random_image_url', image_url, timeout=None)
+            cache.set('random_image_urls', image_urls, timeout=None)
         else:
-            image_url = cache.get('random_image_url')
+            image_urls = cache.get('random_image_urls')
 
-        return Response({"image_url": image_url})
+        return Response({"image_urls": image_urls})

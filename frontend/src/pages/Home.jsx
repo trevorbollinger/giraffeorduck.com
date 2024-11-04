@@ -9,7 +9,7 @@ function Home() {
     const [score, setScore] = useState(""); // State for score
     const [streak, setStreak] = useState(""); // State for streak
     const { isAuthorized } = useAuth(); // Get the authorization state
-    const [randomImage, setRandomImage] = useState(""); // State for random image
+    const [randomImages, setRandomImages] = useState([]); // State for random images
 
     useEffect(() => {
         getGameScores(); // Fetch game scores
@@ -44,7 +44,7 @@ function Home() {
             .get("/game/random-image/")
             .then((res) => res.data)
             .then((data) => {
-                setRandomImage(data.image_url);
+                setRandomImages(data.image_urls); // Update state with array of image URLs
             })
             .catch((err) => alert(err));
     };
@@ -87,9 +87,11 @@ function Home() {
                     <input type="submit" value="Submit" className="btn btn-primary" />
                 </form>
 
-                {/* Placeholder for Image */}
+                {/* Placeholder for Images */}
                 <div className='imageContainer'>
-                    <img src={randomImage} alt="Game Image" />
+                    {randomImages.map((image, index) => (
+                        <img src={image} alt={`Game Image ${index + 1}`} key={index} />
+                    ))}
                 </div>
             </main>
         </div>
