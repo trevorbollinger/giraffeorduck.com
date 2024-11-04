@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
-from .serializers import UserSerializer, GameScoreSerializer  # Import GameScoreSerializer
+from .serializers import UserSerializer, GameScoreSerializer 
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import GameScore  # Import GameScore
+from .models import GameScore 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
-from django.core.cache import cache  # Import cache
+from django.core.cache import cache 
 import random
 
 class CreateUserView(generics.CreateAPIView):
@@ -36,7 +36,7 @@ class UserDetailView(APIView):
         user.delete()
         return Response(status=204)
 
-class GameScoreListCreate(generics.ListCreateAPIView):  # Add this class
+class GameScoreListCreate(generics.ListCreateAPIView): 
     serializer_class = GameScoreSerializer
     permission_classes = [IsAuthenticated]
 
@@ -50,12 +50,14 @@ class GameScoreListCreate(generics.ListCreateAPIView):  # Add this class
         else:
             print(serializer.errors)
 
-class RandomImageView(APIView):  # Add this class
+class RandomImageView(APIView): 
     def get(self, request):
         last_update = cache.get('last_image_update')
         current_time = timezone.now().timestamp()
+        one_min = 60
+        one_day_in_seconds = 1 * 24 * 60 * 60  # 1 day * 24 hours * 60 mins * 60 seconds
 
-        if not last_update or current_time - last_update > 60:
+        if not last_update or current_time - last_update > one_min: 
             random_num = random.randint(155, 199)
             image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
             cache.set('last_image_update', current_time, timeout=None)
