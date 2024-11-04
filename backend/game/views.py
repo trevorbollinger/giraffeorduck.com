@@ -58,10 +58,13 @@ class RandomImageView(APIView):
 
         if not last_update or current_time - last_update > one_min:
             image_urls = []
-            for _ in range(5):
+            used_numbers = set()
+            while len(image_urls) < 5:
                 random_num = random.randint(155, 199)
-                image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
-                image_urls.append(image_url)
+                if random_num not in used_numbers:
+                    used_numbers.add(random_num)
+                    image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
+                    image_urls.append(image_url)
             cache.set('last_image_update', current_time, timeout=None)
             cache.set('random_image_urls', image_urls, timeout=None)
         else:
