@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from django.utils import timezone
 from django.core.cache import cache 
 import random
+from datetime import datetime, timedelta
+import pytz
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -52,22 +54,25 @@ class GameScoreListCreate(generics.ListCreateAPIView):
 
 class RandomImageView(APIView): 
     def get(self, request):
-        last_update = cache.get('last_image_update')
-        current_time = timezone.now().timestamp()
-        one_min = 60
+        central = pytz.timezone('US/Central')
+        now = datetime.now(central)
+ 
+        # current_date = '2024-11-03'
+        current_date = now.strftime('%Y-%m-%d')
 
-        if not last_update or current_time - last_update > one_min:
-            image_urls = []
-            used_numbers = set()
-            while len(image_urls) < 5:
-                random_num = random.randint(155, 199)
-                if random_num not in used_numbers:
-                    used_numbers.add(random_num)
-                    image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
-                    image_urls.append(image_url)
-            cache.set('last_image_update', current_time, timeout=None)
-            cache.set('random_image_urls', image_urls, timeout=None)
-        else:
-            image_urls = cache.get('random_image_urls')
+        now = datetime.strptime(current_date, '%Y-%m-%d').replace(tzinfo=central)
+
+        today_date_str = now.strftime('%Y-%m-%d')
+        seed = int(datetime.strptime(today_date_str, '%Y-%m-%d').timestamp())
+        random.seed(seed)
+
+        image_urls = []
+        used_numbers = set()
+        while len(image_urls) < 5:
+            random_num = random.randint(155, 199)
+            if random_num not in used_numbers:
+                used_numbers.add(random_num)
+                image_url = f"{request.scheme}://{request.get_host()}/media/images/image_{random_num}.jpg"
+                image_urls.append(image_url)
 
         return Response({"image_urls": image_urls})

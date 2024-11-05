@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ACCESS_TOKEN } from '../constants';
 
 const AuthContext = createContext();
@@ -6,25 +6,34 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isAuthorized, setIsAuthorized] = useState(Boolean(localStorage.getItem(ACCESS_TOKEN)));
     const [username, setUsername] = useState(localStorage.getItem("username") || "");
-    const [firstName, setFirstName] = useState(localStorage.getItem("first_name") || ""); // New state for first_name
-    const [lastName, setLastName] = useState(localStorage.getItem("last_name") || ""); // New state for last_name
+    const [firstName, setFirstName] = useState(localStorage.getItem("first_name") || "");
+    const [lastName, setLastName] = useState(localStorage.getItem("last_name") || "");
+
+    useEffect(() => {
+        if (!localStorage.getItem(ACCESS_TOKEN)) {
+            setIsAuthorized(false);
+            setUsername("");
+            setFirstName("");
+            setLastName("");
+        }
+    }, []);
 
     const login = (user, firstName, lastName) => {
         setIsAuthorized(true);
         setUsername(user);
-        setFirstName(firstName); // Set first name in state
-        setLastName(lastName); // Set last name in state
+        setFirstName(firstName);
+        setLastName(lastName);
         localStorage.setItem("username", user);
-        localStorage.setItem("first_name", firstName); // Persist first name in localStorage
-        localStorage.setItem("last_name", lastName); // Persist last name in localStorage
+        localStorage.setItem("first_name", firstName);
+        localStorage.setItem("last_name", lastName);
     };
 
     const logout = () => {
         localStorage.clear();
         setIsAuthorized(false);
         setUsername("");
-        setFirstName(""); // Clear first name on logout
-        setLastName(""); // Clear last name on logout
+        setFirstName("");
+        setLastName("");
     };
 
     return (
