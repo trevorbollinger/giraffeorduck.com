@@ -16,32 +16,8 @@ function Home() {
     const [gameComplete, setGameComplete] = useState(false);
 
     useEffect(() => {
-        getGameScores(); // Fetch game scores
         fetchGameData(); // Fetch game data
     }, []);
-
-    const getGameScores = () => {
-        api
-            .get("/game/scores/")
-            .then((res) => res.data)
-            .then((data) => {
-                setGameScores(data);
-                console.log(data);
-            })
-            .catch((err) => alert(err));
-    };
-
-    const createGameScore = (e) => {
-        e.preventDefault();
-        api
-            .post("/game/scores/", { score: score.join(''), streak })
-            .then((res) => {
-                if (res.status === 201) alert("Game score submitted!");
-                else alert("Failed to submit game score.");
-                getGameScores();
-            })
-            .catch((err) => alert(err));
-    };
 
     const fetchGameData = () => {
         api
@@ -65,8 +41,10 @@ function Home() {
             setCurrentImageIndex(prevIndex => prevIndex + 1);
         } else {
             setGameComplete(true);
-            // Optionally submit the score here
             setStreak(score.filter(s => s === 'y').length);
+            if (isAuthorized) {
+                createGameScore();
+            }
         }
     };
 
@@ -76,12 +54,35 @@ function Home() {
         setGameComplete(false);
     };
 
+    const createGameScore = () => {
+        const scoreData = {
+            score: score.filter(s => s === 'y').length,
+            streak: 0,
+            date: new Date().toISOString().split('T')[0], // Ensure date is included
+        };
+
+        api.post("/game/submit-score/", scoreData)
+            .then((res) => {
+                alert("Score submitted successfully!");
+                setGameScores([...gameScores, res.data]);
+            })
+            .catch((err) => alert("Failed to submit score: " + err));
+    };
+
     return (
         <div>
             <main>
                 {/* Score Display */}
                 <div className="score-display">
-                    <h3>Current Score: {score.join(', ')}</h3>
+                    <h3>Current Score:</h3>
+                    <div className="score-squares">
+                        {[0, 1, 2, 3, 4].map((index) => (
+                            <div 
+                                key={index} 
+                                className={`score-square ${score[index] === 'y' ? 'green' : score[index] === 'n' ? 'red' : 'grey'}`}
+                            />
+                        ))}
+                    </div>
                     <p>Game #{currentIteration}</p>
                 </div>
 
@@ -106,7 +107,6 @@ function Home() {
                                 Duck
                             </button>
                         </div>
-                        <p>Image {currentImageIndex + 1} of 5</p>
                     </div>
                 )}
 
@@ -116,16 +116,9 @@ function Home() {
                         <h2>Game Complete!</h2>
                         <p>Final Score: {score.join(', ')}</p>
                         <button onClick={resetGame} className='btn btn-primary'>Play Again</button>
-                        <button onClick={createGameScore} className='btn btn-success'>Submit Score</button>
                     </div>
                 )}
 
-                {/* Previous Scores Section */}
-                <div className='previous-scores'>
-                    {gameScores.map((gameScore) => (
-                        <GameScore gameScore={gameScore} key={gameScore.id} />
-                    ))}
-                </div>
             </main>
         </div>
     );

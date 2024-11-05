@@ -49,12 +49,12 @@ class GameScoreListCreate(generics.ListCreateAPIView):
         return GameScore.objects.filter(user=user)
 
     def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(user=self.request.user)
-        else:
-            print(serializer.errors)
+        serializer.is_valid(raise_exception=True)  # Ensure validation is called
+        serializer.save(user=self.request.user)
 
 class GameDataView(APIView): 
+    permission_classes = [AllowAny]
+
     def get(self, request):
         central = pytz.timezone('US/Central')
         now = datetime.now(central)

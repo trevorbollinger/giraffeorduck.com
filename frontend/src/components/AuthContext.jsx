@@ -10,11 +10,15 @@ export const AuthProvider = ({ children }) => {
     const [lastName, setLastName] = useState(localStorage.getItem("last_name") || "");
 
     useEffect(() => {
-        if (!localStorage.getItem(ACCESS_TOKEN)) {
+        const token = localStorage.getItem(ACCESS_TOKEN);
+        if (!token) {
             setIsAuthorized(false);
             setUsername("");
             setFirstName("");
             setLastName("");
+            localStorage.removeItem("username");
+            localStorage.removeItem("first_name");
+            localStorage.removeItem("last_name");
         }
     }, []);
 
