@@ -157,3 +157,8 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://gordapi.boli.dev',
+    # Add other trusted origins here
+]
