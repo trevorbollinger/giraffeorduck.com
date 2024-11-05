@@ -10,10 +10,12 @@ function Home() {
     const [streak, setStreak] = useState(""); // State for streak
     const { isAuthorized } = useAuth(); // Get the authorization state
     const [randomImages, setRandomImages] = useState([]); // State for random images
+    const [answerKey, setAnswerKey] = useState([]); // State for answer key
+    const [currentIteration, setCurrentIteration] = useState(0); // State for current iteration
 
     useEffect(() => {
         getGameScores(); // Fetch game scores
-        fetchRandomImage(); // Fetch random image
+        fetchGameData(); // Fetch game data
     }, []);
 
     const getGameScores = () => {
@@ -39,12 +41,14 @@ function Home() {
             .catch((err) => alert(err));
     };
 
-    const fetchRandomImage = () => {
+    const fetchGameData = () => {
         api
-            .get("/game/random-image/")
+            .get("/game/game-data/")
             .then((res) => res.data)
             .then((data) => {
                 setRandomImages(data.image_urls); // Update state with array of image URLs
+                setAnswerKey(data.answer_key); // Update state with answer key
+                setCurrentIteration(data.current_iteration); // Update state with current iteration
             })
             .catch((err) => alert(err));
     };
@@ -87,11 +91,21 @@ function Home() {
                     <input type="submit" value="Submit" className="btn btn-primary" />
                 </form>
 
-                {/* Placeholder for Images */}
+                {/* Image Container */}
                 <div className='imageContainer'>
                     {randomImages.map((image, index) => (
                         <img src={image} alt={`Game Image ${index + 1}`} key={index} />
                     ))}
+                </div>
+
+                {/* Display Answer Key */}
+                <div className='charContainer'>
+                    <p>{answerKey.join(", ")}</p>
+                </div>
+
+                {/* Display Current Iteration */}
+                <div className='currentIterationContainer'>
+                    <p>#{currentIteration}</p>
                 </div>
             </main>
         </div>

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from game.views import CreateUserView, UserDetailView, RandomImageView  # Import RandomImageView
+from game.views import CreateUserView, UserDetailView, GameDataView  # Import GameDataView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
@@ -13,5 +13,5 @@ urlpatterns = [
     path("game-auth/", include("rest_framework.urls")),
     path("game/", include("game.urls")),
     path("game/user/me/", UserDetailView.as_view(), name="user-detail"),
-    path("game/random-image/", RandomImageView.as_view(), name="random-image"),  # Add this line
+    path("game/game-data/", GameDataView.as_view(), name="game-data"),  # Update this line
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
