@@ -58,15 +58,10 @@ class GameDataView(APIView):
     def get(self, request):
         central = pytz.timezone('US/Central')
         now = datetime.now(central)
- 
-        # current_date = '2024-11-03'
         current_date = now.strftime('%Y-%m-%d')
-
         now = datetime.strptime(current_date, '%Y-%m-%d').replace(tzinfo=central)
-
         today_date_str = now.strftime('%Y-%m-%d')
-        seed = int(datetime.strptime(today_date_str, '%Y-%m-%d').timestamp())
-        random.seed(seed)
+        base_seed = int(datetime.strptime(today_date_str, '%Y-%m-%d').timestamp())
 
         def get_image_count(set_name):
             set_path = os.path.join(settings.MEDIA_ROOT, set_name)
@@ -78,8 +73,15 @@ class GameDataView(APIView):
         image_urls = []
         answer_key = []
         used_numbers = set()
-        while len(image_urls) < 5:
-            set_choice = random.choice(['set1', 'set2'])
+        
+        # Pre-determine all random choices using different seed offsets
+        random.seed(base_seed)
+        set_choices = []
+        for i in range(5):
+            set_choices.append(random.choice(['set1', 'set2']))
+
+        for i, set_choice in enumerate(set_choices):
+            random.seed(base_seed + i + 1)  # Use a different seed for each number generation
             if set_choice == 'set1':
                 random_num = random.randint(1, set1_count)
                 image_name = f"1_image_{random_num}.jpg"
