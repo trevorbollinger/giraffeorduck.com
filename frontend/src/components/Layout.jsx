@@ -13,6 +13,14 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
       // Start animation when splash screen is removed
       setShouldAnimate(true);
     }
+
+    // Set the CSS variable for the viewport height
+    const setVh = () => {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+    };
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
   }, [isSplashActive, isHomePage]);
 
   const AuthButtons = () => (
