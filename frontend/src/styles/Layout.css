@@ -23,7 +23,7 @@ body, html {
 .layout-container {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Change from min-height to height */
+    height: calc(var(--vh, 1vh) * 100); /* Use CSS variable for height */
     background-color: #1a1a1a; /* Dark background */
     width: 100%;
     position: fixed; /* Add this */
@@ -186,6 +186,10 @@ body, html {
     flex-direction: column;
     align-items: center;
     gap: 8px; /* Match navbar gap */
+    position: relative; /* Ensure footer is positioned correctly */
+    z-index: 10; /* Ensure footer is above other elements */
+    -webkit-transform: translateZ(0); /* Fix for Safari rendering issues */
+    transform: translateZ(0); /* Ensure compatibility */
 }
 
 .footer-buttons {
@@ -260,6 +264,10 @@ body, html {
     .footer {
         padding: 4px;
         gap: 4px;
+        position: relative; /* Ensure footer is positioned correctly */
+        z-index: 10; /* Ensure footer is above other elements */
+        -webkit-transform: translateZ(0); /* Fix for Safari rendering issues */
+        transform: translateZ(0); /* Ensure compatibility */
     }
 
     .footer-buttons {

@@ -30,6 +30,14 @@ function Home({ onSplashStateChange, onMount }) {
             timeZone: "America/Chicago"
         });
         setCurrentDate(formattedDateTime);
+
+        // Set the CSS variable for the viewport height
+        const setVh = () => {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+        };
+        setVh();
+        window.addEventListener('resize', setVh);
+        return () => window.removeEventListener('resize', setVh);
     }, [onMount]);
 
     useEffect(() => {
