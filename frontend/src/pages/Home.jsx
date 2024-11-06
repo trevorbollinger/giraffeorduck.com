@@ -72,9 +72,10 @@ function Home() {
     return (
         <div>
             <main>
+            {/* <p>#{currentIteration}</p> */}
+
                 {/* Score Display */}
                 <div className="score-display">
-                    <h3>Current Score:</h3>
                     <div className="score-squares">
                         {[0, 1, 2, 3, 4].map((index) => (
                             <div 
@@ -83,7 +84,6 @@ function Home() {
                             />
                         ))}
                     </div>
-                    <p>Game #{currentIteration}</p>
                 </div>
 
                 {/* Game Interface */}
@@ -96,13 +96,13 @@ function Home() {
                         <div className='button-container'>
                             <button 
                                 onClick={() => handleGuess('giraffe')}
-                                className='btn btn-primary'
+                                className='game-btn game-btn-primary'
                             >
                                 Giraffe
                             </button>
                             <button 
                                 onClick={() => handleGuess('duck')}
-                                className='btn btn-secondary'
+                                className='game-btn game-btn-secondary'
                             >
                                 Duck
                             </button>

@@ -53,6 +53,7 @@ class GameScoreListCreate(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 class GameDataView(APIView): 
+    authentication_classes = []  # Add this line
     permission_classes = [AllowAny]
 
     def get(self, request):

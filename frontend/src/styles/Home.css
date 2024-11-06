@@ -1,35 +1,12 @@
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../assets/PartyConfetti.ttf') format('truetype');
+}
+
 /* Global font style */
 div {
     font-family: Arial, sans-serif;
     color: #e0e0e0; /* Light text for dark mode */
-}
-
-/* Header Styles */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    background-color: #1a1a1a; /* Dark header background */
-}
-
-header h1 {
-    margin: 0;
-    font-size: 28px;
-    color: #f0f0f0; /* Light text color */
-}
-
-header a {
-    text-decoration: none;
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-header a:hover {
-    background-color: #0056b3;
 }
 
 /* Main Body Section */
@@ -38,79 +15,11 @@ main {
     text-align: center;
 }
 
-/* Notes Section */
-.notes-section {
-    margin-bottom: 2rem;
-}
-
-.notes-section h2 {
-    color: #f0f0f0; /* Light text for section heading */
-    font-size: 24px;
-}
-
-/* Individual Note Styles */
-.note {
-    background-color: #2a2a2a; /* Dark background for note */
-    border-left: 5px solid #007bff;
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
-
-/* Form Section */
-form {
-    background-color: #1a1a1a; /* Dark form background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Darker shadow */
-    max-width: 500px;
-    margin: auto;
-}
-
-form h2 {
-    color: #f0f0f0;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-form label {
-    font-weight: bold;
-    margin-top: 10px;
-    color: #cccccc; /* Slightly muted label color */
-}
-
-form input,
-form textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 8px 0 16px;
-    background-color: #333333; /* Dark input background */
-    color: #e0e0e0; /* Light text color for inputs */
-    border: 1px solid #555555; /* Darker border */
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-form input[type="submit"] {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-form input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
 /* Image Container Styles */
 .imageContainer {
     display: flex; /* Change to flex to align images horizontally */
     justify-content: space-around; /* Space out the images */
-    margin: 2rem 0;
+    margin: 1rem 0; /* Reduced from 2rem */
     border: 1px dashed #555555; /* Darker dashed border */
     height: 200px;
     align-items: center;
@@ -124,45 +33,160 @@ form input[type="submit"]:hover {
     margin: 0 10px; /* Add some margin between images */
 }
 
+/* Game Interface Styles */
 .game-interface {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    margin: 20px 0;
-    height: 500px; /* Set a fixed height for the game interface */
+    gap: 10px; /* Reduced from 20px */
+    margin: 10px 0; /* Reduced from 20px */
+    height: auto; /* Changed from fixed height */
 }
 
 .game-interface img {
     max-width: 400px;
-    height: 400px; /* Set a fixed height for the image */
-    object-fit: contain; /* Ensure the image fits within the specified height */
+    height: 400px;
+    object-fit: contain;
+    border-radius: 20px;
+    transition: all 0.5s ease-in-out;
+    animation: imageChange 0.5s ease-in-out;
 }
 
+@keyframes imageChange {
+    0% { 
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Game Button Styles */
 .button-container {
     display: flex;
-    gap: 20px;
+    gap: 10px; /* Reduced from 20px */
 }
 
-.guess-button {
-    padding: 10px 20px;
-    font-size: 18px;
+.game-btn {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 32px;
+    width: 180px;
+    height: 60px;
+    border-radius: 12px;
+    border: 3px solid;
     cursor: pointer;
+    background: transparent;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.game-complete {
-    text-align: center;
-    margin: 20px 0;
+.game-btn-primary, .game-btn-secondary {
+    border-color: #007bff;
+    background-color: #007bff;
 }
 
+.game-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.game-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Score Display Styles */
 .score-display {
     text-align: center;
     margin: 20px 0;
 }
 
-.previous-scores {
+.score-squares {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 20px; /* Increased from 15px */
+    margin: 20px 0;
+    perspective: 1000px;
+}
+
+.score-square {
+    width: 50px; /* Increased from 40px */
+    height: 50px; /* Increased from 40px */
+    border-radius: 10px; /* Adjusted for larger size */
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    border-width: 3px; /* Increased from 2px */
+}
+
+.score-square.green {
+    animation: bounce 0.6s ease;
+    background: linear-gradient(135deg, #43a047 0%, #4caf50 100%);
+    border: 2px solid #43a047;
+}
+
+.score-square.red {
+    animation: bounce 0.6s ease;
+    background: linear-gradient(135deg, #e53935 0%, #f44336 100%);
+    border: 2px solid #e53935;
+}
+
+.score-square.grey {
+    background: linear-gradient(135deg, #555 0%, #666 100%);
+    border: 2px solid #555;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Game Complete Screen */
+.game-complete {
+    text-align: center;
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 800px) {
+    .game-btn {
+        font-size: 20px; /* Reduced from 32px */
+        width: 120px; /* Reduced from 180px */
+        height: 40px; /* Reduced from 60px */
+        border-radius: 8px; /* Reduced from 12px */
+        border-width: 2px; /* Reduced from 3px */
+        transition: none; /* Remove animations on mobile */
+    }
+
+    .game-btn:hover {
+        transform: none; /* Remove hover effects on mobile */
+        box-shadow: none;
+    }
+
+    .game-interface {
+        height: auto;
+    }
+
+    .game-interface img {
+        max-width: 300px; /* Reduced from 400px */
+        height: 450px; /* Reduced from 400px */
+        animation: none; /* Remove animation on mobile */
+    }
+
+    .score-squares {
+        gap: 12px; /* Increased from 8px */
+    }
+
+    .score-square {
+        width: 40px; /* Increased from 30px */
+        height: 40px; /* Increased from 30px */
+        border-radius: 8px; /* Adjusted for larger size */
+        animation: none; /* Remove animation on mobile */
+    }
 }

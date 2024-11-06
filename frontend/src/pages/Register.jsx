@@ -9,6 +9,7 @@ function Register() {
   const { login } = useAuth(); // Get the login function from AuthContext
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState(""); // Add state for confirm password
   const [first_name, setFName] = useState("");
   const [last_name, setLName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,6 +18,12 @@ function Register() {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+
+    if (password !== confirmPassword) { // Check if passwords match
+      alert("Passwords do not match.");
+      setLoading(false);
+      return;
+    }
 
     try {
       await api.post("/game/user/register/", { username, password, first_name, last_name });
@@ -64,6 +71,15 @@ function Register() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          required
+        />
+
+        <input
+          className="form-input"
+          type="password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder="Confirm Password"
           required
         />
 

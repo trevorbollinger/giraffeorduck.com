@@ -1,9 +1,21 @@
+/* Import custom font */
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../assets/PartyConfetti.ttf') format('truetype');
+}
+
 /* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: #e0e0e0; /* Light color for readability in dark mode */
+}
+
+/* Add this specific rule */
+p {
+    margin: 0;
+    margin-bottom: 0;
 }
 
 body, html {
@@ -27,7 +39,7 @@ body, html {
 
 .navbar {
     background-color: #111111; /* Darker navbar background */
-    padding: 20px;
+    padding: 8px 20px; /* Reduced from 12px */
     display: flex;
     justify-content: space-between; /* Ensure items are spaced out */
     align-items: center;
@@ -44,7 +56,11 @@ body, html {
 }
 
 .greeting {
-    margin-bottom: 0px;
+    margin: 0;
+    padding: 8px 0; /* Reduced from 12px */
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 24px;
+    line-height: 1;
 }
 
 .nav-center {
@@ -53,6 +69,7 @@ body, html {
     justify-content: center;
     align-items: center;
     white-space: nowrap; /* Prevent logo wrapping */
+    padding: 8px 0; /* Reduced from 12px */
 }
 
 .textlogo {
@@ -67,20 +84,81 @@ body, html {
     vertical-align: middle; /* Align with textlogo */
 }
 
+.nav-center a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 40px; /* Increased from 32px */
+    color: #e0e0e0;
+    margin: 0;
+    line-height: 1;
+}
+
 /* Right-aligned Logout Button */
 .nav-right {
     width: 30%;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
 }
 
 .nav-right a {
-    margin-left: 10px; /* Add space between buttons */
+    margin-left: 0; /* Remove margin since we're using gap */
+    text-decoration: none;
+}
+
+/* Navbar button styles */
+.nav-btn {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 16px; /* Reduced from 20px */
+    padding: 6px 16px; /* Reduced from 8px 20px */
+    border-radius: 10px; /* Slightly smaller radius */
+    border: 2px solid; /* Reduced from 3px */
+    cursor: pointer;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px; /* Reduced from 100px */
+}
+
+.nav-btn-primary {
+    border-color: #007bff;
+    background-color: #007bff;
+}
+
+.nav-btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.nav-btn-danger {
+    border-color: #dc3545;
+    background-color: #dc3545;
+}
+
+.nav-btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 /* Main Content Styles */
 .main-content {
     flex: 1;
-    padding: 2rem;
+    padding: 1.5rem; /* Reduced from 2rem */
     overflow-y: auto;
     color: #e0e0e0; /* Text color for readability */
 }
@@ -88,17 +166,34 @@ body, html {
 /* Footer Styles */
 .footer {
     text-align: center;
-    padding: 1rem;
-    background-color: #111111; /* Dark footer background */
-    color: #888888; /* Muted text color in footer */
+    padding: 8px; /* Match navbar padding */
+    background-color: #111111;
+    color: #888888;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Match navbar gap */
+}
+
+.footer-buttons {
+    display: none;
+    gap: 8px; /* Match navbar gap */
+    padding: 8px 0; /* Match navbar section padding */
+}
+
+.footer p {
+    padding: 8px 0; /* Match navbar section padding */
+    line-height: 1;
+    margin: 0;
+    margin-bottom: 0; /* Explicitly remove margin-bottom */
 }
 
 /* Responsive Adjustments */
 @media only screen and (max-width: 800px) { /* Increased breakpoint */
     .navbar {
         flex-direction: column;
-        padding: 10px;
-        gap: 10px; /* Add space between stacked elements */
+        padding: 4px 2px; /* Reduced from 8px */
+        gap: 0;
     }
 
     .nav-left, .nav-right {
@@ -108,24 +203,67 @@ body, html {
     }
 
     .nav-right {
+        width: 100%;
+        justify-content: center;
         margin: 3px;
+        display: none; /* Hide navbar buttons on mobile */
+    }
+
+    .greeting{
+        margin: 0;
+        padding: 4px 0; /* Reduced from 8px */
+        font-size: 20px; /* Slightly smaller */
+        line-height: 1; /* Prevent extra vertical space */
     }
 
     .nav-center {
         width: 100%;
         justify-content: center;
+        padding: 4px 0; /* Reduced from 8px */
     }
 
     .faviconlogo {
         display: none;
     }
 
-    .textlogo {
-        height: 25px;
-        margin: 0px;
+    .logo-text {
+        font-size: 35px; /* Reduced from 28px */
+        margin: 0; /* Remove margin */
     }
 
     .main-content {
-        padding: 1rem;
+        padding: 0px;
+    }
+
+    .footer {
+        padding: 4px; /* Match navbar mobile padding */
+        gap: 4px; /* Match navbar mobile gap */
+    }
+
+    .footer-buttons {
+        display: flex;
+        gap: 4px; /* Match navbar mobile gap */
+        padding: 4px 0; /* Match navbar mobile padding */
+    }
+
+    .footer p {
+        padding: 4px 0; /* Match navbar mobile padding */
+        font-size: 14px; /* Slightly smaller for mobile */
+    }
+
+    .footer {
+        padding: 0.5rem; /* Reduced from 1rem */
+    }
+
+    .footer-buttons {
+        display: flex; /* Show footer buttons on mobile */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-btn {
+        font-size: 14px; /* Even smaller on mobile */
+        padding: 4px 12px;
+        min-width: 70px;
     }
 }

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ACCESS_TOKEN } from '../constants';
+import { jwtDecode } from 'jwt-decode'; // Changed import syntax
 
 const AuthContext = createContext();
 
@@ -11,7 +12,20 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const token = localStorage.getItem(ACCESS_TOKEN);
-        if (!token) {
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+                const currentTime = Date.now() / 1000;
+                
+                if (decodedToken.exp < currentTime) {
+                    // Token has expired
+                    logout();
+                }
+            } catch (error) {
+                // Invalid token
+                logout();
+            }
+        } else {
             setIsAuthorized(false);
             setUsername("");
             setFirstName("");

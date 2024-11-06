@@ -2,11 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/Layout.css";
 import { useAuth } from "./AuthContext";
-import logo from "../assets/logo.png";
 import favicon from "../assets/favicon.png";
 
 const Layout = ({ children }) => {
   const { isAuthorized, username, firstName, lastName } = useAuth();
+
+  const AuthButtons = () => (
+    isAuthorized ? (
+      <>
+        <a href="/account">
+          <button id="manage-account-button" className="nav-btn nav-btn-primary">Account</button>
+        </a>
+        <a href="/logout">
+          <button className="nav-btn nav-btn-danger">Logout</button>
+        </a>
+      </>
+    ) : (
+      <>
+        <a href="/login">
+          <button className="nav-btn nav-btn-primary">Login</button>
+        </a>
+        <a href="/register">
+          <button className="nav-btn nav-btn-primary">Register</button>
+        </a>
+      </>
+    )
+  );
 
   return (
     <div className="layout-container">
@@ -22,34 +43,19 @@ const Layout = ({ children }) => {
           <div className="nav-center">
             <Link to="/">
               <img src={favicon} className="faviconlogo" alt="Logo" />
-              <img src={logo} className="textlogo" alt="Logo" />
+              <span className="logo-text">GIRAFFE OR DUCK?</span>
             </Link>
           </div>
           <div className="nav-right">
-            {isAuthorized ? (
-              <>
-                <a href="/account">
-                  <button id="manage-account-button" className="btn btn-primary">Account</button>
-                </a>
-                <a href="/logout">
-                  <button className="btn btn-danger">Logout</button>
-                </a>
-              </>
-            ) : (
-              <>
-                <a href="/login">
-                  <button className="btn btn-primary">Login</button>
-                </a>
-                <a href="/register">
-                  <button className="btn btn-primary">Register</button>
-                </a>
-              </>
-            )}
+            <AuthButtons />
           </div>
         </nav>
       </div>
       <main className="main-content">{children}</main>
       <footer className="footer">
+        <div className="footer-buttons">
+          <AuthButtons />
+        </div>
         <p>© {new Date().getFullYear()} Trevor Bollinger. All rights reserved.</p>
       </footer>
     </div>
