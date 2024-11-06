@@ -63,7 +63,7 @@ function Home() {
 
         api.post("/game/submit-score/", scoreData)
             .then((res) => {
-                alert("Score submitted successfully!");
+                // alert("Score submitted successfully!");
                 setGameScores([...gameScores, res.data]);
             })
             .catch((err) => alert("Failed to submit score: " + err));
@@ -114,7 +114,6 @@ function Home() {
                 {gameComplete && (
                     <div className='game-complete'>
                         <h2>Game Complete!</h2>
-                        <p>Final Score: {score.join(', ')}</p>
                         <button onClick={resetGame} className='btn btn-primary'>Play Again</button>
                     </div>
                 )}
