@@ -1,12 +1,21 @@
 import React from "react";
-import "../styles/GameScore.css"; // Import the CSS file
+import "../styles/GameScore.css";
 
 function GameScore({ gameScore }) {
-    const formattedDate = new Date(gameScore.date).toLocaleDateString("en-US");
+    const formatDateTime = (dateString) => {
+        const date = new Date(dateString);
+        return (
+            <>
+                <span>{date.toLocaleDateString()}</span>
+                <br />
+                <span>{date.toLocaleTimeString()}</span>
+            </>
+        );
+    };
 
     return (
         <div className="gamescore-container">
-            <p className="gamescore-date">{formattedDate}</p>
+            <p className="gamescore-date">{formatDateTime(gameScore.date)}</p>
             <p className="gamescore-score">Score: {gameScore.score}</p>
             <p className="gamescore-streak">Streak: {gameScore.streak}</p>
         </div>

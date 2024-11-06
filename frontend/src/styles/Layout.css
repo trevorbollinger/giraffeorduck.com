@@ -12,23 +12,23 @@
     color: #e0e0e0; /* Light color for readability in dark mode */
 }
 
-/* Add this specific rule */
-p {
-    margin: 0;
-    margin-bottom: 0;
-}
-
 body, html {
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Change from overflow-x: hidden */
 }
 
 /* General Layout Container */
 .layout-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh; /* Change from min-height to height */
     background-color: #1a1a1a; /* Dark background */
     width: 100%;
+    position: fixed; /* Add this */
+    top: 0; /* Add this */
+    left: 0; /* Add this */
 }
 
 /* Navbar Styles */
@@ -70,6 +70,7 @@ body, html {
     align-items: center;
     white-space: nowrap; /* Prevent logo wrapping */
     padding: 8px 0; /* Reduced from 12px */
+    opacity: 0; /* Start hidden */
 }
 
 .textlogo {
@@ -92,10 +93,16 @@ body, html {
 
 .logo-text {
     font-family: 'PartyConfetti', Arial, sans-serif;
-    font-size: 40px; /* Increased from 32px */
+    font-size: 55px; /* Increased from 32px */
     color: #e0e0e0;
     margin: 0;
     line-height: 1;
+}
+
+/* Hide navbar elements when splash screen is active */
+.splash-active .nav-center {
+    visibility: visible; /* Change from hidden to visible */
+    opacity: 0;
 }
 
 /* Right-aligned Logout Button */
@@ -158,9 +165,15 @@ body, html {
 /* Main Content Styles */
 .main-content {
     flex: 1;
+    display: flex; /* Add this */
+    flex-direction: column; /* Add this */
+    justify-content: center; /* Add this */
+    align-items: center; /* Add this */
     padding: 1.5rem; /* Reduced from 2rem */
     overflow-y: auto;
     color: #e0e0e0; /* Text color for readability */
+    position: relative;
+    height: 100%; /* Change from height: 0 to height: 100% */
 }
 
 /* Footer Styles */
@@ -194,6 +207,13 @@ body, html {
         flex-direction: column;
         padding: 4px 2px; /* Reduced from 8px */
         gap: 0;
+        max-height: 40px;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+    }
+
+    .navbar.expanded {
+        animation: expandNavbar 0.70s ease-out forwards;
     }
 
     .nav-left, .nav-right {
@@ -227,17 +247,19 @@ body, html {
     }
 
     .logo-text {
-        font-size: 35px; /* Reduced from 28px */
+        font-size: 42px; /* Reduced from 28px */
         margin: 0; /* Remove margin */
     }
 
     .main-content {
-        padding: 0px;
+        padding: 0;
+        flex: 1;
+        overflow-y: auto; /* Allow scrolling if needed */
     }
 
     .footer {
-        padding: 4px; /* Match navbar mobile padding */
-        gap: 4px; /* Match navbar mobile gap */
+        padding: 4px;
+        gap: 4px;
     }
 
     .footer-buttons {
@@ -265,5 +287,45 @@ body, html {
         font-size: 14px; /* Even smaller on mobile */
         padding: 4px 12px;
         min-width: 70px;
+    }
+
+    /* Hide nav-center completely when splash is active */
+    .splash-active .nav-center {
+        display: none; /* Change from visibility: hidden to display: none */
+        height: 0;
+        padding: 0;
+    }
+
+    /* Adjust navbar padding when splash is active */
+    .splash-active .navbar {
+        padding: 4px 2px;
+        max-height: 40px;
+    }
+}
+
+/* Add these new keyframes before the rest of the styles */
+@keyframes dropIn {
+    0% {
+        transform: translateY(-200%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add these new styles */
+.nav-center.animate-in {
+    animation: dropIn .35s ease-out forwards;
+}
+
+/* Add new keyframes */
+@keyframes expandNavbar {
+    0% {
+        max-height: 40px;
+    }
+    100% {
+        max-height: 120px;
     }
 }

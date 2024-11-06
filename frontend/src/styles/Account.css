@@ -1,16 +1,7 @@
-.account-container {
-    background-color: #2a2a2a; /* Dark background for the container */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Darker shadow */
-    max-width: 500px;
-    margin: auto;
-}
-
-.account-container h1 {
-    color: #f0f0f0; /* Light text color */
-    text-align: center;
-    margin-bottom: 20px;
+/* Import custom font */
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../assets/PartyConfetti.ttf') format('truetype');
 }
 
 .account-container form {
@@ -20,6 +11,9 @@
 
 .account-container input {
     margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 #update-profile-button {

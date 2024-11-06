@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import GameScore from "../components/GameScore"; // Import GameScore component
+import GameScore from "../components/GameScore";
+import Tutorial from '../components/Tutorial';
+import SplashScreen from '../components/SplashScreen';
+import Game from '../components/Game';  // Add this import
 import "../styles/Home.css";
 import { useAuth } from "../components/AuthContext";
 
-function Home() {
+function Home({ onSplashStateChange, onMount }) {
     const [gameScores, setGameScores] = useState([]); // State for game scores
     const [score, setScore] = useState([]); // State for score as an array
     const [streak, setStreak] = useState(""); // State for streak
@@ -14,10 +17,24 @@ function Home() {
     const [currentIteration, setCurrentIteration] = useState(0); // State for current iteration
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [gameComplete, setGameComplete] = useState(false);
+    const [prevImageIndex, setPrevImageIndex] = useState(null);
+    const [currentDate, setCurrentDate] = useState('');
+    const [showTutorial, setShowTutorial] = useState(false);
+    const [gameStarted, setGameStarted] = useState(false);
 
     useEffect(() => {
-        fetchGameData(); // Fetch game data
-    }, []);
+        onMount();
+        fetchGameData();
+        // Set current date and time
+        const formattedDateTime = new Date().toLocaleString("en-US", { 
+            timeZone: "America/Chicago"
+        });
+        setCurrentDate(formattedDateTime);
+    }, [onMount]);
+
+    useEffect(() => {
+        onSplashStateChange(!gameStarted);
+    }, [gameStarted, onSplashStateChange]);
 
     const fetchGameData = () => {
         api
@@ -38,6 +55,7 @@ function Home() {
         setScore(prevScore => [...prevScore, correct ? 'y' : 'n']);
 
         if (currentImageIndex < randomImages.length - 1) {
+            setPrevImageIndex(currentImageIndex);
             setCurrentImageIndex(prevIndex => prevIndex + 1);
         } else {
             setGameComplete(true);
@@ -58,7 +76,7 @@ function Home() {
         const scoreData = {
             score: score.filter(s => s === 'y').length,
             streak: 0,
-            date: new Date().toISOString().split('T')[0], // Ensure date is included
+            date: currentDate,
         };
 
         api.post("/game/submit-score/", scoreData)
@@ -70,56 +88,31 @@ function Home() {
     };
 
     return (
-        <div>
-            <main>
-            {/* <p>#{currentIteration}</p> */}
+        <main>
+            {!gameStarted ? (
+                <SplashScreen 
+                    onTutorialClick={() => setShowTutorial(true)}
+                    onPlayClick={() => setGameStarted(true)}
+                    currentIteration={currentIteration}
+                />
+            ) : (
+                <Game 
+                    currentDate={currentDate}
+                    randomImages={randomImages}
+                    score={score}
+                    currentImageIndex={currentImageIndex}
+                    prevImageIndex={prevImageIndex}
+                    gameComplete={gameComplete}
+                    handleGuess={handleGuess}
+                    resetGame={resetGame}
+                    setPrevImageIndex={setPrevImageIndex}
+                />
+            )}
 
-                {/* Score Display */}
-                <div className="score-display">
-                    <div className="score-squares">
-                        {[0, 1, 2, 3, 4].map((index) => (
-                            <div 
-                                key={index} 
-                                className={`score-square ${score[index] === 'y' ? 'green' : score[index] === 'n' ? 'red' : 'grey'}`}
-                            />
-                        ))}
-                    </div>
-                </div>
-
-                {/* Game Interface */}
-                {randomImages.length > 0 && !gameComplete && (
-                    <div className='game-interface'>
-                        <img 
-                            src={randomImages[currentImageIndex]} 
-                            alt={`Game Image ${currentImageIndex + 1}`} 
-                        />
-                        <div className='button-container'>
-                            <button 
-                                onClick={() => handleGuess('giraffe')}
-                                className='game-btn game-btn-primary'
-                            >
-                                Giraffe
-                            </button>
-                            <button 
-                                onClick={() => handleGuess('duck')}
-                                className='game-btn game-btn-secondary'
-                            >
-                                Duck
-                            </button>
-                        </div>
-                    </div>
-                )}
-
-                {/* Game Complete Screen */}
-                {gameComplete && (
-                    <div className='game-complete'>
-                        <h2>Game Complete!</h2>
-                        <button onClick={resetGame} className='btn btn-primary'>Play Again</button>
-                    </div>
-                )}
-
-            </main>
-        </div>
+            {showTutorial && (
+                <Tutorial onClose={() => setShowTutorial(false)} />
+            )}
+        </main>
     );
 }
 

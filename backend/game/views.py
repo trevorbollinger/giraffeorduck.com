@@ -53,7 +53,7 @@ class GameScoreListCreate(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 class GameDataView(APIView): 
-    authentication_classes = []  # Add this line
+    authentication_classes = []
     permission_classes = [AllowAny]
 
     def get(self, request):
@@ -64,12 +64,8 @@ class GameDataView(APIView):
         today_date_str = now.strftime('%Y-%m-%d')
         base_seed = int(datetime.strptime(today_date_str, '%Y-%m-%d').timestamp())
 
-        def get_image_count(set_name):
-            set_path = os.path.join(settings.MEDIA_ROOT, set_name)
-            return len([name for name in os.listdir(set_path) if os.path.isfile(os.path.join(set_path, name))])
-
-        set1_count = get_image_count('set1')
-        set2_count = get_image_count('set2')
+        set1_count = 25  
+        set2_count = 20  
 
         image_urls = []
         answer_key = []
@@ -82,13 +78,14 @@ class GameDataView(APIView):
             set_choices.append(random.choice(['set1', 'set2']))
 
         for i, set_choice in enumerate(set_choices):
-            random.seed(base_seed + i + 1)  # Use a different seed for each number generation
+            random.seed(base_seed + i + 1)
+            max_num = set1_count if set_choice == 'set1' else set2_count
+            random_num = random.randint(1, max_num)
+            
             if set_choice == 'set1':
-                random_num = random.randint(1, set1_count)
                 image_name = f"1_image_{random_num}.jpg"
                 answer_key.append('g')
             else:
-                random_num = random.randint(1, set2_count)
                 image_name = f"2_image_{random_num}.jpg"
                 answer_key.append('d')
             

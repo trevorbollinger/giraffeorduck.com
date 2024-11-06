@@ -1,0 +1,132 @@
+.start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    gap: 2rem;
+}
+
+.start-screen h1 {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.start-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+    .start-screen h1 {
+        font-size: 2rem;
+    }
+}
+
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Take up full height of parent */
+    text-align: center;
+    padding: 20px;
+}
+
+.splash-screen h1 {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.splash-logo {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1rem;
+}
+
+.iteration-text {
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
+}
+
+.splash-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.splash-buttons button {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #666666;  /* Darker grey */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    width: 180px;  /* Fixed width for both buttons */
+}
+
+.splash-buttons button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #555555;  /* Slightly darker on hover */
+}
+
+.date-text {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    .splash-screen {
+        /* Remove duplicate declarations and conflicting heights */
+        height: calc(100% - 20px); /* Adjust for padding to prevent overflow */
+        min-height: unset;
+        padding: 10px;
+        gap: 10px;
+        
+        /* Keep elements centered */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .splash-logo {
+        width: 150px;
+        height: 150px;
+        margin: 0;
+    }
+
+    .splash-buttons {
+        margin: 10px 0;
+        padding: 0;
+        width: 100%;
+        max-width: 400px;
+        justify-content: center;
+    }
+
+    .splash-buttons button {
+        font-size: 20px;
+        padding: 8px 20px;
+        width: 140px;
+    }
+
+    .splash-screen h1 {
+        font-size: 40px;
+        margin: 10px 0;
+        white-space: nowrap;
+    }
+
+    .iteration-text, .date-text {
+        font-size: 1rem;
+        margin: 5px 0;
+    }
+}

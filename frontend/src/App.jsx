@@ -1,5 +1,5 @@
 // App.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext"; // Import the AuthProvider
 import Login from "./pages/Login";
@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import { useAuth } from "./components/AuthContext";
 import Account from "./pages/Account"; // Import the Account component
+import History from "./pages/History"; // Add the History component
 
 // function Logout() {
 //     localStorage.clear();
@@ -36,18 +37,38 @@ function RegisterAndLogout() {
 }
 
 function App() {
+    const [isSplashActive, setIsSplashActive] = useState(true);
+    const [isHomePage, setIsHomePage] = useState(false);
+
+    // Function to handle route changes
+    const handleRouteChange = (path) => {
+        setIsHomePage(path === '/');
+    };
+
     return (
         <AuthProvider> {/* Wrap your app in AuthProvider */}
             <BrowserRouter>
-                <Layout>
+                <Layout isSplashActive={isSplashActive} isHomePage={isHomePage}>
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/" element={
+                            <Home 
+                                onSplashStateChange={setIsSplashActive} 
+                                onMount={() => handleRouteChange('/')}
+                            />
+                        } />
+                        <Route path="/login" element={
+                            <Login onMount={() => handleRouteChange('/login')} />
+                        } />
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/register" element={<RegisterAndLogout />} />
                         <Route path="/account" element={
                             <ProtectedRoute>
                                 <Account />
+                            </ProtectedRoute>
+                        } />
+                        <Route path="/history" element={
+                            <ProtectedRoute>
+                                <History />
                             </ProtectedRoute>
                         } />
                         <Route path="*" element={<NotFound />} />

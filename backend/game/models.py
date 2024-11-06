@@ -3,7 +3,7 @@ from django.db import models
 
 class GameScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)  # Changed from DateField to DateTimeField
     score = models.IntegerField()
     streak = models.IntegerField(default=0)
 

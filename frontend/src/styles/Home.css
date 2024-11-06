@@ -15,55 +15,7 @@ main {
     text-align: center;
 }
 
-/* Image Container Styles */
-.imageContainer {
-    display: flex; /* Change to flex to align images horizontally */
-    justify-content: space-around; /* Space out the images */
-    margin: 1rem 0; /* Reduced from 2rem */
-    border: 1px dashed #555555; /* Darker dashed border */
-    height: 200px;
-    align-items: center;
-    color: #cccccc; /* Muted text color inside container */
-}
-
-.imageContainer img {
-    max-width: 100px; /* Set a max width for each image */
-    max-height: 100px; /* Set a max height for each image */
-    object-fit: contain;
-    margin: 0 10px; /* Add some margin between images */
-}
-
-/* Game Interface Styles */
-.game-interface {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px; /* Reduced from 20px */
-    margin: 10px 0; /* Reduced from 20px */
-    height: auto; /* Changed from fixed height */
-}
-
-.game-interface img {
-    max-width: 400px;
-    height: 400px;
-    object-fit: contain;
-    border-radius: 20px;
-    transition: all 0.5s ease-in-out;
-    animation: imageChange 0.5s ease-in-out;
-}
-
-@keyframes imageChange {
-    0% { 
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    100% { 
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* Game Button Styles */
+/* Global Button Styles */
 .button-container {
     display: flex;
     gap: 10px; /* Reduced from 20px */
@@ -103,57 +55,6 @@ main {
     transform: translateY(0) scale(0.98);
 }
 
-/* Score Display Styles */
-.score-display {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.score-squares {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Increased from 15px */
-    margin: 20px 0;
-    perspective: 1000px;
-}
-
-.score-square {
-    width: 50px; /* Increased from 40px */
-    height: 50px; /* Increased from 40px */
-    border-radius: 10px; /* Adjusted for larger size */
-    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-    border-width: 3px; /* Increased from 2px */
-}
-
-.score-square.green {
-    animation: bounce 0.6s ease;
-    background: linear-gradient(135deg, #43a047 0%, #4caf50 100%);
-    border: 2px solid #43a047;
-}
-
-.score-square.red {
-    animation: bounce 0.6s ease;
-    background: linear-gradient(135deg, #e53935 0%, #f44336 100%);
-    border: 2px solid #e53935;
-}
-
-.score-square.grey {
-    background: linear-gradient(135deg, #555 0%, #666 100%);
-    border: 2px solid #555;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-/* Game Complete Screen */
-.game-complete {
-    text-align: center;
-    margin: 20px 0;
-}
-
 @media screen and (max-width: 800px) {
     .game-btn {
         font-size: 20px; /* Reduced from 32px */
@@ -167,26 +68,5 @@ main {
     .game-btn:hover {
         transform: none; /* Remove hover effects on mobile */
         box-shadow: none;
-    }
-
-    .game-interface {
-        height: auto;
-    }
-
-    .game-interface img {
-        max-width: 300px; /* Reduced from 400px */
-        height: 450px; /* Reduced from 400px */
-        animation: none; /* Remove animation on mobile */
-    }
-
-    .score-squares {
-        gap: 12px; /* Increased from 8px */
-    }
-
-    .score-square {
-        width: 40px; /* Increased from 30px */
-        height: 40px; /* Increased from 30px */
-        border-radius: 8px; /* Adjusted for larger size */
-        animation: none; /* Remove animation on mobile */
     }
 }

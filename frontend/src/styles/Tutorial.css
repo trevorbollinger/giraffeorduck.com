@@ -1,0 +1,78 @@
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.tutorial-content {
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tutorial-steps {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.tutorial-steps p {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+.tutorial-btn {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tutorial-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+@media screen and (max-width: 800px) {
+    .tutorial-modal {
+        padding: 1rem;
+        width: 90%;
+        max-height: 90vh;
+    }
+
+    .tutorial-content {
+        padding: 0.5rem;
+    }
+
+    .tutorial-modal h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tutorial-modal p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tutorial-close {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}
