@@ -1,38 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/GameFinish.css';
 
-function GameFinish({ score }) {
-    const [buttonText, setButtonText] = useState('Share Score');
-
+function GameFinish({ score, currentIteration }) {
     const getScoreEmojis = () => {
         return score.map(result => 
-            result === 'y' ? '🟩' : result === 'n' ? '🟥' : '⬜'
+            result === 'y' ? '✅' : result === 'n' ? '❌' : '⬜'
         ).join('');
     };
 
     const handleShare = async () => {
-        const shareText = `Giraffe or Duck?\n${getScoreEmojis()}\nPlay at giraffeorduck.com`;
+        const shareText = `Giraffe or Duck? #${currentIteration}\n${getScoreEmojis()}`;
+        console.log(shareText); // Add debug logging
 
-        // Check if Web Share API is supported
         if (navigator.share) {
             try {
                 await navigator.share({
                     title: 'Giraffe or Duck?',
-                    text: shareText,
-                    url: 'https://giraffeorduck.com'
+                    text: shareText
                 });
-                setButtonText('Shared!');
             } catch (err) {
                 if (err.name !== 'AbortError') {
                     console.error('Error sharing:', err);
                 }
             }
         } else {
-            // Fall back to clipboard
             try {
                 await navigator.clipboard.writeText(shareText);
-                setButtonText('Copied!');
-                setTimeout(() => setButtonText('Share Score'), 2000);
             } catch (err) {
                 console.error('Failed to copy text:', err);
             }
@@ -53,7 +46,7 @@ function GameFinish({ score }) {
                 </div>
             </div>
             <button onClick={handleShare} className='btn btn-primary'>
-                {buttonText}
+                Share
             </button>
         </div>
     );
