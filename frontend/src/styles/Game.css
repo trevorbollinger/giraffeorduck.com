@@ -164,4 +164,48 @@
         min-height: calc(100vh - 80px);
         padding: 20px;
     }
+
+    .game-interface {
+        gap: 15px;
+        height: 100vh;
+        padding: 10px;
+    }
+
+    .image-wrapper {
+        max-width: 95vw;
+        aspect-ratio: 1;
+        margin: 0 auto;
+    }
+
+    .score-squares {
+        gap: 12px;
+        margin-bottom: 5px;
+    }
+
+    .score-square {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+    }
+
+    .button-container {
+        padding: 0;
+        margin-top: 5px;
+        gap: 15px;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .game-interface {
+        gap: 10px;
+    }
+
+    .image-wrapper {
+        max-width: 90vw;
+    }
+
+    .score-square {
+        width: 35px;
+        height: 35px;
+    }
 }

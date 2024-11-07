@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Game.css';
+import GameFinish from './GameFinish';
 
 function Game({ 
     currentDate,
@@ -61,10 +62,7 @@ function Game({
             )}
 
             {gameComplete && (
-                <div className='game-complete'>
-                    <h2>Game Complete!</h2>
-                    <button onClick={resetGame} className='btn btn-primary'>Play Again</button>
-                </div>
+                <GameFinish score={score} resetGame={resetGame} />
             )}
         </>
     );
