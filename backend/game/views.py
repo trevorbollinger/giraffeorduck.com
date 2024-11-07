@@ -94,7 +94,7 @@ class GameDataView(APIView):
                 image_url = f"{request.scheme}://{request.get_host()}/media/{set_choice}/{image_name}"
                 image_urls.append(image_url)
 
-        start_date = datetime(2024, 2, 23, tzinfo=central)
+        start_date = datetime(2024, 2, 22, tzinfo=central)
         current_iteration = (now - start_date).days
 
         return Response({
