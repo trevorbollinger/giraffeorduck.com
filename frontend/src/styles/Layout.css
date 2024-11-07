@@ -70,7 +70,7 @@ body, html {
     align-items: center;
     white-space: nowrap; /* Prevent logo wrapping */
     padding: 8px 0; /* Reduced from 12px */
-    opacity: 0; /* Start hidden */
+    opacity: 1; /* Changed from 0 to 1 */
 }
 
 .textlogo {
@@ -101,8 +101,7 @@ body, html {
 
 /* Hide navbar elements when splash screen is active */
 .splash-active .nav-center {
-    visibility: visible; /* Change from hidden to visible */
-    opacity: 0;
+    display: none; /* Only hide when splash is active */
 }
 
 /* Right-aligned Logout Button */
@@ -211,7 +210,7 @@ body, html {
         flex-direction: column;
         padding: 4px 2px; /* Reduced from 8px */
         gap: 0;
-        max-height: 40px;
+        max-height: 80px; /* Increase default height to accommodate logo */
         overflow: hidden;
         transition: max-height 0.5s ease-out;
     }
@@ -244,15 +243,20 @@ body, html {
         width: 100%;
         justify-content: center;
         padding: 4px 0; /* Reduced from 8px */
+        display: flex; /* Always display flex */
+        opacity: 1;
+        visibility: visible;
+        max-height: 50px; /* Add fixed height */
     }
 
     .faviconlogo {
-        display: none;
+        display: none; /* Always hide favicon on mobile */
     }
 
     .logo-text {
-        font-size: 42px; /* Reduced from 28px */
-        margin: 0; /* Remove margin */
+        font-size: 42px;
+        margin: 0;
+        display: block; /* Ensure logo text is always visible */
     }
 
     .main-content {
@@ -299,8 +303,8 @@ body, html {
 
     /* Hide nav-center completely when splash is active */
     .splash-active .nav-center {
-        display: none; /* Change from visibility: hidden to display: none */
-        height: 0;
+        display: none;
+        max-height: 0;
         padding: 0;
     }
 

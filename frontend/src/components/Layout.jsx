@@ -48,6 +48,8 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
     )
   );
 
+  const showLogo = !(isHomePage && isSplashActive);
+
   return (
     <div className={`layout-container ${isHomePage && isSplashActive ? 'splash-active' : ''}`}>
       <div className="nav-wrap">
@@ -59,12 +61,14 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
               <p className="greeting">You are logged out.</p>
             )}
           </div>
-          <div className={`nav-center ${!isSplashActive && shouldAnimate ? 'animate-in' : ''}`}>
-            <Link to="/">
-              <img src={favicon} className="faviconlogo" alt="Logo" />
-              <span className="logo-text">GIRAFFE OR DUCK?</span>
-            </Link>
-          </div>
+          {showLogo && (
+            <div className={`nav-center ${!isSplashActive && shouldAnimate ? 'animate-in' : ''}`}>
+              <Link to="/">
+                <img src={favicon} className="faviconlogo" alt="Logo" />
+                <span className="logo-text">GIRAFFE OR DUCK?</span>
+              </Link>
+            </div>
+          )}
           <div className="nav-right">
             <AuthButtons />
           </div>
