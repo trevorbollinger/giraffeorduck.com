@@ -177,6 +177,7 @@ body, html {
 
 /* Footer Styles */
 .footer {
+    border-top: 1px solid #444444; 
     text-align: center;
     padding: 8px; /* Match navbar padding */
     background-color: #111111;

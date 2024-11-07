@@ -79,7 +79,7 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
         <div className="footer-buttons">
           <AuthButtons />
         </div>
-        <p>© {new Date().getFullYear()} Trevor Bollinger. All rights reserved.</p>
+        {/* <p>© {new Date().getFullYear()} Trevor Bollinger. All rights reserved.</p> */}
       </footer>
     </div>
   );
