@@ -3,22 +3,19 @@
     src: url('../assets/PartyConfetti.ttf') format('truetype');
 }
 
-/* Global font style */
 div {
     font-family: Arial, sans-serif;
-    color: #e0e0e0; /* Light text for dark mode */
+    color: #e0e0e0;
 }
 
-/* Main Body Section */
 main {
     padding: 0;
     text-align: center;
 }
 
-/* Global Button Styles */
 .button-container {
     display: flex;
-    gap: 10px; /* Reduced from 20px */
+    gap: 10px;
 }
 
 .game-btn {
@@ -57,16 +54,16 @@ main {
 
 @media screen and (max-width: 800px) {
     .game-btn {
-        font-size: 20px; /* Reduced from 32px */
-        width: 120px; /* Reduced from 180px */
-        height: 40px; /* Reduced from 60px */
-        border-radius: 8px; /* Reduced from 12px */
-        border-width: 2px; /* Reduced from 3px */
-        transition: none; /* Remove animations on mobile */
+        font-size: 20px;
+        width: 120px;
+        height: 40px;
+        border-radius: 8px;
+        border-width: 2px;
+        transition: none;
     }
 
     .game-btn:hover {
-        transform: none; /* Remove hover effects on mobile */
+        transform: none;
         box-shadow: none;
     }
 }

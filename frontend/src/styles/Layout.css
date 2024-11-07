@@ -1,63 +1,59 @@
-/* Import custom font */
 @font-face {
     font-family: 'PartyConfetti';
     src: url('../assets/PartyConfetti.ttf') format('truetype');
 }
 
-/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #e0e0e0; /* Light color for readability in dark mode */
+    color: #e0e0e0;
 }
 
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden; /* Change from overflow-x: hidden */
+    overflow: hidden;
 }
 
-/* General Layout Container */
 .layout-container {
     display: flex;
     flex-direction: column;
-    height: calc(var(--vh, 1vh) * 100); /* Use CSS variable for height */
-    background-color: #1a1a1a; /* Dark background */
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #1a1a1a;
     width: 100%;
-    position: fixed; /* Add this */
-    top: 0; /* Add this */
-    left: 0; /* Add this */
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
-/* Navbar Styles */
 .nav-wrap {
     width: 100%;
-    margin: 0 auto; /* Center the navbar horizontally */
+    margin: 0 auto;
 }
 
 .navbar {
-    background-color: #111111; /* Darker navbar background */
-    padding: 8px 20px; /* Reduced from 12px */
+    background-color: #111111;
+    padding: 8px 20px;
     display: flex;
-    justify-content: space-between; /* Ensure items are spaced out */
+    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444444; /* Softer border color */
-    flex-wrap: nowrap; /* Prevent wrapping */
+    border-bottom: 1px solid #444444;
+    flex-wrap: nowrap;
 }
 
 .nav-left {
     font-size: 1.2em;
     width: 30%;
-    text-align: center; /* Center text horizontally */
-    color: #e0e0e0; /* Text color in navbar */
+    text-align: center;
+    color: #e0e0e0;
     display: flex;
 }
 
 .greeting {
     margin: 0;
-    padding: 8px 0; /* Reduced from 12px */
+    padding: 8px 0;
     font-family: 'PartyConfetti', Arial, sans-serif;
     font-size: 24px;
     line-height: 1;
@@ -68,21 +64,21 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    white-space: nowrap; /* Prevent logo wrapping */
-    padding: 8px 0; /* Reduced from 12px */
-    opacity: 1; /* Changed from 0 to 1 */
+    white-space: nowrap;
+    padding: 8px 0;
+    opacity: 1;
 }
 
 .textlogo {
     height: 50px;
     margin-left: 8px;
-    vertical-align: middle; /* Align with favicon */
+    vertical-align: middle;
 }
 
 .faviconlogo {
     height: 60px;
     margin-right: 8px;
-    vertical-align: middle; /* Align with textlogo */
+    vertical-align: middle;
 }
 
 .nav-center a {
@@ -93,18 +89,16 @@ body, html {
 
 .logo-text {
     font-family: 'PartyConfetti', Arial, sans-serif;
-    font-size: 55px; /* Increased from 32px */
+    font-size: 55px;
     color: #e0e0e0;
     margin: 0;
     line-height: 1;
 }
 
-/* Hide navbar elements when splash screen is active */
 .splash-active .nav-center {
-    display: none; /* Only hide when splash is active */
+    display: none;
 }
 
-/* Right-aligned Logout Button */
 .nav-right {
     width: 30%;
     text-align: right;
@@ -115,17 +109,16 @@ body, html {
 }
 
 .nav-right a {
-    margin-left: 0; /* Remove margin since we're using gap */
+    margin-left: 0;
     text-decoration: none;
 }
 
-/* Navbar button styles */
 .nav-btn {
     font-family: 'PartyConfetti', Arial, sans-serif;
-    font-size: 16px; /* Reduced from 20px */
-    padding: 6px 16px; /* Reduced from 8px 20px */
-    border-radius: 10px; /* Slightly smaller radius */
-    border: 2px solid; /* Reduced from 3px */
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 10px;
+    border: 2px solid;
     cursor: pointer;
     color: #ffffff;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -134,7 +127,7 @@ body, html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 80px; /* Reduced from 100px */
+    min-width: 80px;
 }
 
 .nav-btn-primary {
@@ -161,57 +154,54 @@ body, html {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* Main Content Styles */
 .main-content {
     flex: 1;
-    display: flex; /* Add this */
-    flex-direction: column; /* Add this */
-    justify-content: center; /* Add this */
-    align-items: center; /* Add this */
-    padding: 1.5rem; /* Reduced from 2rem */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
     overflow-y: auto;
-    color: #e0e0e0; /* Text color for readability */
+    color: #e0e0e0;
     position: relative;
-    height: 100%; /* Change from height: 0 to height: 100% */
+    height: 100%;
 }
 
-/* Footer Styles */
 .footer {
-    border-top: 1px solid #444444; 
+    border-top: 1px solid #444444;
     text-align: center;
-    padding: 8px; /* Match navbar padding */
+    padding: 8px;
     background-color: #111111;
     color: #888888;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px; /* Match navbar gap */
-    position: relative; /* Ensure footer is positioned correctly */
-    z-index: 10; /* Ensure footer is above other elements */
-    -webkit-transform: translateZ(0); /* Fix for Safari rendering issues */
-    transform: translateZ(0); /* Ensure compatibility */
+    gap: 8px;
+    position: relative;
+    z-index: 10;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .footer-buttons {
     display: none;
-    gap: 8px; /* Match navbar gap */
-    padding: 8px 0; /* Match navbar section padding */
+    gap: 8px;
+    padding: 8px 0;
 }
 
 .footer p {
-    padding: 8px 0; /* Match navbar section padding */
+    padding: 8px 0;
     line-height: 1;
     margin: 0;
-    margin-bottom: 0; /* Explicitly remove margin-bottom */
+    margin-bottom: 0;
 }
 
-/* Responsive Adjustments */
-@media only screen and (max-width: 800px) { /* Increased breakpoint */
+@media only screen and (max-width: 800px) {
     .navbar {
         flex-direction: column;
-        padding: 4px 2px; /* Reduced from 8px */
+        padding: 4px 2px;
         gap: 0;
-        max-height: 80px; /* Increase default height to accommodate logo */
+        max-height: 80px;
         overflow: hidden;
         transition: max-height 0.5s ease-out;
     }
@@ -230,93 +220,90 @@ body, html {
         width: 100%;
         justify-content: center;
         margin: 3px;
-        display: none; /* Hide navbar buttons on mobile */
+        display: none;
     }
 
     .greeting{
         margin: 0;
-        padding: 4px 0; /* Reduced from 8px */
-        font-size: 20px; /* Slightly smaller */
-        line-height: 1; /* Prevent extra vertical space */
+        padding: 4px 0;
+        font-size: 20px;
+        line-height: 1;
     }
 
     .nav-center {
         width: 100%;
         justify-content: center;
-        padding: 4px 0; /* Reduced from 8px */
-        display: flex; /* Always display flex */
+        padding: 4px 0;
+        display: flex;
         opacity: 1;
         visibility: visible;
-        max-height: 50px; /* Add fixed height */
+        max-height: 50px;
     }
 
     .faviconlogo {
-        display: none; /* Always hide favicon on mobile */
+        display: none;
     }
 
     .logo-text {
         font-size: 42px;
         margin: 0;
-        display: block; /* Ensure logo text is always visible */
+        display: block;
     }
 
     .main-content {
         padding: 0;
         flex: 1;
-        overflow-y: auto; /* Allow scrolling if needed */
+        overflow-y: auto;
     }
 
     .footer {
         padding: 4px;
         gap: 4px;
-        position: relative; /* Ensure footer is positioned correctly */
-        z-index: 10; /* Ensure footer is above other elements */
-        -webkit-transform: translateZ(0); /* Fix for Safari rendering issues */
-        transform: translateZ(0); /* Ensure compatibility */
+        position: relative;
+        z-index: 10;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
 
     .footer-buttons {
         display: flex;
-        gap: 4px; /* Match navbar mobile gap */
-        padding: 4px 0; /* Match navbar mobile padding */
+        gap: 4px;
+        padding: 4px 0;
     }
 
     .footer p {
-        padding: 4px 0; /* Match navbar mobile padding */
-        font-size: 14px; /* Slightly smaller for mobile */
+        padding: 4px 0;
+        font-size: 14px;
     }
 
     .footer {
-        padding: 0.5rem; /* Reduced from 1rem */
+        padding: 0.5rem;
     }
 
     .footer-buttons {
-        display: flex; /* Show footer buttons on mobile */
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
 
     .nav-btn {
-        font-size: 14px; /* Even smaller on mobile */
+        font-size: 14px;
         padding: 4px 12px;
         min-width: 70px;
     }
 
-    /* Hide nav-center completely when splash is active */
     .splash-active .nav-center {
         display: none;
         max-height: 0;
         padding: 0;
     }
 
-    /* Adjust navbar padding when splash is active */
     .splash-active .navbar {
         padding: 4px 2px;
         max-height: 40px;
     }
 }
 
-/* Add these new keyframes before the rest of the styles */
 @keyframes dropIn {
     0% {
         transform: translateY(-200%);
@@ -328,12 +315,10 @@ body, html {
     }
 }
 
-/* Add these new styles */
 .nav-center.animate-in {
     animation: dropIn .35s ease-out forwards;
 }
 
-/* Add new keyframes */
 @keyframes expandNavbar {
     0% {
         max-height: 40px;

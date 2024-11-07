@@ -1,18 +1,17 @@
-/* Game Interface Styles */
 .game-interface {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Ensure content is centered vertically */
+    justify-content: center;
     gap: 20px;
     margin: 0 auto;
     width: 100%;
     max-width: 800px;
-    height: 100%; /* Take up full height of parent */
+    height: 100%;
 }
 
 .image-wrapper {
-    flex: 0 1 auto; /* Allow shrinking but not growing */
+    flex: 0 1 auto;
     width: 100%;
     max-width: min(600px, 90vw);
     aspect-ratio: 1;
@@ -63,9 +62,8 @@
     }
 }
 
-/* Score Display Styles */
 .score-display {
-    flex: 0 0 auto; /* Prevent flex shrinking/growing */
+    flex: 0 0 auto;
     width: 100%;
     max-width: 600px;
 }
@@ -109,7 +107,6 @@
     50% { transform: scale(1.1); }
 }
 
-/* Game Complete Screen */
 .game-complete {
     display: flex;
     flex-direction: column;
@@ -121,7 +118,7 @@
 }
 
 .button-container {
-    flex: 0 0 auto; /* Prevent flex shrinking/growing */
+    flex: 0 0 auto;
     display: flex;
     gap: 10px;
 }
@@ -163,7 +160,6 @@
         margin-top: 10px;
     }
 
-    /* Adjust game complete screen for mobile */
     .game-complete {
         min-height: calc(100vh - 80px);
         padding: 20px;
