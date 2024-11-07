@@ -11,7 +11,8 @@ function Game({
     gameComplete,
     handleGuess,
     resetGame,
-    setPrevImageIndex 
+    setPrevImageIndex,
+    currentIteration
 }) {
     return (
         <>
@@ -62,7 +63,7 @@ function Game({
             )}
 
             {gameComplete && (
-                <GameFinish score={score} currentIteration={256} resetGame={resetGame} />
+                <GameFinish score={score} currentIteration={currentIteration} resetGame={resetGame} />
             )}
         </>
     );

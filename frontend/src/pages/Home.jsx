@@ -25,13 +25,11 @@ function Home({ onSplashStateChange, onMount }) {
     useEffect(() => {
         onMount();
         fetchGameData();
-        // Set current date and time
         const formattedDateTime = new Date().toLocaleString("en-US", { 
             timeZone: "America/Chicago"
         });
         setCurrentDate(formattedDateTime);
 
-        // Set the CSS variable for the viewport height
         const setVh = () => {
             document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
         };
@@ -114,6 +112,7 @@ function Home({ onSplashStateChange, onMount }) {
                     handleGuess={handleGuess}
                     resetGame={resetGame}
                     setPrevImageIndex={setPrevImageIndex}
+                    currentIteration={currentIteration}
                 />
             )}
 
