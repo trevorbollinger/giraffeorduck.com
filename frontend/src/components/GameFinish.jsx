@@ -4,7 +4,7 @@ import '../styles/GameFinish.css';
 function GameFinish({ score, currentIteration }) {
     const getScoreEmojis = () => {
         return score.map(result => 
-            result === 'y' ? '✅' : result === 'n' ? '❌' : '⬜'
+            result === 'y' ? '✅' : '❌'
         ).join('');
     };
 
@@ -40,7 +40,7 @@ function GameFinish({ score, currentIteration }) {
                     {score.map((result, index) => (
                         <div 
                             key={index} 
-                            className={`score-square ${result === 'y' ? 'green' : result === 'n' ? 'red' : 'grey'}`}
+                            className={`score-square ${result === 'y' ? 'green' : 'red'}`}
                         />
                     ))}
                 </div>

@@ -3,7 +3,7 @@ import api from "../api";
 import GameScore from "../components/GameScore";
 import Tutorial from '../components/Tutorial';
 import SplashScreen from '../components/SplashScreen';
-import Game from '../components/Game';  // Add this import
+import Game from '../components/Game';
 import "../styles/Home.css";
 import { useAuth } from "../components/AuthContext";
 
@@ -58,16 +58,17 @@ function Home({ onSplashStateChange, onMount }) {
         const correct = (guess === 'giraffe' && answerKey[currentImageIndex] === 'g') ||
                        (guess === 'duck' && answerKey[currentImageIndex] === 'd');
         
-        setScore(prevScore => [...prevScore, correct ? 'y' : 'n']);
+        const newScore = [...score, correct ? 'y' : 'n'];
+        setScore(newScore);
 
         if (currentImageIndex < randomImages.length - 1) {
             setPrevImageIndex(currentImageIndex);
             setCurrentImageIndex(prevIndex => prevIndex + 1);
         } else {
             setGameComplete(true);
-            setStreak(score.filter(s => s === 'y').length);
+            setStreak(newScore.filter(s => s === 'y').length);
             if (isAuthorized) {
-                createGameScore();
+                createGameScore(newScore);
             }
         }
     };
@@ -78,9 +79,9 @@ function Home({ onSplashStateChange, onMount }) {
         setGameComplete(false);
     };
 
-    const createGameScore = () => {
+    const createGameScore = (finalScore) => {
         const scoreData = {
-            score: score.filter(s => s === 'y').length,
+            score: finalScore,
             streak: 0,
             date: currentDate,
             iteration: currentIteration,

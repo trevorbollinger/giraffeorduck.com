@@ -16,7 +16,14 @@ function GameScore({ gameScore }) {
     return (
         <div className="gamescore-container">
             <p className="gamescore-date">{formatDateTime(gameScore.date)}</p>
-            <p className="gamescore-score">Score: {gameScore.score}</p>
+            <div className="gamescore-squares">
+                {gameScore.score.map((result, index) => (
+                    <div 
+                        key={index}
+                        className={`score-square ${result === 'y' ? 'green' : 'red'}`}
+                    />
+                ))}
+            </div>
             <p className="gamescore-streak">Streak: {gameScore.streak}</p>
             <p className="gamescore-iteration">Day: {gameScore.iteration}</p>
         </div>

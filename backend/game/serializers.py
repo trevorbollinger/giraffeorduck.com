@@ -19,7 +19,21 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
 class GameScoreSerializer(serializers.ModelSerializer):  # Add this class
+    score = serializers.ListField(
+        child=serializers.CharField(max_length=1),
+        min_length=5,
+        max_length=5,
+        required=True
+    )
+    
     class Meta:
         model = GameScore
-        fields = ["id", "score", "streak", "date", "user", "iteration"]  # Add iteration
-        extra_kwargs = {"user": {"read_only": True}}
+        fields = ['id', 'date', 'score', 'streak', 'iteration', 'user']
+        read_only_fields = ['date', 'user']
+
+    def validate_score(self, value):
+        if not isinstance(value, list):
+            raise serializers.ValidationError("Score must be a list")
+        if not all(x in ['y', 'n'] for x in value):
+            raise serializers.ValidationError("Score must contain only 'y' or 'n' characters")
+        return value

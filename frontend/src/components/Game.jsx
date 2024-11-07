@@ -63,7 +63,11 @@ function Game({
             )}
 
             {gameComplete && (
-                <GameFinish score={score} currentIteration={currentIteration} resetGame={resetGame} />
+                <GameFinish 
+                    score={score}
+                    currentIteration={currentIteration} 
+                    resetGame={resetGame} 
+                />
             )}
         </>
     );

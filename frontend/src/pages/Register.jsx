@@ -45,7 +45,8 @@ function Register() {
           type="text"
           value={first_name}
           onChange={(e) => setFName(e.target.value)}
-          placeholder="First Name (optional)"
+          placeholder="First Name"
+          required
         />
 
         <input
@@ -53,7 +54,8 @@ function Register() {
           type="text"
           value={last_name}
           onChange={(e) => setLName(e.target.value)}
-          placeholder="Last Name (optional)"
+          placeholder="Last Name"
+          required
         />
 
         <input

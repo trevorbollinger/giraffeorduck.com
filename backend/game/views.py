@@ -46,21 +46,33 @@ class GameScoreListCreate(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return GameScore.objects.filter(user=user)
+        return GameScore.objects.filter(user=user).order_by('-date')
 
     def perform_create(self, serializer):
         user = self.request.user
         current_date = timezone.now().date()
-        existing_score = GameScore.objects.filter(user=user, date__date=current_date).first()
         
-        if existing_score:
-            existing_score.score = self.request.data.get('score')
-            existing_score.streak = self.request.data.get('streak')
-            existing_score.iteration = self.request.data.get('iteration')
-            existing_score.date = timezone.now()  # Update the date to the current time
-            existing_score.save()
-        else:
-            serializer.save(user=user, iteration=self.request.data.get('iteration'))
+        try:
+            existing_score = GameScore.objects.filter(
+                user=user,
+                date__date=current_date
+            ).first()
+            
+            if existing_score:
+                existing_score.score = self.request.data.get('score', [])
+                existing_score.streak = self.request.data.get('streak', 0)
+                existing_score.iteration = self.request.data.get('iteration', 0)
+                existing_score.date = timezone.now()  # Update the date to the current time
+                existing_score.save()
+            else:
+                serializer.save(
+                    user=user,
+                    score=self.request.data.get('score', []),
+                    iteration=self.request.data.get('iteration', 0)
+                )
+        except Exception as e:
+            print(f"Error saving score: {e}")
+            raise
 
 class GameDataView(APIView): 
     authentication_classes = []
