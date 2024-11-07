@@ -18,6 +18,7 @@ function GameScore({ gameScore }) {
             <p className="gamescore-date">{formatDateTime(gameScore.date)}</p>
             <p className="gamescore-score">Score: {gameScore.score}</p>
             <p className="gamescore-streak">Streak: {gameScore.streak}</p>
+            <p className="gamescore-iteration">Day: {gameScore.iteration}</p>
         </div>
     );
 }

@@ -18,7 +18,8 @@
 }
 
 .gamescore-score,
-.gamescore-streak {
+.gamescore-streak,
+.gamescore-iteration {
     font-size: 12px;
     margin: 0;
 }

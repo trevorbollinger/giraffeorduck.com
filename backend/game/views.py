@@ -49,8 +49,18 @@ class GameScoreListCreate(generics.ListCreateAPIView):
         return GameScore.objects.filter(user=user)
 
     def perform_create(self, serializer):
-        serializer.is_valid(raise_exception=True)  # Ensure validation is called
-        serializer.save(user=self.request.user)
+        user = self.request.user
+        current_date = timezone.now().date()
+        existing_score = GameScore.objects.filter(user=user, date__date=current_date).first()
+        
+        if existing_score:
+            existing_score.score = self.request.data.get('score')
+            existing_score.streak = self.request.data.get('streak')
+            existing_score.iteration = self.request.data.get('iteration')
+            existing_score.date = timezone.now()  # Update the date to the current time
+            existing_score.save()
+        else:
+            serializer.save(user=user, iteration=self.request.data.get('iteration'))
 
 class GameDataView(APIView): 
     authentication_classes = []

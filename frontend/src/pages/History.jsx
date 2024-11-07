@@ -24,8 +24,8 @@ const History = () => {
         <div className="history-container">
             <h1>Previous Scores</h1>
             <div className='scores-list'>
-                {gameScores.map((gameScore) => (
-                    <GameScore gameScore={gameScore} key={gameScore.id} />
+                {gameScores.map((gameScore, index) => (
+                    <GameScore gameScore={gameScore} key={gameScore.id} iteration={index + 1} />
                 ))}
             </div>
         </div>

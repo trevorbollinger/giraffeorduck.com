@@ -21,5 +21,5 @@ class UserSerializer(serializers.ModelSerializer):
 class GameScoreSerializer(serializers.ModelSerializer):  # Add this class
     class Meta:
         model = GameScore
-        fields = ["id", "score", "streak", "date", "user"]
+        fields = ["id", "score", "streak", "date", "user", "iteration"]  # Add iteration
         extra_kwargs = {"user": {"read_only": True}}

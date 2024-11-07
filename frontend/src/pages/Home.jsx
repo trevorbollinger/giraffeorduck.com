@@ -83,12 +83,12 @@ function Home({ onSplashStateChange, onMount }) {
             score: score.filter(s => s === 'y').length,
             streak: 0,
             date: currentDate,
+            iteration: currentIteration,
         };
 
         api.post("/game/submit-score/", scoreData)
             .then((res) => {
-                // alert("Score submitted successfully!");
-                setGameScores([...gameScores, res.data]);
+                setGameScores([...gameScores.filter(gs => gs.date !== currentDate), res.data]);
             })
             .catch((err) => alert("Failed to submit score: " + err));
     };

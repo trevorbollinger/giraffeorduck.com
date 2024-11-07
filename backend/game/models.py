@@ -3,9 +3,10 @@ from django.db import models
 
 class GameScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=True)  # Changed from DateField to DateTimeField
+    date = models.DateTimeField(auto_now_add=True)
     score = models.IntegerField()
     streak = models.IntegerField(default=0)
+    iteration = models.IntegerField(default=0)  # Add default value
 
     def __str__(self):
         return f"{self.user.username} - {self.score} points"
