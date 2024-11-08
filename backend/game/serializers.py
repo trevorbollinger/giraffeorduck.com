@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import GameScore  # Import GameScore
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,3 +38,14 @@ class GameScoreSerializer(serializers.ModelSerializer):  # Add this class
         if not all(x in ['y', 'n'] for x in value):
             raise serializers.ValidationError("Score must contain only 'y' or 'n' characters")
         return value
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        
+        # Add custom claims
+        token['is_staff'] = user.is_staff
+        token['is_superuser'] = user.is_superuser
+        
+        return token

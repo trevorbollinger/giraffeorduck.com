@@ -41,6 +41,7 @@ body, html {
     align-items: center;
     border-bottom: 1px solid #444444;
     flex-wrap: nowrap;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-left {
@@ -121,13 +122,19 @@ body, html {
     border: 2px solid;
     cursor: pointer;
     color: #ffffff;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
     letter-spacing: 1px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 80px;
+    transform-origin: center;
+    backface-visibility: hidden;
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
 }
 
 .nav-btn-primary {
@@ -194,6 +201,109 @@ body, html {
     line-height: 1;
     margin: 0;
     margin-bottom: 0;
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    width: 160px;  /* Match dropdown width */
+}
+
+.dropdown-trigger {
+    position: relative;
+    padding-right: 30px !important;
+    width: 100%;  /* Fill container width */
+}
+
+.dropdown-trigger::after {
+    content: '▼';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+/* Keep button highlighted while dropdown is open */
+.dropdown-container:hover .dropdown-trigger {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dropdown-container:hover .dropdown-trigger::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 5px);  /* Position 5px below button */
+    background-color: #1a1a1a;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    border-radius: 10px;
+    padding: 8px;
+    border: 1px solid #444444;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: -5px; /* Negative margin to offset the gap */
+}
+
+/* Extend bridge to cover the entire gap */
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -10px;  /* Increased from -5px */
+    left: 0;
+    right: 0;
+    height: 15px;  /* Increased from 5px */
+    background: transparent;
+}
+
+.dropdown-container:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(5px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dropdown-content a {
+    width: 100%;
+}
+
+.dropdown-content .nav-btn {
+    width: 100%;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px 16px;
+    background-color: transparent;
+    border-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.dropdown-content .nav-btn:hover {
+    background-color: #2a2a2a;
+    transform: translateX(5px);
+    box-shadow: none;
+}
+
+.dropdown-content .nav-btn-primary:hover {
+    color: #007bff;
+    border-color: transparent;
+}
+
+.dropdown-content .nav-btn-danger:hover {
+    color: #dc3545;
+    border-color: transparent;
 }
 
 @media only screen and (max-width: 800px) {
@@ -302,6 +412,39 @@ body, html {
         padding: 4px 2px;
         max-height: 40px;
     }
+
+    .dropdown-container .dropdown-trigger {
+        display: none;
+    }
+    
+    .dropdown-content {
+        display: flex;
+        position: static;
+        background: none;
+        box-shadow: none;
+        border: none;
+        padding: 0;
+    }
+
+    .dropdown-content .nav-btn {
+        background-color: inherit;
+        border-color: inherit;
+    }
+
+    .dropdown-content .nav-btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        background-color: inherit;
+    }
+
+    .dropdown-content .nav-btn-primary:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    .dropdown-content .nav-btn-danger:hover {
+        background-color: #c82333;
+        color: white;
+    }
 }
 
 @keyframes dropIn {
@@ -326,4 +469,19 @@ body, html {
     100% {
         max-height: 120px;
     }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideUpIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }

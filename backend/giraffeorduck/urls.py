@@ -4,11 +4,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from game.views import CreateUserView, UserDetailView, GameDataView  # Import GameDataView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from game.serializers import CustomTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("game/user/register/", CreateUserView.as_view(), name="register"),
-    path("game/token/", TokenObtainPairView.as_view(), name="get_token"),
+    path("game/token/", CustomTokenObtainPairView.as_view(), name="get_token"),  # Update this line
     path("game/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("game-auth/", include("rest_framework.urls")),
     path("game/", include("game.urls")),

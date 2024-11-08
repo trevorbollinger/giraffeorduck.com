@@ -45,6 +45,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=3),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=3),
+    "TOKEN_OBTAIN_SERIALIZER": "game.serializers.CustomTokenObtainPairSerializer",
 }
 
 # Application definition

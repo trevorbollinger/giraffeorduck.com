@@ -9,6 +9,8 @@ export const AuthProvider = ({ children }) => {
     const [username, setUsername] = useState(localStorage.getItem("username") || "");
     const [firstName, setFirstName] = useState(localStorage.getItem("first_name") || "");
     const [lastName, setLastName] = useState(localStorage.getItem("last_name") || "");
+    const [isStaff, setIsStaff] = useState(false);
+    const [isSuperuser, setIsSuperuser] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem(ACCESS_TOKEN);
@@ -18,25 +20,30 @@ export const AuthProvider = ({ children }) => {
                 const currentTime = Date.now() / 1000;
                 
                 if (decodedToken.exp < currentTime) {
-                    // Token has expired
                     logout();
+                } else {
+                    setIsStaff(decodedToken.is_staff === true);
+                    setIsSuperuser(decodedToken.is_superuser === true);
                 }
             } catch (error) {
-                // Invalid token
                 logout();
             }
         } else {
-            setIsAuthorized(false);
-            setUsername("");
-            setFirstName("");
-            setLastName("");
-            localStorage.removeItem("username");
-            localStorage.removeItem("first_name");
-            localStorage.removeItem("last_name");
+            logout();
         }
     }, []);
 
     const login = (user, firstName, lastName) => {
+        const token = localStorage.getItem(ACCESS_TOKEN);
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+                setIsStaff(decodedToken.is_staff === true);
+                setIsSuperuser(decodedToken.is_superuser === true);
+            } catch (error) {
+                console.error('Error decoding token:', error);
+            }
+        }
         setIsAuthorized(true);
         setUsername(user);
         setFirstName(firstName);
@@ -52,10 +59,21 @@ export const AuthProvider = ({ children }) => {
         setUsername("");
         setFirstName("");
         setLastName("");
+        setIsStaff(false);
+        setIsSuperuser(false);
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthorized, username, firstName, lastName, login, logout }}>
+        <AuthContext.Provider value={{ 
+            isAuthorized, 
+            username, 
+            firstName, 
+            lastName, 
+            isStaff,
+            isSuperuser,
+            login, 
+            logout 
+        }}>
             {children}
         </AuthContext.Provider>
     );
