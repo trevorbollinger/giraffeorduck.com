@@ -132,14 +132,14 @@
 @media screen and (max-width: 800px) {
     .game-interface {
         justify-content: center; /* Center vertically on mobile */
-        gap: 15px;
-        padding: 10px;
+        gap: 12px; /* Reduced from 15px */
+        padding: 8px; /* Reduced from 10px */
         min-height: 100%;
     }
 
     .image-wrapper {
-        width: 330px;  /* Fixed width for mobile */
-        height: 470px;  /* Fixed height for mobile - 2:3 ratio */
+        width: 280px;  /* Reduced from 330px */
+        height: 400px;  /* Reduced from 470px */
     }
 
     .score-display {
@@ -152,14 +152,13 @@
     }
 
     .score-square {
-        width: 40px;
-        height: 40px;
+        width: 35px; /* Reduced from 40px */
+        height: 35px; /* Reduced from 40px */
         border-radius: 8px;
-        animation: none;
     }
 
     .button-container {
         padding: 0;
-        gap: 12px;
+        gap: 10px; /* Reduced from 12px */
     }
 }

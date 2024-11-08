@@ -38,7 +38,7 @@ function Login() {
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit} className="form-container">
-        <h1>Welcome Back</h1>
+        <h1>Sign in</h1>
         
         <div className="input-group">
           <input
@@ -67,16 +67,18 @@ function Login() {
         {loading ? (
           <LoadingIndicator />
         ) : (
-          <button className="btn btn-primary" type="submit">
-            Sign In
-          </button>
+          <>
+            <button className="btn btn-primary" type="submit">
+              Sign In
+            </button>
+            <a href="/register">
+              <button type="button" className="btn btn-link">
+                New here? Create an account
+              </button>
+            </a>
+          </>
         )}
       </form>
-      {/* <a href="/register">
-        <button className="btn btn-link">
-          New here? Create an account
-        </button>
-      </a> */}
     </div>
   );
 }

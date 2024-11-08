@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/Layout.css";
 import { useAuth } from "./AuthContext";
 import favicon from "../assets/favicon.png";
+import Login from '../pages/Login';  // Add this import
 
 const Layout = ({ children, isSplashActive, isHomePage }) => {
   const { isAuthorized, username, firstName, lastName, isStaff, isSuperuser } = useAuth();
@@ -59,12 +60,20 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
         )}
       </>
     ) : (
-      // Dropdown menu for navbar remains the same
+      // Navbar dropdown changes
       <div className="dropdown-container">
-        <button className="nav-btn nav-btn-primary dropdown-trigger">Menu</button>
-        <div className="dropdown-content">
-          {isAuthorized ? (
-            <>
+        {!isAuthorized && (
+          <>
+            <button className="nav-btn nav-btn-primary dropdown-trigger">Login</button>
+            <div className="dropdown-content login-dropdown">
+              <Login />
+            </div>
+          </>
+        )}
+        {isAuthorized && (
+          <>
+            <button className="nav-btn nav-btn-primary dropdown-trigger">{username}</button>
+            <div className="dropdown-content">
               <a href="/">
                 <button className="nav-btn nav-btn-primary">Home</button>
               </a>
@@ -82,21 +91,9 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
               <a href="/logout">
                 <button className="nav-btn nav-btn-danger">Logout</button>
               </a>
-            </>
-          ) : (
-            <>
-              <a href="/">
-                <button className="nav-btn nav-btn-primary">Home</button>
-              </a>
-              <a href="/login">
-                <button className="nav-btn nav-btn-primary">Login</button>
-              </a>
-              <a href="/register">
-                <button className="nav-btn nav-btn-primary">Register</button>
-              </a>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     )
   );
@@ -122,30 +119,31 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
 
   return (
     <div className={`layout-container ${isHomePage && isSplashActive ? 'splash-active' : ''}`}>
-      <div className="nav-wrap">
-        <nav className={`navbar ${!isSplashActive && shouldAnimate ? 'expanded' : ''}`}>
-          <div className="nav-left">
-            {isAuthorized ? (
-              <p className="greeting">
-                Hello, {firstName} {lastName} ({username}){getAdminLabel()}
-              </p>
-            ) : (
-              <p className="greeting">You are logged out.</p>
-            )}
-          </div>
-          {showLogo && (
-            <div className={`nav-center ${!isSplashActive && shouldAnimate ? 'animate-in' : ''}`}>
-              <Link to="/" onClick={handleLogoClick}>
-                <img src={favicon} className="faviconlogo" alt="Logo" />
-                <span className="logo-text">GIRAFFE OR DUCK?</span>
-              </Link>
-            </div>
-          )}
-          <div className="nav-right">
-            <AuthButtons isFooter={false} />
-          </div>
-        </nav>
+      {/* Always show the auth button */}
+      <div className="floating-auth">
+        <AuthButtons isFooter={false} />
       </div>
+
+      {/* Only show main navbar when not on splash screen */}
+      {!(isHomePage && isSplashActive) && (
+        <div className="nav-wrap">
+          <nav className={`navbar ${!isSplashActive && shouldAnimate ? 'expanded' : ''}`}>
+            <div className="nav-left">
+            </div>
+            {showLogo && (
+              <div className={`nav-center ${!isSplashActive && shouldAnimate ? 'animate-in' : ''}`}>
+                <Link to="/" onClick={handleLogoClick}>
+                  <img src={favicon} className="faviconlogo" alt="Logo" />
+                  <span className="logo-text">GIRAFFE OR DUCK?</span>
+                </Link>
+              </div>
+            )}
+            <div className="nav-right">
+              {/* Auth buttons moved to floating-auth */}
+            </div>
+          </nav>
+        </div>
+      )}
       <main className="main-content">{children}</main>
       <footer className="footer">
         <div className="footer-buttons">

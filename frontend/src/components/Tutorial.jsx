@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import '../styles/Tutorial.css';
 
 function Tutorial({ onClose }) {
+    const [isClosing, setIsClosing] = useState(false);
+
+    const handleClose = useCallback(() => {
+        setIsClosing(true);
+        setTimeout(onClose, 300); // Match this with animation duration
+    }, [onClose]);
+
     return (
-        <div className="tutorial-overlay">
-            <div className="tutorial-content">
-                <h2>How to Play</h2>
+        <div className={`tutorial-overlay ${isClosing ? 'closing' : ''}`}>
+            <div className={`tutorial-content ${isClosing ? 'closing' : ''}`}>
+                <h2 className="tutorial-title">Giraffe or Duck? - How to Play</h2>
                 <div className="tutorial-steps">
-                    <p>1. You will be shown a series of 5 images</p>
-                    <p>2. For each image, guess whether it's a giraffe or a duck</p>
-                    <p>3. Each correct guess will turn green, wrong guesses will turn red</p>
-                    <p>4. Try to get the highest score possible!</p>
+                    <p>In this game, you will be presented with an image of either a giraffe or a duck. Your challenge is to
+                        guess which animal is in the picture.</p>
+                    <p>Here's how it works:</p>
+                    <ol>
+                        <li>Look at the image carefully.</li>
+                        <li>Decide whether the animal in the picture is a giraffe or a duck.</li>
+                        <li>Click on the corresponding button below the image to make your choice.</li>
+                        <li>After each round, the scoreboard will be updated with a green square if your guess was correct or a
+                            red square if it was incorrect.</li>
+                        <li>After all five rounds, you can share your final score.</li>
+                    </ol>
+                    <p>Have fun playing, and be sure to come back tomorrow for a new set of images!</p>
                 </div>
-                <button className="tutorial-btn" onClick={onClose}>Got it!</button>
+                <button className="tutorial-btn" onClick={handleClose}>Got it!</button>
             </div>
         </div>
     );

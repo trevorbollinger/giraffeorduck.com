@@ -3,17 +3,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - 160px); /* Account for header and footer */
+    min-height: 100%;  
+    width: 100%;  
     padding: 2rem;
     animation: fadeIn 0.5s ease-out;
-    background: radial-gradient(circle at center, rgba(26,26,26,0) 0%, rgba(0,0,0,0.2) 100%);
 }
 
 .register-container .form-container {
     animation: slideUp 0.5s ease-out;
     border: 1px solid rgba(255,255,255,0.1);
-    width: 100%;
-    max-width: 400px;
+    width: 100%;  /* Take full width of parent */
+    max-width: 700px;  /* Set a maximum width for larger screens */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,16 +173,36 @@
 
 @media (max-width: 480px) {
     .register-container {
-        min-height: calc(100vh - 120px); /* Adjust for smaller header/footer on mobile */
-        padding: 1rem;
+        padding: 0;  /* Remove all padding from container on mobile */
+        min-height: 100%;
+        width: 100%;  /* Ensure full width */
     }
     
     .register-container .form-container {
-        margin: 1rem;
-        padding: 2rem;
+        margin: 0;
+        padding: 1.5rem;
+        width: 95%;  /* Slightly less than full width on mobile */
+        max-width: none;
+        border-radius: 8px;
     }
     
     .register-container h1 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;  /* Reduce margin */
+    }
+
+    .register-container .form-input {
+        padding: 10px 12px;  /* Slightly reduce input padding */
+        margin: 6px 0;  /* Reduce input margins */
+    }
+
+    .register-container .btn-primary {
+        padding: 0.75rem;  /* Reduce button padding */
+        margin-top: 1rem;  /* Reduce margin */
+    }
+
+    /* Adjust input groups spacing */
+    .register-container .input-group {
+        margin-bottom: 0.5rem;  /* Reduce space between inputs */
     }
 }

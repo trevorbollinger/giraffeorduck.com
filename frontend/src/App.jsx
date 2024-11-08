@@ -12,11 +12,6 @@ import { useAuth } from "./components/AuthContext";
 import Account from "./pages/Account"; // Import the Account component
 import History from "./pages/History"; // Add the History component
 
-// function Logout() {
-//     localStorage.clear();
-//     return <Navigate to="/login" />;
-// }
-
 function Logout() {
     const { logout } = useAuth();
 
@@ -24,16 +19,7 @@ function Logout() {
         logout(); // Update state and clear session
     }, [logout]);
 
-    return <Navigate to="/login" replace />; // Redirect to login page
-}
-
-function RegisterAndLogout() {
-  const { logout } = useAuth();
-
-  useEffect(() => {
-      logout(); // Update state and clear session
-  }, [logout]);
-    return <Register />;
+    return <Navigate to="/" replace />; // Redirect to login page
 }
 
 function App() {
@@ -60,7 +46,7 @@ function App() {
                             <Login onMount={() => handleRouteChange('/login')} />
                         } />
                         <Route path="/logout" element={<Logout />} />
-                        <Route path="/register" element={<RegisterAndLogout />} />
+                        <Route path="/register" element={<Register />} />
                         <Route path="/account" element={
                             <ProtectedRoute>
                                 <Account />

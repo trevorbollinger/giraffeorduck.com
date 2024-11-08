@@ -7,7 +7,7 @@ import Game from '../components/Game';
 import "../styles/Home.css";
 import { useAuth } from "../components/AuthContext";
 
-function Home({ onSplashStateChange, onMount }) {
+function Home({ onSplashStateChange }) {
     const [gameScores, setGameScores] = useState([]); // State for game scores
     const [score, setScore] = useState([]); // State for score as an array
     const [streak, setStreak] = useState(""); // State for streak
@@ -23,7 +23,6 @@ function Home({ onSplashStateChange, onMount }) {
     const [gameStarted, setGameStarted] = useState(false);
 
     useEffect(() => {
-        onMount();
         fetchGameData();
         const formattedDateTime = new Date().toLocaleString("en-US", { 
             timeZone: "America/Chicago"
@@ -36,7 +35,7 @@ function Home({ onSplashStateChange, onMount }) {
         setVh();
         window.addEventListener('resize', setVh);
         return () => window.removeEventListener('resize', setVh);
-    }, [onMount]);
+    }, []);
 
     useEffect(() => {
         onSplashStateChange(!gameStarted);
