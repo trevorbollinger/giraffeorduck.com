@@ -36,13 +36,6 @@
     margin-top: 1.5rem; 
 }
 
-.iteration-text {
-    font-size: 1.2rem;
-    margin: 0;
-    color: white;
-    font-weight: bold;  
-}
-
 .splash-buttons {
     margin-top: 1rem; 
     display: flex;
@@ -59,7 +52,7 @@
     color: white;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    width: 180px;  
+    width: 200px;  
 }
 
 .splash-buttons button:hover {
@@ -69,11 +62,18 @@
 }
 
 .date-text {
+    font-family: 'PartyConfetti', Arial, sans-serif;
     color: white;
     font-size: 1.2rem;
     margin-top: 2rem;
     margin-bottom: 0.2rem; 
-    font-weight: bold;  
+}
+
+.iteration-text {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 1.2rem;
+    margin: 0;
+    color: white;
 }
 
 @media screen and (max-width: 800px) {
@@ -85,33 +85,39 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0;
     }
 
     .splash-buttons {
         flex-direction: column;  
         width: 100%;
-        max-width: 180px;  
+        max-width: 240px;  
         justify-content: center;
         align-items: center;
         gap: 0.8rem;  
     }
 
     .splash-buttons button {
-        font-size: 20px;
-        padding: 8px 20px;
+        font-size: 30px;
+        padding: 5px 0px;
         width: 100%; 
     }
 
     .iteration-text, .date-text {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     .splash-text-logo {
-        font-size: 32px;  
-        margin-top: 1.2rem;
+        font-size: 45px;  
+        margin: 0;
     }
 
     .date-text {
         margin-top: 1.5rem;
+        margin-bottom: 0;
+    }
+
+    .iteration-text {
+        margin-top: -0.5rem;
     }
 }
