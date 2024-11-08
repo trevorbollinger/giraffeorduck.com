@@ -11,6 +11,7 @@
     flex-direction: column;
     height: 100%;
     box-sizing: border-box;
+    width: 100%; /* Ensure full width */
 }
 
 .history-container h1 {
@@ -28,6 +29,7 @@
     padding-right: 10px;
     margin: -5px;
     padding: 5px;
+    width: 100%; /* Ensure full width */
 }
 
 .scores-list::-webkit-scrollbar {
@@ -46,4 +48,21 @@
 
 .scores-list::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media screen and (max-width: 768px) {
+    .history-container {
+        padding: 2px;
+    }
+
+    .history-container h1 {
+        font-size: 1.5em;
+        margin: 5px 0;
+    }
+
+    .scores-list {
+        padding: 2px;
+        padding-right: 5px;
+        margin: 0;
+    }
 }

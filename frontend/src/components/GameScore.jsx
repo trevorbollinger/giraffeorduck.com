@@ -20,7 +20,7 @@ function GameScore({ gameScore }) {
                 {gameScore.score.map((result, index) => (
                     <div 
                         key={index}
-                        className={`score-square ${result === 'y' ? 'green' : 'red'}`}
+                        className={`history-score-square ${result === 'y' ? 'green' : 'red'}`}
                     />
                 ))}
             </div>
