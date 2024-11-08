@@ -125,13 +125,13 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
       </div>
 
       {/* Only show main navbar when not on splash screen */}
-      {!(isHomePage && isSplashActive) && (
+      {!isSplashActive && (
         <div className="nav-wrap">
-          <nav className={`navbar ${!isSplashActive && shouldAnimate ? 'expanded' : ''}`}>
+          <nav className={`navbar ${shouldAnimate ? 'expanded' : ''}`}>
             <div className="nav-left">
             </div>
             {showLogo && (
-              <div className={`nav-center ${!isSplashActive && shouldAnimate ? 'animate-in' : ''}`}>
+              <div className={`nav-center ${shouldAnimate ? 'animate-in' : ''}`}>
                 <Link to="/" onClick={handleLogoClick}>
                   <img src={favicon} className="faviconlogo" alt="Logo" />
                   <span className="logo-text">GIRAFFE OR DUCK?</span>

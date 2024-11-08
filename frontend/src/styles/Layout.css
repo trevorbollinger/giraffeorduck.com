@@ -378,6 +378,10 @@ body, html {
     display: none;
 }
 
+.splash-active .navbar {
+    display: none !important;
+}
+
 @media only screen and (max-width: 800px) {
     .navbar {
         flex-direction: column;
