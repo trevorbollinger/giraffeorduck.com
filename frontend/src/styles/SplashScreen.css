@@ -1,123 +1,124 @@
 .start-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 2rem;
 }
 
 .start-buttons {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .splash-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%; 
-    text-align: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
 }
 
 .splash-logo {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 .splash-text-logo {
-    font-family: 'PartyConfetti', Arial, sans-serif;
-    font-size: 40px;
-    color: white;
-    margin: 0;
-    white-space: nowrap;
-    margin-top: 1.5rem; 
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 40px;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+  margin-top: 1.5rem;
 }
 
 .splash-buttons {
-    margin-top: 1rem; 
-    display: flex;
-    gap: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .splash-buttons button {
-    font-family: 'PartyConfetti', Arial, sans-serif;
-    font-size: 24px;
-    padding: 10px 30px;
-    border-radius: 8px;
-    border: none;
-    background-color: #666666;  
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    width: 200px;  
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 24px;
+  padding: 10px 30px;
+  border-radius: 8px;
+  border: none;
+  background-color: #666666;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  width: 200px;
 }
 
 .splash-buttons button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    background-color: #555555; 
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #555555;
 }
 
 .date-text {
-    font-family: 'PartyConfetti', Arial, sans-serif;
-    color: white;
-    font-size: 1.2rem;
-    margin-top: 2rem;
-    margin-bottom: 0.2rem; 
+  font-family: "PartyConfetti", Arial, sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.2rem;
 }
 
 .iteration-text {
-    font-family: 'PartyConfetti', Arial, sans-serif;
-    font-size: 1.2rem;
-    margin: 0;
-    color: white;
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
 }
 
 @media screen and (max-width: 800px) {
-    .splash-screen {
-        height: calc(100% - 20px); 
-        min-height: unset;
-        gap: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-    }
+  .splash-screen {
+    height: calc(100% - 20px);
+    min-height: unset;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
 
-    .splash-buttons {
-        flex-direction: column;  
-        width: 100%;
-        max-width: 240px;  
-        justify-content: center;
-        align-items: center;
-        gap: 0.8rem;  
-    }
+  .splash-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 240px;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+  }
 
-    .splash-buttons button {
-        font-size: 30px;
-        padding: 5px 0px;
-        width: 100%; 
-    }
+  .splash-buttons button {
+    font-size: 30px;
+    padding: 5px 0px;
+    width: 100%;
+  }
 
-    .iteration-text, .date-text {
-        font-size: 1.2rem;
-    }
+  .iteration-text,
+  .date-text {
+    font-size: 1.2rem;
+  }
 
-    .splash-text-logo {
-        font-size: 45px;  
-        margin: 0;
-    }
+  .splash-text-logo {
+    font-size: 45px;
+    margin: 0;
+  }
 
-    .date-text {
-        margin-top: 1.5rem;
-        margin-bottom: 0;
-    }
+  .date-text {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+  }
 
-    .iteration-text {
-        margin-top: -0.5rem;
-    }
+  .iteration-text {
+    margin-top: -0.5rem;
+  }
 }

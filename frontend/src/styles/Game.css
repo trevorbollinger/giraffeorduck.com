@@ -172,7 +172,7 @@
 @media screen and (max-width: 800px) {
     .game-interface {
         justify-content: center;
-        gap: min(12px, 1.5vh);
+        gap: 8px; /* Reduced from min(12px, 1.5vh) */
         padding: 5px;
         max-height: min(800px, 95vh); 
         margin: auto; 
@@ -190,6 +190,7 @@
 
     .score-squares {
         gap: min(8px, 1vh);
+        padding: 0; /* Remove padding from score squares */
     }
 
     .score-square {

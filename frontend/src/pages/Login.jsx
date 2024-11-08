@@ -39,7 +39,7 @@ function Login() {
     <div className="login-container">
       <form onSubmit={handleSubmit} className="form-container">
         <h1>Sign in</h1>
-        
+
         <div className="input-group">
           <input
             className="form-input"
@@ -68,13 +68,11 @@ function Login() {
           <LoadingIndicator />
         ) : (
           <>
-            <button className="btn btn-primary" type="submit">
+            <button className="btn-signin" type="submit">
               Sign In
             </button>
-            <a href="/register">
-              <button type="button" className="btn btn-link">
-                New here? Create an account
-              </button>
+            <a href="/register" className="btn-link">
+              Create an account
             </a>
           </>
         )}
