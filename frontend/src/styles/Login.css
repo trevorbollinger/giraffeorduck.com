@@ -95,5 +95,19 @@
     .login-container h1 {
         font-size: 2rem;
     }
+
+    /* Remove hover effects */
+    .login-container .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .login-container .btn-link:hover {
+        color: rgba(0, 123, 255, 0.8);
+    }
+
+    .login-container .btn-link:hover:after {
+        width: 0;
+    }
 }
 

@@ -34,8 +34,9 @@ function GameFinish({ score, currentIteration }) {
 
     return (
         <div className='game-complete'>
-            <h2>Game Complete!</h2>
+            <h2>Thank you for playing!</h2>
             <div className="score-display">
+                <div className="score-label">Final Score</div>
                 <div className="score-squares">
                     {score.map((result, index) => (
                         <div 
@@ -44,10 +45,11 @@ function GameFinish({ score, currentIteration }) {
                         />
                     ))}
                 </div>
+                <button onClick={handleShare} className='btn btn-primary'>
+                    Share Results
+                </button>
             </div>
-            <button onClick={handleShare} className='btn btn-primary'>
-                Share
-            </button>
+
         </div>
     );
 }

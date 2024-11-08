@@ -1,7 +1,6 @@
-// App.jsx
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./components/AuthContext"; // Import the AuthProvider
+import { AuthProvider } from "./components/AuthContext"; 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -9,30 +8,36 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import { useAuth } from "./components/AuthContext";
-import Account from "./pages/Account"; // Import the Account component
-import History from "./pages/History"; // Add the History component
-
+import Account from "./pages/Account"; 
+import History from "./pages/History"; 
 function Logout() {
     const { logout } = useAuth();
 
     useEffect(() => {
-        logout(); // Update state and clear session
+        logout(); 
     }, [logout]);
 
-    return <Navigate to="/" replace />; // Redirect to login page
+    return <Navigate to="/" replace />; 
 }
 
 function App() {
-    const [isSplashActive, setIsSplashActive] = useState(true);
+    const [isSplashActive, setIsSplashActive] = useState(false); // Changed default to false
     const [isHomePage, setIsHomePage] = useState(false);
 
-    // Function to handle route changes
     const handleRouteChange = (path) => {
         setIsHomePage(path === '/');
+        if (path !== '/') {
+            setIsSplashActive(false); // Ensure splash is inactive on non-home pages
+        }
     };
 
+    useEffect(() => {
+        // Set initial route
+        handleRouteChange(window.location.pathname);
+    }, []);
+
     return (
-        <AuthProvider> {/* Wrap your app in AuthProvider */}
+        <AuthProvider> 
             <BrowserRouter>
                 <Layout isSplashActive={isSplashActive} isHomePage={isHomePage}>
                     <Routes>

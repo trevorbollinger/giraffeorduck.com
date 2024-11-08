@@ -7,14 +7,14 @@ import Game from '../components/Game';
 import "../styles/Home.css";
 import { useAuth } from "../components/AuthContext";
 
-function Home({ onSplashStateChange }) {
-    const [gameScores, setGameScores] = useState([]); // State for game scores
-    const [score, setScore] = useState([]); // State for score as an array
-    const [streak, setStreak] = useState(""); // State for streak
-    const { isAuthorized } = useAuth(); // Get the authorization state
-    const [randomImages, setRandomImages] = useState([]); // State for random images
-    const [answerKey, setAnswerKey] = useState([]); // State for answer key
-    const [currentIteration, setCurrentIteration] = useState(0); // State for current iteration
+function Home({ onSplashStateChange, onMount }) {
+    const [gameScores, setGameScores] = useState([]); 
+    const [score, setScore] = useState([]); 
+    const [streak, setStreak] = useState("");
+    const { isAuthorized } = useAuth();
+    const [randomImages, setRandomImages] = useState([]); 
+    const [answerKey, setAnswerKey] = useState([]); 
+    const [currentIteration, setCurrentIteration] = useState(0);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [gameComplete, setGameComplete] = useState(false);
     const [prevImageIndex, setPrevImageIndex] = useState(null);
@@ -93,12 +93,17 @@ function Home({ onSplashStateChange }) {
             .catch((err) => alert("Failed to submit score: " + err));
     };
 
+    const handlePlayClick = () => {
+        setGameStarted(true);
+        onSplashStateChange(false); // Explicitly set splash to false when game starts
+    };
+
     return (
         <main>
             {!gameStarted ? (
                 <SplashScreen 
                     onTutorialClick={() => setShowTutorial(true)}
-                    onPlayClick={() => setGameStarted(true)}
+                    onPlayClick={handlePlayClick} // Use the new handler
                     currentIteration={currentIteration}
                 />
             ) : (

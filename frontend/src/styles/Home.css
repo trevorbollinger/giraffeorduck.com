@@ -69,4 +69,12 @@ main {
     .button-container {
         gap: 15px;
     }
+
+    /* Remove hover effects */
+    .game-btn:hover {
+        transform: none;
+        box-shadow: none;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
 }

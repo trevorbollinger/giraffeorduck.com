@@ -48,13 +48,13 @@ function Game({
                     <div className='button-container'>
                         <button 
                             onClick={() => handleGuess('giraffe')}
-                            className='game-btn game-btn-primary'
+                            className='game-btn-dark'
                         >
                             Giraffe
                         </button>
                         <button 
                             onClick={() => handleGuess('duck')}
-                            className='game-btn game-btn-secondary'
+                            className='game-btn-dark'
                         >
                             Duck
                         </button>

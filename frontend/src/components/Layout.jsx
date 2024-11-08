@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/Layout.css";
 import { useAuth } from "./AuthContext";
 import favicon from "../assets/favicon.png";
-import Login from '../pages/Login';  // Add this import
+import Login from '../pages/Login'; 
 
 const Layout = ({ children, isSplashActive, isHomePage }) => {
   const { isAuthorized, username, firstName, lastName, isStaff, isSuperuser } = useAuth();
@@ -11,7 +11,6 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
 
   useEffect(() => {
     if (!isSplashActive && isHomePage) {
-      // Start animation when splash screen is removed
       setShouldAnimate(true);
     }
 
@@ -118,28 +117,24 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
   };
 
   return (
-    <div className={`layout-container ${isHomePage && isSplashActive ? 'splash-active' : ''}`}>
-      {/* Always show the auth button */}
+    <div className={`layout-container ${isSplashActive ? 'splash-active' : ''}`}>
       <div className="floating-auth">
         <AuthButtons isFooter={false} />
       </div>
 
-      {/* Only show main navbar when not on splash screen */}
+      {/* Only show navbar when splash is NOT active */}
       {!isSplashActive && (
         <div className="nav-wrap">
           <nav className={`navbar ${shouldAnimate ? 'expanded' : ''}`}>
             <div className="nav-left">
             </div>
-            {showLogo && (
-              <div className={`nav-center ${shouldAnimate ? 'animate-in' : ''}`}>
-                <Link to="/" onClick={handleLogoClick}>
-                  <img src={favicon} className="faviconlogo" alt="Logo" />
-                  <span className="logo-text">GIRAFFE OR DUCK?</span>
-                </Link>
-              </div>
-            )}
+            <div className={`nav-center ${shouldAnimate ? 'animate-in' : ''}`}>
+              <Link to="/" onClick={handleLogoClick}>
+                <img src={favicon} className="faviconlogo" alt="Logo" />
+                <span className="logo-text">GIRAFFE OR DUCK?</span>
+              </Link>
+            </div>
             <div className="nav-right">
-              {/* Auth buttons moved to floating-auth */}
             </div>
           </nav>
         </div>

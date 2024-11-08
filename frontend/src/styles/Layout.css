@@ -11,9 +11,11 @@
     --text: #e0e0e0;
     --bg-dark: #1a1a1a;
     --bg-darker: #111111;
-    --border-color: #444444;
+    --border-color: #adadad;
     --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --dark: #4a4a4a;
+    --dark-hover: #5a5a5a;
 }
 
 * {
@@ -58,6 +60,7 @@ body, html {
     opacity: 0;
     transform: translateY(-100%);
     animation: slideDown 0.5s ease forwards;
+    display: flex;
 }
 
 .nav-left {
@@ -96,6 +99,7 @@ body, html {
     height: 60px;
     margin-right: 8px;
     vertical-align: middle;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .nav-center a {
@@ -110,6 +114,8 @@ body, html {
     color: var(--text);
     margin: 0;
     line-height: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3),
+                 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .splash-active .nav-center {
@@ -374,26 +380,24 @@ body, html {
 }
 
 /* Hide the regular nav-right auth buttons when floating-auth is visible */
-.splash-active .nav-right {
+.splash-active.layout-container .nav-right {
     display: none;
 }
 
-.splash-active .navbar {
+.splash-active.layout-container .navbar {
     display: none !important;
 }
 
 @media only screen and (max-width: 800px) {
     .navbar {
         flex-direction: column;
-        padding: 4px 2px;
+        padding: 6px 2px; /* Increased from 4px to 9px */
         gap: 0;
-        max-height: 80px;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
-    }
-
-    .navbar.expanded {
-        animation: expandNavbar 0.70s ease-out forwards;
+        overflow: visible; /* Changed from hidden to visible */
+        transition: max-height 0.3s ease-out;
+        display: flex;
+        position: relative; /* Add this */
+        z-index: 1000; /* Add this */
     }
 
     .nav-left, .nav-right {
@@ -419,11 +423,11 @@ body, html {
     .nav-center {
         width: 100%;
         justify-content: center;
-        padding: 4px 0;
+        padding: 7px 0; /* Increased from 4px to 7px */
         display: flex;
         opacity: 1;
         visibility: visible;
-        max-height: 50px;
+        max-height: 60px; /* Increased from 50px to 60px */
     }
 
     .faviconlogo {
@@ -431,9 +435,11 @@ body, html {
     }
 
     .logo-text {
-        font-size: 42px;
+        font-size: 40px; /* Increased from 42px to 45px */
         margin: 0;
         display: block;
+        text-shadow: 0 2px 3px rgba(0,0,0,0.3),
+                     0 3px 6px rgba(0,0,0,0.2);
     }
 
     .main-content {
@@ -481,14 +487,14 @@ body, html {
 
     .splash-active .nav-center {
         display: none;
-        max-height: 0;
-        padding: 0;
     }
 
     .splash-active .navbar {
-        padding: 4px 2px;
-        max-height: 40px;
-        display: none;  /* Hide entire navbar on mobile splash screen */
+        display: none !important; /* Only hide when splash is active */
+    }
+
+    :not(.splash-active) .navbar {
+        display: flex !important;
     }
 
     .dropdown-container .dropdown-trigger {
@@ -533,6 +539,49 @@ body, html {
     .floating-auth {
         display: none; /* Hide floating button on mobile */
     }
+
+    /* Remove hover effects */
+    .nav-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .dropdown-content .nav-btn:hover {
+        transform: none;
+        background-color: transparent;
+    }
+
+    .dropdown-content .nav-btn-primary:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: none;
+    }
+
+    .dropdown-content .nav-btn-danger:hover {
+        background-color: var(--danger);
+        color: white;
+        transform: none;
+    }
+
+    .nav-btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .nav-btn-danger:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* Remove or update the expandNavbar animation since we're not using it anymore */
+@keyframes expandNavbar {
+    0% {
+        max-height: 60px;
+    }
+    100% {
+        max-height: 100px;
+    }
 }
 
 @keyframes dropIn {
@@ -548,15 +597,6 @@ body, html {
 
 .nav-center.animate-in {
     animation: dropIn .35s ease-out forwards;
-}
-
-@keyframes expandNavbar {
-    0% {
-        max-height: 40px;
-    }
-    100% {
-        max-height: 120px;
-    }
 }
 
 @keyframes fadeIn {

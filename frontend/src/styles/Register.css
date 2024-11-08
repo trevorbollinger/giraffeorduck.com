@@ -205,4 +205,18 @@
     .register-container .input-group {
         margin-bottom: 0.5rem;  /* Reduce space between inputs */
     }
+
+    /* Remove hover effects */
+    .register-container .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .register-container .btn-link:hover {
+        color: rgba(0, 123, 255, 0.8);
+    }
+
+    .register-container .btn-link:hover:after {
+        width: 0;
+    }
 }
