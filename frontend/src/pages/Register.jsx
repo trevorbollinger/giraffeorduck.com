@@ -29,7 +29,7 @@ function Register() {
       await api.post("/game/user/register/", { username, password, first_name, last_name });
       navigate("/login");
     } catch (error) {
-      alert(error.response?.data?.detail || "An error occurred.");
+      alert(error.response?.data?.detail || "An error occurred. (username already taken?)");
     } finally {
       setLoading(false);
     }
