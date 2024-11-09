@@ -2,12 +2,16 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import GameScore  # Import GameScore
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.utils import timezone
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "password", "first_name", "last_name"]  # Include last_name
-        extra_kwargs = {"password": {"write_only": True}}
+        fields = ["id", "username", "password", "first_name", "last_name", "last_login"]
+        extra_kwargs = {
+            "password": {"write_only": True},
+            "last_login": {"read_only": True}
+        }
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -40,6 +44,14 @@ class GameScoreSerializer(serializers.ModelSerializer):  # Add this class
         return value
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        user = self.user
+        # Update last login
+        user.last_login = timezone.now()
+        user.save(update_fields=['last_login'])
+        return data
+
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)

@@ -68,7 +68,8 @@ function Home({ onSplashStateChange, onMount }) {
             setGameComplete(true);
             setStreak(newScore.filter(s => s === 'y').length);
             if (isAuthorized) {
-                createGameScore(newScore);
+                const screenResolution = `${window.screen.width}x${window.screen.height}`;
+                createGameScore(newScore, screenResolution);
             }
         }
     };
@@ -79,21 +80,20 @@ function Home({ onSplashStateChange, onMount }) {
         setGameComplete(false);
     };
 
-    const createGameScore = (finalScore) => {
-        
+    const createGameScore = (finalScore, screenResolution) => {
         const mostRecentGameScore = gameScores.reduce((latest, score) => {
             return new Date(score.date) > new Date(latest.date) ? score : latest;
         }, gameScores[0]);
 
         const mostRecentDate = mostRecentGameScore ? mostRecentGameScore.date : null;
 
-
         const scoreData = {
             score: finalScore,
             streak: 0,
             date: currentDate,
             iteration: currentIteration,
-            hard_mode: hardMode,  // Add this line
+            hard_mode: hardMode,
+            screenResolution: screenResolution
         };
 
         api.post("/game/submit-score/", scoreData)

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import UserSerializer, GameScoreSerializer 
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import GameScore 
+from .models import GameScore, GameAnalytics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.utils import timezone
@@ -14,6 +14,7 @@ import pytz
 import os
 from django.conf import settings
 import logging
+import user_agents
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +28,9 @@ class UserDetailView(APIView):
 
     def get(self, request):
         user = request.user
+        # Update last login time
+        user.last_login = timezone.now()
+        user.save(update_fields=['last_login'])
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
@@ -102,9 +106,33 @@ class GameScoreListCreate(generics.ListCreateAPIView):
                     streak=new_streak,
                     hard_mode=hard_mode  # Add this line
                 )
+            
+            # After saving the game score, log analytics
+            user_agent_string = self.request.META.get('HTTP_USER_AGENT', '')
+            user_agent = user_agents.parse(user_agent_string)
+            
+            # Get the client's IP address
+            x_forwarded_for = self.request.META.get('HTTP_X_FORWARDED_FOR')
+            ip_address = x_forwarded_for.split(',')[0] if x_forwarded_for else self.request.META.get('REMOTE_ADDR')
+
+            GameAnalytics.objects.create(
+                user=self.request.user if self.request.user.is_authenticated else None,
+                score=self.request.data.get('score', []),
+                iteration=current_iteration,
+                streak=new_streak,
+                hard_mode=hard_mode,
+                user_agent=user_agent_string,
+                browser=user_agent.browser.family,
+                browser_version=user_agent.browser.version_string,
+                operating_system=user_agent.os.family,
+                device_type='Mobile' if user_agent.is_mobile else ('Tablet' if user_agent.is_tablet else 'Desktop'),
+                screen_resolution=self.request.data.get('screenResolution'),
+                language=self.request.META.get('HTTP_ACCEPT_LANGUAGE', ''),
+                ip_address=ip_address
+            )
                 
         except Exception as e:
-            logger.error(f"Error saving score: {e}", exc_info=True)
+            logger.error(f"Error saving analytics: {e}", exc_info=True)
             raise
 
 class GameDataView(APIView): 

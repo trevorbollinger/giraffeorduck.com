@@ -16,6 +16,29 @@ function Game({
   hardMode,
   isAuthorized,
 }) {
+  const getScreenResolution = () => {
+    const resolution = `${window.screen.width}x${window.screen.height}`;
+    console.log('Screen resolution:', resolution);
+    return resolution;
+  };
+
+  const handleGameComplete = () => {
+    setGameComplete(true);
+    setStreak(score.filter(s => s === 'y').length);
+    
+    const finalScore = {
+      score: score,
+      streak: score.filter(s => s === 'y').length,
+      iteration: currentIteration,
+      hard_mode: hardMode,
+      screenResolution: getScreenResolution(),
+    };
+
+    if (isAuthorized) {
+      createGameScore(finalScore);
+    }
+  };
+
   return (
     <>
       {randomImages.length > 0 && !gameComplete && (
@@ -55,13 +78,13 @@ function Game({
           </div>
           <div className="button-container">
             <button
-              onClick={() => handleGuess("giraffe")}
+              onClick={() => handleGuess("giraffe", getScreenResolution())}
               className="game-btn-dark"
             >
               Giraffe
             </button>
             <button
-              onClick={() => handleGuess("duck")}
+              onClick={() => handleGuess("duck", getScreenResolution())}
               className="game-btn-dark"
             >
               Duck
