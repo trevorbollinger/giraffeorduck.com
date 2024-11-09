@@ -40,6 +40,15 @@
     top: 0;
 }
 
+.image-wrapper img.blurred {
+    filter: blur(10px);
+    transition: filter 0.3s ease;
+}
+
+.image-wrapper img.blurred:hover {
+    filter: blur(5px);
+}
+
 .slide-exit {
     animation: slideOut 0.5s ease-in-out forwards;
 }
@@ -217,5 +226,9 @@
         padding: 8px 24px;
         min-width: 0;  /* Remove min-width on mobile */
         max-width: none;  /* Remove max-width on mobile */
+    }
+
+    .image-wrapper img.blurred:hover {
+        filter: blur(10px); /* Keep full blur on mobile */
     }
 }

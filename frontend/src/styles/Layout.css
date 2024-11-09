@@ -467,7 +467,7 @@ html {
 
   .footer {
     display: flex; /* Show footer on mobile */
-    padding: 2px; /* Reduced from 0.5rem */
+    padding: 4px;  /* Increased from 2px */
     gap: 2px; /* Reduced from 4px */
     position: relative;
     z-index: 10;
@@ -477,8 +477,10 @@ html {
 
   .footer-buttons {
     display: flex;
-    gap: 2px; /* Reduced from 4px */
-    padding: 2px 0; /* Reduced from 4px */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;  /* Increased from 2px */
+    padding: 4px 0;  /* Increased from 2px */
   }
 
   .footer p {
@@ -497,9 +499,9 @@ html {
   }
 
   .nav-btn {
-    font-size: 14px;
-    padding: 2px 12px; /* Reduced from 4px */
-    min-width: 70px;
+    font-size: 16px;  /* Increased from 14px */
+    padding: 4px 16px;  /* Increased from 2px 12px */
+    min-width: 80px;  /* Increased from 70px */
   }
 
   .splash-active .nav-center {

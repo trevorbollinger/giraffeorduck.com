@@ -1,34 +1,48 @@
 .gamescore-container {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #444;
-    border-radius: 5px;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border-radius: 12px;
+    margin: 10px 0;
     background-color: #2a2a2a;
     color: #e0e0e0;
-    text-align: left;
-    width: 100%; /* Ensure full width */
-    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.gamescore-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 0;
 }
 
 .gamescore-date {
-    font-size: 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+    flex: 2;
+}
+
+.gamescore-date {
     font-weight: bold;
-    margin: 0 10px 0 0;
-    flex: 2;  /* Increased from 1 to give date more space */
+    color: #fff;
+}
+
+.gamescore-date {
+    color: #aaa;
+    font-size: 0.8rem;
 }
 
 .gamescore-squares {
     display: flex;
-    gap: 2px;  /* Reduced from 3px */
-    flex: 3;   /* Adjusted flex proportion */
+    gap: 4px;
+    flex: 3;
+    justify-content: center;
 }
 
 .score-square {
-    width: 12px;  /* Reduced from 15px */
-    height: 12px; /* Reduced from 15px */
+    width: 12px;
+    height: 12px;
     border-radius: 2px;
 }
 
@@ -41,49 +55,92 @@
 }
 
 .history-score-square {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    transition: transform 0.2s ease;
+}
+
+.history-score-square:hover {
+    transform: scale(1.1);
 }
 
 .history-score-square.green {
-    background-color: green;
+    background: linear-gradient(135deg, #43a047 0%, #4caf50 100%);
+    box-shadow: 0 2px 4px rgba(67, 160, 71, 0.2);
 }
 
 .history-score-square.red {
-    background-color: red;
+    background: linear-gradient(135deg, #e53935 0%, #f44336 100%);
+    box-shadow: 0 2px 4px rgba(229, 57, 53, 0.2);
 }
 
-.gamescore-streak {
-    font-size: 12px;
-    margin: 0 5px; /* Reduced horizontal margin */
-    flex: 1;
-    white-space: nowrap; /* Prevent text wrapping */
+.gamescore-stats {
+    display: flex;
+    gap: 15px;
+    flex: 2;
+    justify-content: flex-end;
 }
 
+.gamescore-streak,
 .gamescore-iteration {
-    font-size: 12px;
-    margin: 0 5px; /* Reduced horizontal margin */
-    flex: 1;
-    white-space: nowrap; /* Prevent text wrapping */
+    font-size: 0.85rem;
+    margin: 0;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
+
+.share-button {
+    background: var(--primary);
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    border: 1px solid #555;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.share-button:hover {
+    background-color: #444;
+    color: #fff;
+}
+
 
 @media screen and (max-width: 768px) {
     .gamescore-container {
-        padding: 5px;
-        margin: 3px;
-        gap: 3px;
+        padding: 10px;
+        margin: 8px 0;
+    }
+
+    .gamescore-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .gamescore-date {
-        font-size: 12px;
-        flex: 1.5;
-        margin: 0 5px 0 0;
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+        margin-bottom: -7px;
     }
 
     .gamescore-squares {
-        gap: 1px;
-        flex: 2;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .share-button {
+        width: 100%;
     }
 
     .score-square {
@@ -93,15 +150,17 @@
     }
 
     .history-score-square {
-        width: 22px;
-        height: 22px;
-        border-radius: 1px;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
     }
 
     .gamescore-streak,
     .gamescore-iteration {
-        font-size: 11px;
+        font-size: 1.1rem;
         flex: 1;
-        margin: 0 2px;
+        margin: 0;
+        white-space: nowrap;
+        text-align: center;
     }
 }

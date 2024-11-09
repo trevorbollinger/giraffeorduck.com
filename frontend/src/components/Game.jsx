@@ -13,6 +13,7 @@ function Game({
   resetGame,
   setPrevImageIndex,
   currentIteration,
+  hardMode,
 }) {
   return (
     <>
@@ -40,7 +41,7 @@ function Game({
                 key={`prev-${prevImageIndex}`}
                 src={randomImages[prevImageIndex]}
                 alt={`Previous Game Image`}
-                className="slide-exit"
+                className={`slide-exit ${hardMode ? 'blurred' : ''}`}
                 onAnimationEnd={() => setPrevImageIndex(null)}
               />
             )}
@@ -48,7 +49,7 @@ function Game({
               key={`current-${currentImageIndex}`}
               src={randomImages[currentImageIndex]}
               alt={`Game Image ${currentImageIndex + 1}`}
-              className={prevImageIndex === null ? "" : "slide-enter"}
+              className={`${prevImageIndex === null ? "" : "slide-enter"} ${hardMode ? 'blurred' : ''}`}
             />
           </div>
           <div className="button-container">

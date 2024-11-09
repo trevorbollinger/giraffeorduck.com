@@ -21,6 +21,7 @@ function Home({ onSplashStateChange, onMount }) {
     const [currentDate, setCurrentDate] = useState('');
     const [showTutorial, setShowTutorial] = useState(false);
     const [gameStarted, setGameStarted] = useState(false);
+    const [hardMode, setHardMode] = useState(false);
 
     useEffect(() => {
         fetchGameData();
@@ -105,6 +106,8 @@ function Home({ onSplashStateChange, onMount }) {
                     onTutorialClick={() => setShowTutorial(true)}
                     onPlayClick={handlePlayClick} // Use the new handler
                     currentIteration={currentIteration}
+                    hardMode={hardMode}
+                    setHardMode={setHardMode}
                 />
             ) : (
                 <Game 
@@ -118,6 +121,7 @@ function Home({ onSplashStateChange, onMount }) {
                     resetGame={resetGame}
                     setPrevImageIndex={setPrevImageIndex}
                     currentIteration={currentIteration}
+                    hardMode={hardMode}
                 />
             )}
 

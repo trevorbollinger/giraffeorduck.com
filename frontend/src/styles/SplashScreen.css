@@ -76,6 +76,57 @@
   color: white;
 }
 
+.hard-mode-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.hard-mode-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: #007bff;
+  border-radius: 6px;
+  position: relative;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #666666;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.hard-mode-checkbox:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.hard-mode-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hard-mode-container label {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  top: 1px;
+}
+
 @media screen and (max-width: 800px) {
   .splash-screen {
     height: calc(100% - 20px);
@@ -91,14 +142,15 @@
   .splash-buttons {
     flex-direction: column;
     width: 100%;
-    max-width: 240px;
+    max-width: 215px;
     justify-content: center;
     align-items: center;
     gap: 0.8rem;
+    margin-top: 0;
   }
 
   .splash-buttons button {
-    font-size: 30px;
+    font-size: 27px;
     padding: 5px 0px;
     width: 100%;
   }
@@ -108,17 +160,41 @@
     font-size: 1.2rem;
   }
 
+  .splash-logo {
+    width: 170px;
+    height: 170px;
+  }
+
   .splash-text-logo {
     font-size: 45px;
     margin: 0;
   }
 
   .date-text {
-    margin-top: 1.5rem;
+    margin-top: 0.35rem;
     margin-bottom: 0;
   }
 
   .iteration-text {
     margin-top: -0.5rem;
+  }
+
+  .hard-mode-container {
+    padding: 0.4rem 1rem;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  .hard-mode-checkbox {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hard-mode-checkbox:checked::after {
+    font-size: 14px;
+  }
+
+  .hard-mode-container label {
+    font-size: 1.3rem;
   }
 }
