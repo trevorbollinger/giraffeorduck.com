@@ -180,7 +180,7 @@ class GameDataView(APIView):
             
             if (set_choice, random_num) not in used_numbers:
                 used_numbers.add((set_choice, random_num))
-                image_url = f"{request.scheme}://{request.get_host()}/media/{set_choice}/{image_name}"
+                image_url = f"{request.scheme}://{request.get_host()}/images/{set_choice}/{image_name}"
                 image_urls.append(image_url)
 
         start_date = datetime(2024, 2, 22, tzinfo=central)
