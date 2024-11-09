@@ -93,6 +93,7 @@ function Home({ onSplashStateChange, onMount }) {
             streak: 0,
             date: currentDate,
             iteration: currentIteration,
+            hard_mode: hardMode,  // Add this line
         };
 
         api.post("/game/submit-score/", scoreData)
@@ -130,6 +131,7 @@ function Home({ onSplashStateChange, onMount }) {
                     setPrevImageIndex={setPrevImageIndex}
                     currentIteration={currentIteration}
                     hardMode={hardMode}
+                    isAuthorized={isAuthorized}
                 />
             )}
 

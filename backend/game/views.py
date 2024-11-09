@@ -54,6 +54,7 @@ class GameScoreListCreate(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user
         current_iteration = self.request.data.get('iteration', 0)
+        hard_mode = self.request.data.get('hard_mode', False)  # Add this line
         
         try:
             logger.info(f"Processing game score for user {user.username}, iteration {current_iteration}")
@@ -67,17 +68,17 @@ class GameScoreListCreate(generics.ListCreateAPIView):
             # Find the most recent previous iteration's score
             last_different_score = previous_scores.first()
             
-            new_streak = 0
+            new_streak = 1  # Initialize with 1 instead of 0
             if last_different_score:
                 logger.info(f"Current iteration: {current_iteration}, Last iteration: {last_different_score.iteration}")
                 logger.info(f"Previous streak: {last_different_score.streak}")
                 
                 # Start streak at 2 for first consecutive day
                 if last_different_score.iteration == current_iteration - 1:
-                    new_streak = last_different_score.streak + 1 if last_different_score.streak > 0 else 2
+                    new_streak = last_different_score.streak + 1
                     logger.info(f"Consecutive iteration! New streak: {new_streak}")
                 else:
-                    logger.info(f"Streak reset. Iteration gap: {current_iteration - last_different_score.iteration}")
+                    logger.info(f"Streak reset to 1. Iteration gap: {current_iteration - last_different_score.iteration}")
             
             # Check for existing score for current iteration
             existing_score = GameScore.objects.filter(
@@ -90,6 +91,7 @@ class GameScoreListCreate(generics.ListCreateAPIView):
                 existing_score.score = self.request.data.get('score', [])
                 existing_score.streak = new_streak
                 existing_score.date = timezone.now()
+                existing_score.hard_mode = hard_mode  # Add this line
                 existing_score.save()
             else:
                 logger.info(f"Creating new score for iteration {current_iteration}")
@@ -97,7 +99,8 @@ class GameScoreListCreate(generics.ListCreateAPIView):
                     user=user,
                     score=self.request.data.get('score', []),
                     iteration=current_iteration,
-                    streak=new_streak
+                    streak=new_streak,
+                    hard_mode=hard_mode  # Add this line
                 )
                 
         except Exception as e:

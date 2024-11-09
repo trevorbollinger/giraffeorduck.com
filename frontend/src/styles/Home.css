@@ -57,7 +57,7 @@ main {
     transform: translateY(0) scale(0.98);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
     .game-btn {
         font-size: 24px;
         width: 140px;

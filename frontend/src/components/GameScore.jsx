@@ -45,8 +45,10 @@ function GameScore({ gameScore }) {
             <div className="gamescore-info">
                 <p className="gamescore-date">{formatDateTime(gameScore.date)}</p>
                 <div className="gamescore-stats">
-                <p className="gamescore-iteration">#{gameScore.iteration}</p>
-
+                    <p className="gamescore-iteration">#{gameScore.iteration}</p>
+                    <p className="gamescore-hard-mode" title="Hard Mode">
+                        Hard Mode: {gameScore.hard_mode ? '✅' : '❌'}
+                    </p>
                     <p className="gamescore-streak">
                         🔥{gameScore.streak}
                     </p>

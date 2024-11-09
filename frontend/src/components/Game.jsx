@@ -14,6 +14,7 @@ function Game({
   setPrevImageIndex,
   currentIteration,
   hardMode,
+  isAuthorized,
 }) {
   return (
     <>
@@ -74,6 +75,7 @@ function Game({
           score={score}
           currentIteration={currentIteration}
           resetGame={resetGame}
+          isAuthorized={isAuthorized}
         />
       )}
     </>

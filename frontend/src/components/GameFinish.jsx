@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/GameFinish.css";
 
-function GameFinish({ score, currentIteration }) {
+function GameFinish({ score, currentIteration, isAuthorized }) {
   const getScoreEmojis = () => {
     return score.map((result) => (result === "y" ? "✅" : "❌")).join("");
   };
@@ -43,9 +44,16 @@ function GameFinish({ score, currentIteration }) {
             />
           ))}
         </div>
-        <button onClick={handleShare} className="btn btn-primary">
-          Share Results
-        </button>
+        <div className="button-group">
+          <button onClick={handleShare} className="btn btn-primary">
+            Share Results
+          </button>
+          {isAuthorized && (
+            <Link to="/history" className="btn btn-secondary">
+              Past Games
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

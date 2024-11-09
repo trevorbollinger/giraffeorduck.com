@@ -17,20 +17,11 @@
 }
 
 .gamescore-date {
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 1.25rem;
     margin: 0;
     flex: 2;
-}
-
-.gamescore-date {
-    font-weight: bold;
-    color: #fff;
-}
-
-.gamescore-date {
-    color: #aaa;
-    font-size: 0.8rem;
+    color: #ffffff
 }
 
 .gamescore-squares {
@@ -93,6 +84,16 @@
     gap: 4px;
 }
 
+.gamescore-hard-mode {
+    font-size: 0.85rem;
+    margin: 0;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+
 .share-button {
     background: var(--primary);
     font-family: 'PartyConfetti', Arial, sans-serif;
@@ -129,7 +130,6 @@
 
     .gamescore-date {
         font-size: 1.4rem;
-        font-weight: bold;
         text-align: center;
         margin: 0;
         margin-bottom: -7px;
@@ -162,6 +162,12 @@
         flex: 1;
         margin: 0;
         white-space: nowrap;
+        text-align: center;
+    }
+
+    .gamescore-hard-mode {
+        font-size: 1.1rem;
+        flex: 2;  /* Give it more space for the text */
         text-align: center;
     }
 }

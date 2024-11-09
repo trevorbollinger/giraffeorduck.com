@@ -29,7 +29,7 @@ class GameScoreSerializer(serializers.ModelSerializer):  # Add this class
     
     class Meta:
         model = GameScore
-        fields = ['id', 'date', 'score', 'streak', 'iteration', 'user']
+        fields = ['id', 'date', 'score', 'streak', 'iteration', 'user', 'hard_mode']
         read_only_fields = ['date', 'user']
 
     def validate_score(self, value):

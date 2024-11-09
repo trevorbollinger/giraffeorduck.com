@@ -405,7 +405,7 @@ html {
   padding: 4px 0;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 768px) {
   .navbar {
     flex-direction: column;
     padding: 2px; /* Reduced from 6px 2px */

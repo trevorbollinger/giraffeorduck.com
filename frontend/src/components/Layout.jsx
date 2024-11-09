@@ -40,7 +40,7 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
         {isAuthorized ? (
           <>
             <a href="/history">
-              <button className="nav-btn nav-btn-primary">History</button>
+              <button className="nav-btn nav-btn-primary">Past Games</button>
             </a>
             <a href="/account">
               <button
@@ -97,7 +97,7 @@ const Layout = ({ children, isSplashActive, isHomePage }) => {
                 <button className="nav-btn nav-btn-primary">Home</button>
               </a>
               <a href="/history">
-                <button className="nav-btn nav-btn-primary">History</button>
+                <button className="nav-btn nav-btn-primary">Past Games</button>
               </a>
               <a href="/account">
                 <button
