@@ -1,0 +1,26 @@
+services:
+  backend:
+    container_name: GORD-backend
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - "8060:8000"
+    volumes:
+      - ./backend:/app
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+
+  frontend:
+    container_name: GORD-frontend
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "8070:5173"
+    volumes:
+      - ./frontend:/app
+    command: >
+      sh -c "npm install &&
+             npm run dev -- --host"

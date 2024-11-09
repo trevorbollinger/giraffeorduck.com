@@ -1,0 +1,679 @@
+@font-face {
+  font-family: "PartyConfetti";
+  src: url("../assets/PartyConfetti.ttf") format("truetype");
+}
+
+:root {
+  --primary: #007bff;
+  --primary-hover: #0056b3;
+  --danger: #dc3545;
+  --danger-hover: #c82333;
+  --text: #e0e0e0;
+  --bg-dark: #1a1a1a;
+  --bg-darker: #111111;
+  --border-color: #adadad;
+  --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dark: #4a4a4a;
+  --dark-hover: #5a5a5a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text);
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: var(--bg-dark);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.nav-wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.navbar {
+  background-color: var(--bg-darker);
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  flex-wrap: nowrap;
+  transition: all 0.3s var(--transition-smooth);
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: slideDown 0.5s ease forwards;
+  display: flex;
+}
+
+.nav-left {
+  font-size: 1.2em;
+  width: 30%;
+  text-align: center;
+  color: var(--text);
+  display: flex;
+}
+
+.greeting {
+  margin: 0;
+  padding: 8px 0;
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  padding: 8px 0;
+  opacity: 1;
+}
+
+.textlogo {
+  height: 50px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.faviconlogo {
+  height: 60px;
+  margin-right: 8px;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.nav-center a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 55px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.splash-active .nav-center {
+  display: none;
+}
+
+.nav-right {
+  width: 30%;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-right a {
+  margin-left: 0;
+  text-decoration: none;
+}
+
+.nav-btn {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 16px;
+  padding: 6px 16px;
+  border-radius: 10px;
+  border: 2px solid;
+  cursor: pointer;
+  color: #ffffff;
+  transition: all 0.25s var(--transition-smooth);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+.nav-btn-primary {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.nav-btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn-danger {
+  border-color: var(--danger);
+  background-color: var(--danger);
+}
+
+.nav-btn-danger:hover {
+  background-color: var(--danger-hover);
+  border-color: var(--danger-hover);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+  color: var(--text);
+  position: relative;
+  height: 100%;
+}
+
+.footer {
+  display: none; /* Hide by default on desktop */
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  padding: 8px;
+  background-color: var(--bg-darker);
+  color: #888888;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 10;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.footer-buttons {
+  display: none;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.footer p {
+  padding: 8px 0;
+  line-height: 1;
+  margin: 0;
+  margin-bottom: 0;
+}
+
+.footer p.footer-greeting {
+  display: none;
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 36px;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
+
+.dropdown-trigger {
+  position: relative;
+  padding: 6px 30px 6px 16px !important;
+  width: 100%;
+  min-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.dropdown-trigger::after {
+  content: "▼";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+/* Keep button highlighted while dropdown is open */
+.dropdown-container:hover .dropdown-trigger {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-container:hover .dropdown-trigger::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-content {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  background-color: var(--bg-dark);
+  width: 160px; /* Match trigger width */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid var(--border-color);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) translateY(-8px);
+  transition: all 0.2s var(--transition-smooth);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Special styling for login dropdown */
+.dropdown-content.login-dropdown {
+  width: 400px;
+  padding: 0;
+  border-radius: 20px;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.dropdown-content.login-dropdown .login-container {
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+.dropdown-content.login-dropdown .form-container {
+  margin: 0;
+  border-radius: 0;
+  border-radius: 20px;
+}
+
+/* Extend bridge to cover the entire gap */
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -30px; /* Increased from -20px */
+  left: 0;
+  right: 0;
+  height: 30px; /* Increased from 20px */
+  background: transparent;
+}
+
+.dropdown-container:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: all;
+}
+
+.dropdown-content .nav-btn {
+  width: 100%;
+  text-align: left;
+  padding: 8px 16px;
+  margin: 2px 0;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  transform: translateX(0);
+  transition: all 0.2s var(--transition-smooth);
+}
+
+.dropdown-content .nav-btn:hover {
+  background-color: #2a2a2a;
+  transform: translateX(5px);
+  box-shadow: none;
+}
+
+.dropdown-content .nav-btn-primary:hover {
+  color: var(--primary);
+  border-color: transparent;
+}
+
+.dropdown-content .nav-btn-danger:hover {
+  color: var(--danger);
+  border-color: transparent;
+}
+
+.floating-auth {
+  position: fixed;
+  top: 22px; /* Adjust this value to match navbar center */
+  right: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideInFromRight 0.5s ease forwards;
+}
+
+/* Adjust the dropdown to work with fixed positioning */
+.floating-auth .dropdown-content {
+  position: fixed;
+  right: 2px;
+  left: auto;
+  top: 50px;
+  transform: translateY(-8px);
+}
+
+.floating-auth:hover .dropdown-content {
+  transform: translateY(0);
+}
+
+.floating-auth .dropdown-content.login-dropdown {
+  transform: translateX(0) translateY(-8px);
+}
+
+.floating-auth:hover .dropdown-content.login-dropdown {
+  transform: translateX(0) translateY(0);
+}
+
+/* Hide the regular nav-right auth buttons when floating-auth is visible */
+.splash-active.layout-container .nav-right {
+  display: none;
+}
+
+.splash-active.layout-container .navbar {
+  display: none !important;
+}
+
+.footer-greeting {
+  display: none;
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 36px; /* Increased from 28px */
+  margin: 0;
+  padding: 4px 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 2px; /* Reduced from 6px 2px */
+    gap: 0;
+    overflow: visible; /* Changed from hidden to visible */
+    transition: max-height 0.3s ease-out;
+    display: flex;
+    position: relative; /* Add this */
+    z-index: 1000; /* Add this */
+  }
+
+  .nav-left,
+  .nav-right {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+    margin: 3px;
+    display: none;
+  }
+
+  .greeting {
+    margin: 0;
+    padding: 4px 0;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .nav-center {
+    width: 100%;
+    justify-content: center;
+    padding: 4px 0; /* Reduced from 7px */
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    max-height: 50px; /* Reduced from 60px */
+  }
+
+  .faviconlogo {
+    display: none;
+  }
+
+  .logo-text {
+    font-size: 36px; /* Reduced from 40px */
+    margin: 0;
+    display: block;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .main-content {
+    padding: 0;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .footer {
+    display: flex; /* Show footer on mobile */
+    padding: 4px;  /* Increased from 2px */
+    gap: 2px; /* Reduced from 4px */
+    position: relative;
+    z-index: 10;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .footer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;  /* Increased from 2px */
+    padding: 4px 0;  /* Increased from 2px */
+  }
+
+  .footer p {
+    padding: 2px 0; /* Reduced from 4px */
+    font-size: 14px;
+  }
+
+  .footer {
+    padding: 2px;
+  }
+
+  .footer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    font-size: 16px;  /* Increased from 14px */
+    padding: 4px 16px;  /* Increased from 2px 12px */
+    min-width: 80px;  /* Increased from 70px */
+  }
+
+  .splash-active .nav-center {
+    display: none;
+  }
+
+  .splash-active .navbar {
+    display: none !important; /* Only hide when splash is active */
+  }
+
+  :not(.splash-active) .navbar {
+    display: flex !important;
+  }
+
+  .dropdown-container .dropdown-trigger {
+    display: none;
+    max-width: none; /* Allow full width on mobile */
+  }
+
+  .dropdown-content {
+    display: flex;
+    position: static;
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+
+  .dropdown-content .nav-btn {
+    background-color: inherit;
+    border-color: inherit;
+  }
+
+  .dropdown-content .nav-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    background-color: inherit;
+  }
+
+  .dropdown-content .nav-btn-primary:hover {
+    background-color: var(--primary-hover);
+    color: white;
+  }
+
+  .dropdown-content .nav-btn-danger:hover {
+    background-color: var(--danger-hover);
+    color: white;
+  }
+
+  /* Hide login dropdown on mobile */
+  .dropdown-content.login-dropdown {
+    display: none;
+  }
+
+  .floating-auth {
+    display: none; /* Hide floating button on mobile */
+  }
+
+  /* Remove hover effects */
+  .nav-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .dropdown-content .nav-btn:hover {
+    transform: none;
+    background-color: transparent;
+  }
+
+  .dropdown-content .nav-btn-primary:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: none;
+  }
+
+  .dropdown-content .nav-btn-danger:hover {
+    background-color: var(--danger);
+    color: white;
+    transform: none;
+  }
+
+  .nav-btn-primary:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .nav-btn-danger:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .footer p.footer-greeting {
+    display: block;
+    font-size: 22px;
+    padding: 4px 0 0; /* Added padding top only */
+  }
+
+}
+
+/* Remove or update the expandNavbar animation since we're not using it anymore */
+@keyframes expandNavbar {
+  0% {
+    max-height: 60px;
+  }
+  100% {
+    max-height: 100px;
+  }
+}
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-center.animate-in {
+  animation: dropIn 0.35s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../assets/PartyConfetti.ttf') format('truetype');
+}
+
+.history-container {
+    background-color: #2a2a2a;
+    padding: 5px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%; /* Ensure full width */
+    border-radius: 20px;
+    margin: 10px auto;
+}
+
+.history-container h1 {
+    font-family: 'PartyConfetti', sans-serif;
+    font-size: 2em;
+    color: #f0f0f0;
+    text-align: center;
+    margin: 10px 0 10px 0;
+    flex-shrink: 0;
+}
+
+.scores-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 100%; /* Ensure full width */
+}
+
+.scores-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scores-list::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+
+.scores-list::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+}
+
+.scores-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media screen and (max-width: 768px) {
+    .history-container {
+        background-color: var(--color-dark);
+        padding: 10px;
+        margin: 5px auto;
+        border-radius: 0px;
+    }
+
+    .history-container h1 {
+        font-size: 1.6em;
+        margin: 5px 0 10px 0;
+    }
+
+    .scores-list {
+        padding: 0 5px;
+        border-radius: 0px;
+    }
+}

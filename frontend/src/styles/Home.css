@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../assets/PartyConfetti.ttf') format('truetype');
+}
+
+div {
+    font-family: Arial, sans-serif;
+    color: #e0e0e0;
+}
+
+main {
+    padding: 0;
+    text-align: center;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.game-btn {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 32px;
+    width: 180px;
+    height: 60px;
+    border-radius: 12px;
+    border: 3px solid;
+    cursor: pointer;
+    background: transparent;
+    color: #ffffff;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-btn-primary, .game-btn-secondary {
+    border-color: #007bff;
+    background-color: #007bff;
+}
+
+.game-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.game-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@media screen and (max-width: 768px) {
+    .game-btn {
+        font-size: 24px;
+        width: 140px;
+        height: 50px;
+        border-radius: 10px;
+        border-width: 2px;
+    }
+
+    .button-container {
+        gap: 15px;
+    }
+
+    /* Remove hover effects */
+    .game-btn:hover {
+        transform: none;
+        box-shadow: none;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+}

@@ -1,0 +1,200 @@
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 2rem;
+}
+
+.start-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.splash-logo {
+  width: 200px;
+  height: 200px;
+}
+
+.splash-text-logo {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 40px;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+  margin-top: 1.5rem;
+}
+
+.splash-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.splash-buttons button {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 24px;
+  padding: 10px 30px;
+  border-radius: 8px;
+  border: none;
+  background-color: #666666;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  width: 200px;
+}
+
+.splash-buttons button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #555555;
+}
+
+.date-text {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.iteration-text {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
+}
+
+.hard-mode-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.hard-mode-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: #007bff;
+  border-radius: 6px;
+  position: relative;
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #666666;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.hard-mode-checkbox:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.hard-mode-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hard-mode-container label {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  top: 1px;
+}
+
+@media screen and (max-width: 800px) {
+  .splash-screen {
+    height: calc(100% - 20px);
+    min-height: unset;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .splash-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 215px;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0;
+  }
+
+  .splash-buttons button {
+    font-size: 27px;
+    padding: 5px 0px;
+    width: 100%;
+  }
+
+  .iteration-text,
+  .date-text {
+    font-size: 1.2rem;
+  }
+
+  .splash-logo {
+    width: 170px;
+    height: 170px;
+  }
+
+  .splash-text-logo {
+    font-size: 45px;
+    margin: 0;
+  }
+
+  .date-text {
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+  }
+
+  .iteration-text {
+    margin-top: -0.5rem;
+  }
+
+  .hard-mode-container {
+    padding: 0.4rem 1rem;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  .hard-mode-checkbox {
+    width: 22px;
+    height: 22px;
+  }
+
+  .hard-mode-checkbox:checked::after {
+    font-size: 14px;
+  }
+
+  .hard-mode-container label {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,112 @@
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../assets/PartyConfetti.ttf') format('truetype');
+}
+
+.account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-out;
+    /* Remove the background gradient from here */
+}
+
+.account-container .form-container {
+    animation: slideUp 0.5s ease-out;
+    border: 1px solid rgba(255,255,255,0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0 20px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(26,26,26,0.9), rgba(20,20,20,0.9));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.1) inset;
+}
+
+.account-container h1 {
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 3rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #e0e0e0, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.account-container .input-group {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.account-container .btn {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 8px 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.account-container .btn-primary {
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: white;
+}
+
+.account-container .btn-primary:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.account-container .btn-danger {
+    background-color: var(--danger);
+    border: 2px solid var(--danger);
+    color: white;
+    margin-top: 1rem;
+}
+
+.account-container .btn-danger:hover {
+    background-color: var(--danger-hover);
+    border-color: var(--danger-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 480px) {
+    .account-container .form-container {
+        margin: 1rem;
+    }
+    
+    .account-container h1 {
+        font-size: 2rem;
+    }
+}
+
+.account-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-container input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#update-profile-button {
+    margin-bottom: 10px;
+}

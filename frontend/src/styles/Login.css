@@ -1,0 +1,178 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease-out;
+
+}
+
+.form-container {
+  animation: slideUp 0.5s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0 20px;
+  padding: 2.5rem;
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.9),
+    rgba(20, 20, 20, 0.9)
+  );
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 8px 0;
+  background-color: rgba(17, 17, 17, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #e0e0e0;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Add sequential animation delays for form elements */
+.login-container .input-group:nth-child(2) .form-input {
+  animation-delay: 0.1s;
+}
+.login-container .input-group:nth-child(3) .form-input {
+  animation-delay: 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  background-color: rgba(17, 17, 17, 0.9);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.login-container h1 {
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+  font-family: "PartyConfetti", Arial, sans-serif;
+  font-size: rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #e0e0e0, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.btn-signin {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem; /* Ensure correct font size */
+  border-radius: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  transform-origin: center;
+  margin: 10px 10px;
+  backface-visibility: hidden;
+}
+
+.btn-signin:hover {
+  background-color: var(--primary-hover);
+  color: #fff;
+  border-color: var(--primary-hover);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-signin:active {
+  transform: scale(0.95);
+}
+
+.btn-link {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.2rem; /* Adjust font size */
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  padding: 0.5rem 1rem; /* Add padding */
+  border-radius: 10px; /* Add border radius */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.btn-link:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.btn-link:active {
+  transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container .form-container {
+    margin: 1rem;
+  }
+
+  .login-container h1 {
+    font-size: 2rem;
+  }
+
+  /* Remove hover effects */
+  .login-container .btn-primary:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .login-container .btn-link:hover {
+    color: rgba(0, 123, 255, 0.8);
+  }
+
+  .login-container .btn-link:hover:after {
+    width: 0;
+  }
+}

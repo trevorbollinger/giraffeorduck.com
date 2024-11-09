@@ -1,0 +1,191 @@
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.tutorial-overlay.closing {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.tutorial-content {
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.9);
+    animation: modalOpen 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.tutorial-content.closing {
+    animation: modalClose 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.tutorial-title {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 32px;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.tutorial-steps {
+    margin: 1.5rem 0;
+    text-align: left;
+    color: white;
+}
+
+.tutorial-steps p {
+    margin: 1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.tutorial-steps ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.tutorial-steps li {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.tutorial-steps p:nth-child(1) { animation-delay: 0.1s; }
+.tutorial-steps p:nth-child(2) { animation-delay: 0.2s; }
+.tutorial-steps p:nth-child(3) { animation-delay: 0.3s; }
+
+.tutorial-btn {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.tutorial-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes modalOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes modalClose {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .tutorial-modal {
+        padding: 1rem;
+        width: 90%;
+        max-height: 90vh;
+    }
+
+    .tutorial-content {
+        padding: 1rem;
+        width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+        margin: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .tutorial-title {
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+    .tutorial-steps {
+        margin: 1rem 0;
+    }
+
+    .tutorial-steps p {
+        font-size: 0.9rem;
+        margin: 0.7rem 0;
+    }
+
+    .tutorial-steps ol {
+        padding-left: 1.2rem;
+        margin: 0.7rem 0;
+    }
+
+    .tutorial-steps li {
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
+        line-height: 1.3;
+    }
+
+    .tutorial-btn {
+        font-size: 20px;
+        padding: 8px 24px;
+        margin-top: 0.5rem;
+    }
+
+    /* Fix for mobile Safari bottom gap */
+    .tutorial-overlay {
+        position: fixed;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tutorial-modal h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tutorial-modal p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .tutorial-close {
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+}

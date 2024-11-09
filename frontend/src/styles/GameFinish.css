@@ -1,0 +1,170 @@
+.game-complete {
+    position: static;  /* Change from fixed to static */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; /* Increased from 20px */
+    text-align: center;
+    overflow: hidden;
+    padding: 20px;
+    background-color: inherit;
+    min-height: calc(100vh - 200px);  /* Account for navbar and footer */
+    animation: fadeIn 0.5s ease-out;
+}
+
+.game-complete h2 {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 36px;
+    margin: 0;
+}
+
+.game-complete .score-display {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.game-complete .score-label {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 28px; /* Slightly increased */
+    margin-bottom: 20px; /* Increased from 15px */
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 0.2s forwards;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.game-complete .score-squares {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Increased from 20px */
+    margin: 0;
+    perspective: 1000px;
+    margin-bottom: 20px; /* Added margin to create space */
+}
+
+.game-complete .score-square {
+    width: 65px; /* Increased from 50px */
+    height: 65px; /* Increased from 50px */
+    border-radius: 12px; /* Adjusted for larger size */
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    border-width: 3px;
+    animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+}
+
+/* Add delay to each square */
+.game-complete .score-square:nth-child(1) { animation-delay: 0.1s; }
+.game-complete .score-square:nth-child(2) { animation-delay: 0.2s; }
+.game-complete .score-square:nth-child(3) { animation-delay: 0.3s; }
+.game-complete .score-square:nth-child(4) { animation-delay: 0.4s; }
+.game-complete .score-square:nth-child(5) { animation-delay: 0.5s; }
+
+.game-complete .score-square.green {
+    background: linear-gradient(135deg, #43a047 0%, #4caf50 100%);
+    border: 2px solid #43a047;
+}
+
+.game-complete .score-square.red {
+    background: linear-gradient(135deg, #e53935 0%, #f44336 100%);
+    border: 2px solid #e53935;
+}
+
+.game-complete .score-square.grey {
+    background: linear-gradient(135deg, #555 0%, #666 100%);
+    border: 2px solid #555;
+}
+
+.btn {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 0.4s forwards;
+}
+
+.btn-primary {
+    background-color: #4a4a4a;
+    color: white;
+    border: 2px solid #4a4a4a;
+}
+
+.btn-primary:hover {
+    background-color: #5a5a5a;
+    border-color: #5a5a5a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #4a4a4a;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #4a4a4a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+@media screen and (max-width: 800px) {
+    .game-complete {
+        gap: 20px;
+    }
+
+    .game-complete h2 {
+        font-size: 28px;
+    }
+
+    .game-complete .score-label {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .game-complete .score-squares {
+        gap: 15px;
+    }
+
+    .game-complete .score-square {
+        width: 45px;
+        height: 45px;
+        border-radius: 10px;
+    }
+
+    .btn {
+        font-size: 20px;
+        padding: 8px 24px;
+    }
+
+    .game-complete .score-display {
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

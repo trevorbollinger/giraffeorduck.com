@@ -1,0 +1,234 @@
+.game-interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Changed to center */
+    gap: min(20px, 2vh); /* Make gap responsive */
+    margin: auto; /* Changed from 0 auto to auto for vertical centering */
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    animation: fadeIn 0.5s ease-out;
+    position: relative; /* Added */
+    min-height: min-content;
+    overflow-y: auto;
+    max-height: min(900px, 90vh);
+    padding-top: 10px;
+}
+
+.image-wrapper {
+    width: min(400px, 45vh, 90vw);  /* Scale with viewport height and width */
+    height: min(500px, 55vh, calc(90vh - 200px));  /* Scale with viewport */
+    flex: 0 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    min-height: 0;
+    margin: 0 auto;
+}
+
+.game-interface img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.image-wrapper img.blurred {
+    filter: blur(10px);
+    transition: filter 0.3s ease;
+}
+
+.image-wrapper img.blurred:hover {
+    filter: blur(5px);
+}
+
+.slide-exit {
+    animation: slideOut 0.5s ease-in-out forwards;
+}
+
+.slide-enter {
+    animation: slideIn 0.5s ease-in-out forwards;
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%) scale(0.9);
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%) scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+
+.score-squares {
+    display: flex;
+    justify-content: center;
+    gap: min(20px, 2vh); /* Make gap responsive */
+    margin: 0;
+    perspective: 1000px;
+    padding: 10px 0; /* Add a little vertical padding */
+}
+
+.score-square {
+    width: min(70px, 6vh, 10vw);  /* Scale with viewport */
+    height: min(70px, 6vh, 10vw);  /* Scale with viewport */
+    border-radius: 10px;
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    border-width: 3px;
+    transform-origin: center;
+}
+
+.score-square.green {
+    animation: bounce 0.6s ease;
+    background: linear-gradient(135deg, #43a047 0%, #4caf50 100%);
+    border: 2px solid #43a047;
+}
+
+.score-square.red {
+    animation: bounce 0.6s ease;
+    background: linear-gradient(135deg, #e53935 0%, #f44336 100%);
+    border: 2px solid #e53935;
+}
+
+.score-square.grey {
+    background: linear-gradient(135deg, #555 0%, #666 100%);
+    border: 2px solid #555;
+}
+
+@keyframes bounce {
+     0% { transform: scale(1); }
+    40% { transform: scale(1.15); }
+    70% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.game-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 110px);
+    gap: 20px;
+    text-align: center;
+}
+
+.button-container {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;  /* Add max-width to contain buttons */
+    justify-content: center;  /* Center the buttons */
+}
+
+.game-btn-dark {
+    font-family: 'PartyConfetti', Arial, sans-serif;
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 12px;
+    border: 2px solid var(--dark);    /* Add this */
+    background-color: var(--dark);    /* Add this */
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-smooth);
+    min-width: 120px;
+    flex: 1;  /* Make buttons take equal width */
+    max-width: 180px;  /* Prevent buttons from getting too wide */
+}
+
+.game-btn-dark:hover {                    
+    background-color: var(--dark-hover);
+    border-color: var(--dark-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.game-btn:active {
+    transform: scale(0.95);
+}
+
+
+.score-display {
+    padding: 0;
+    width: 100%;
+    background-color: transparent; /* Remove background color */
+    border: none; /* Remove border */
+    border-radius: 0; /* Remove border-radius */
+    box-shadow: none; /* Remove box-shadow */
+}
+
+@media screen and (max-width: 800px) {
+    .game-interface {
+        justify-content: center;
+        gap: 8px; /* Reduced from min(12px, 1.5vh) */
+        padding: 5px;
+        max-height: min(800px, 95vh); 
+        margin: auto; 
+    }
+
+    .image-wrapper {
+        width: min(300px, 45vh, 90vw);
+        height: min(400px, 50vh, calc(90vh - 180px));
+    }
+
+    .score-display {
+        padding: 0;
+        width: 100%;
+    }
+
+    .score-squares {
+        gap: min(8px, 1vh);
+        padding: 0; /* Remove padding from score squares */
+    }
+
+    .score-square {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        animation: none;
+    }
+
+    .button-container {
+        padding: 0;
+        gap: 10px; /* Reduced from 12px */
+        max-width: 300px;  /* Smaller max-width for mobile */
+    }
+
+    .game-btn {
+        font-size: 20px;
+        padding: 8px 24px;
+        min-width: 100px;
+    }
+
+    .game-btn-dark {
+        font-size: 20px;
+        padding: 8px 24px;
+        min-width: 0;  /* Remove min-width on mobile */
+        max-width: none;  /* Remove max-width on mobile */
+    }
+
+    .image-wrapper img.blurred:hover {
+        filter: blur(10px); /* Keep full blur on mobile */
+    }
+}
