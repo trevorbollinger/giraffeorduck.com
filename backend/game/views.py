@@ -50,25 +50,24 @@ class GameScoreListCreate(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         user = self.request.user
-        current_date = timezone.now().date()
+        current_iteration = self.request.data.get('iteration', 0)
         
         try:
             existing_score = GameScore.objects.filter(
                 user=user,
-                date__date=current_date
+                iteration=current_iteration
             ).first()
             
             if existing_score:
                 existing_score.score = self.request.data.get('score', [])
                 existing_score.streak = self.request.data.get('streak', 0)
-                existing_score.iteration = self.request.data.get('iteration', 0)
-                existing_score.date = timezone.now()  # Update the date to the current time
+                existing_score.date = timezone.now()
                 existing_score.save()
             else:
                 serializer.save(
                     user=user,
                     score=self.request.data.get('score', []),
-                    iteration=self.request.data.get('iteration', 0)
+                    iteration=current_iteration
                 )
         except Exception as e:
             print(f"Error saving score: {e}")
