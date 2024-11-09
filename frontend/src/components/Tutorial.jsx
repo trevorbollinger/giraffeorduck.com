@@ -24,7 +24,7 @@ function Tutorial({ onClose }) {
                         <li>After each round, the scoreboard will be updated with a green square if your guess was correct or a
                             red square if it was incorrect.</li>
                         <li>After all five rounds, you can share your final score.</li>
-                        <li>Log in to save your score and start a streak!</li>
+                        <li>Log in before you play to save your score and start a streak!</li>
                     </ol>
                     <p>Have fun playing, and be sure to come back tomorrow for a new set of images!</p>
                 </div>

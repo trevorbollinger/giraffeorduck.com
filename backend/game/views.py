@@ -153,8 +153,8 @@ class GameDataView(APIView):
         today_date_str = now.strftime('%Y-%m-%d')
         base_seed = int(datetime.strptime(today_date_str, '%Y-%m-%d').timestamp())
 
-        set1_count = 25  
-        set2_count = 20  
+        set1_count = 82  
+        set2_count = 80  
 
         image_urls = []
         answer_key = []
