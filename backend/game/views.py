@@ -13,6 +13,9 @@ from datetime import datetime, timedelta
 import pytz
 import os
 from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -43,34 +46,62 @@ class UserDetailView(APIView):
 class GameScoreListCreate(generics.ListCreateAPIView): 
     serializer_class = GameScoreSerializer
     permission_classes = [IsAuthenticated]
+    queryset = GameScore.objects.all()
 
     def get_queryset(self):
-        user = self.request.user
-        return GameScore.objects.filter(user=user).order_by('-date')
+        return GameScore.objects.filter(user=self.request.user).order_by('-date')
 
     def perform_create(self, serializer):
         user = self.request.user
         current_iteration = self.request.data.get('iteration', 0)
         
         try:
+            logger.info(f"Processing game score for user {user.username}, iteration {current_iteration}")
+            
+            # Get all previous scores for this user
+            previous_scores = GameScore.objects.filter(
+                user=user,
+                iteration__lt=current_iteration  # Only get scores from previous iterations
+            ).order_by('-iteration')
+            
+            # Find the most recent previous iteration's score
+            last_different_score = previous_scores.first()
+            
+            new_streak = 0
+            if last_different_score:
+                logger.info(f"Current iteration: {current_iteration}, Last iteration: {last_different_score.iteration}")
+                logger.info(f"Previous streak: {last_different_score.streak}")
+                
+                # Start streak at 2 for first consecutive day
+                if last_different_score.iteration == current_iteration - 1:
+                    new_streak = last_different_score.streak + 1 if last_different_score.streak > 0 else 2
+                    logger.info(f"Consecutive iteration! New streak: {new_streak}")
+                else:
+                    logger.info(f"Streak reset. Iteration gap: {current_iteration - last_different_score.iteration}")
+            
+            # Check for existing score for current iteration
             existing_score = GameScore.objects.filter(
                 user=user,
                 iteration=current_iteration
             ).first()
             
             if existing_score:
+                logger.info(f"Updating existing score for iteration {current_iteration}")
                 existing_score.score = self.request.data.get('score', [])
-                existing_score.streak = self.request.data.get('streak', 0)
+                existing_score.streak = new_streak
                 existing_score.date = timezone.now()
                 existing_score.save()
             else:
+                logger.info(f"Creating new score for iteration {current_iteration}")
                 serializer.save(
                     user=user,
                     score=self.request.data.get('score', []),
-                    iteration=current_iteration
+                    iteration=current_iteration,
+                    streak=new_streak
                 )
+                
         except Exception as e:
-            print(f"Error saving score: {e}")
+            logger.error(f"Error saving score: {e}", exc_info=True)
             raise
 
 class GameDataView(APIView): 

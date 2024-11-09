@@ -12,6 +12,8 @@
     height: 100%;
     box-sizing: border-box;
     width: 100%; /* Ensure full width */
+    border-radius: 20px;
+    margin: 10px auto;
 }
 
 .history-container h1 {
@@ -27,8 +29,7 @@
     flex: 1;
     overflow-y: auto;
     padding-right: 10px;
-    margin: -5px;
-    padding: 5px;
+    padding-left: 10px;
     width: 100%; /* Ensure full width */
 }
 
@@ -52,18 +53,19 @@
 
 @media screen and (max-width: 768px) {
     .history-container {
-        padding: 2px;
+        background-color: var(--color-dark);
+        padding: 10px;
+        margin: 5px auto;
+        border-radius: 0px;
     }
 
     .history-container h1 {
-        font-size: 1.5em;
-        margin: 5px 0;
+        font-size: 1.6em;
+        margin: 5px 0 10px 0;
     }
 
     .scores-list {
-        padding: 0px;
-        padding-right: 10px;
-        padding-left: 10px;
-        margin: 0;
+        padding: 0 5px;
+        border-radius: 0px;
     }
 }

@@ -80,6 +80,14 @@ function Home({ onSplashStateChange, onMount }) {
     };
 
     const createGameScore = (finalScore) => {
+        
+        const mostRecentGameScore = gameScores.reduce((latest, score) => {
+            return new Date(score.date) > new Date(latest.date) ? score : latest;
+        }, gameScores[0]);
+
+        const mostRecentDate = mostRecentGameScore ? mostRecentGameScore.date : null;
+
+
         const scoreData = {
             score: finalScore,
             streak: 0,
