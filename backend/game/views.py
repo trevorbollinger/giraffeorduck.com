@@ -49,14 +49,20 @@ class UserDetailView(APIView):
 
 class GameScoreListCreate(generics.ListCreateAPIView): 
     serializer_class = GameScoreSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]  # Change to AllowAny
     queryset = GameScore.objects.all()
 
     def get_queryset(self):
-        return GameScore.objects.filter(user=self.request.user).order_by('-date')
+        if self.request.user.is_authenticated:
+            return GameScore.objects.filter(user=self.request.user).order_by('-date')
+        return GameScore.objects.none()
 
     def perform_create(self, serializer):
-        user = self.request.user
+        if self.request.user.is_authenticated:
+            user = self.request.user
+        else:
+            user = User.objects.get(username='Anonymous')  # Get the Anonymous user
+
         current_iteration = self.request.data.get('iteration', 0)
         hard_mode = self.request.data.get('hard_mode', False)  # Add this line
         

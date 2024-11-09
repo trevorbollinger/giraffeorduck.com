@@ -67,10 +67,8 @@ function Home({ onSplashStateChange, onMount }) {
         } else {
             setGameComplete(true);
             setStreak(newScore.filter(s => s === 'y').length);
-            if (isAuthorized) {
-                const screenResolution = `${window.screen.width}x${window.screen.height}`;
-                createGameScore(newScore, screenResolution);
-            }
+            const screenResolution = `${window.screen.width}x${window.screen.height}`;
+            createGameScore(newScore, screenResolution);  // Always create score, regardless of auth status
         }
     };
 
@@ -81,12 +79,6 @@ function Home({ onSplashStateChange, onMount }) {
     };
 
     const createGameScore = (finalScore, screenResolution) => {
-        const mostRecentGameScore = gameScores.reduce((latest, score) => {
-            return new Date(score.date) > new Date(latest.date) ? score : latest;
-        }, gameScores[0]);
-
-        const mostRecentDate = mostRecentGameScore ? mostRecentGameScore.date : null;
-
         const scoreData = {
             score: finalScore,
             streak: 0,
@@ -98,9 +90,11 @@ function Home({ onSplashStateChange, onMount }) {
 
         api.post("/game/submit-score/", scoreData)
             .then((res) => {
-                setGameScores([...gameScores.filter(gs => gs.date !== currentDate), res.data]);
+                if (isAuthorized) {
+                    setGameScores([...gameScores.filter(gs => gs.date !== currentDate), res.data]);
+                }
             })
-            .catch((err) => alert("Failed to submit score: " + err));
+            .catch((err) => console.error("Failed to submit score:", err));
     };
 
     const handlePlayClick = () => {
