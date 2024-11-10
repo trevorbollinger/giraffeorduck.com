@@ -127,6 +127,15 @@
   top: 1px;
 }
 
+.auth-message {
+  font-family: "PartyConfetti", Arial, sans-serif;
+  color: #ffffff;
+  font-size: 1.3rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
 @media screen and (max-width: 800px) {
   .splash-screen {
     height: calc(100% - 20px);
@@ -196,5 +205,13 @@
 
   .hard-mode-container label {
     font-size: 1.3rem;
+  }
+
+  .auth-message {
+    font-size: 1.25rem;
+    margin-top: -5px;
+    margin-bottom: 2px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }

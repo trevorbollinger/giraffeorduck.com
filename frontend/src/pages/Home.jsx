@@ -111,6 +111,7 @@ function Home({ onSplashStateChange, onMount }) {
                     currentIteration={currentIteration}
                     hardMode={hardMode}
                     setHardMode={setHardMode}
+                    isAuthorized={isAuthorized}  // Add this line
                 />
             ) : (
                 <Game 
