@@ -8,6 +8,7 @@ function SplashScreen({
   currentIteration,
   hardMode,
   setHardMode,
+  isAuthorized,  // Add this line
 }) {
   const currentDate = new Date().toLocaleDateString("en-US", {
     month: "long",
@@ -19,6 +20,9 @@ function SplashScreen({
     <div className="splash-screen">
       <img src={favicon} className="splash-logo" alt="Game Logo" />
       <h1 className="splash-text-logo">GIRAFFE OR DUCK?</h1>
+      {!isAuthorized && (
+        <p className="auth-message">Make an account or login to save your score and streak!</p>
+      )}
       <div className="splash-buttons">
         <button onClick={onTutorialClick}>How to Play</button>
         <button onClick={onPlayClick}>Start</button>
